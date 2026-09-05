@@ -62,7 +62,7 @@ The **Online Result Management System** is an enterprise-grade academic web appl
 ![Admin Dashboard](docs/screenshots/admin_dashboard.png)
 
 ### 📜 Official Student Marksheet & Academic Transcript
-![Student Marksheet](docs/screenshots/student_result.png)
+<img width="1401" height="892" alt="image" src="https://github.com/user-attachments/assets/ea628abd-ee2e-4bc5-9003-dcac12ae419b" />
 
 ### 🔍 Online Result Verification & Instant Search
 ![Result Search](docs/screenshots/result_search.png)
@@ -71,7 +71,8 @@ The **Online Result Management System** is an enterprise-grade academic web appl
 ![Login Portal](docs/screenshots/login_portal.png)
 
 ### 📝 Result Declaration & Subject Grading System
-<img width="1231" height="617" alt="image" src="https://github.com/user-attachments/assets/06e52074-28d1-4945-8f39-8d7075e7ded7" />
+<img width="1401" height="892" alt="image" src="https://github.com/user-attachments/assets/21307f5c-6732-4a3a-a59e-3c06aca1a15d" />
+
 
 
 ### 👥 Student Directory & Records Management
