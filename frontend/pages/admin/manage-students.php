@@ -118,6 +118,7 @@ if ($st === 1) $activeCount += $num;
 else $pendingCount += $num;
 }
 }
+}
 $initialFilter = isset($_GET['filter']) ? strtolower(trim($_GET['filter'])) : 'all';
 if (!in_array($initialFilter, ['all', 'pending', 'active'])) {
     $initialFilter = 'all';
