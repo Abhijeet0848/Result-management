@@ -1,0 +1,5 @@
+.git
+.agents
+.gemini
+*.log
+scratch_*.php
