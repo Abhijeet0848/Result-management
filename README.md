@@ -4,16 +4,20 @@
 
 **A Modern, Secure, Full-Stack Academic Portal built with PHP 8.2 & PostgreSQL**
 
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-online--result--system--perfect--one.vercel.app-2ea44f?style=for-the-badge&logo=vercel&logoColor=white)](https://online-result-system-perfect-one.vercel.app/)
+
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white&style=flat-square)](https://www.php.net/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&style=flat-square)](https://www.postgresql.org/)
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel&logoColor=white&style=flat-square)](https://vercel.com/)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live-000000?logo=vercel&logoColor=white&style=flat-square)](https://online-result-system-perfect-one.vercel.app/)
 [![Cloudflare CDN](https://img.shields.io/badge/Cloudflare-Protected-F38020?logo=cloudflare&logoColor=white&style=flat-square)](https://www.cloudflare.com/)
 [![Razorpay](https://img.shields.io/badge/Payment-Razorpay_Gateway-0C2340?logo=razorpay&logoColor=528FF0&style=flat-square)](https://razorpay.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
+### 🔗 Live Production URL: [https://online-result-system-perfect-one.vercel.app/](https://online-result-system-perfect-one.vercel.app/)
+
 *Affiliated to Savitribai Phule Pune University (SPPU) • Examination Division & Student Services*
 
-[Live Demo](#-live-cloud-deployment) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
+[🌐 Open Live Demo](https://online-result-system-perfect-one.vercel.app/) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
 
 </div>
 
@@ -125,13 +129,14 @@ Visit `http://localhost:8000` in your browser.
 
 ---
 
-## 🔑 Default Credentials
+## 🔑 Default Credentials & Live Portal Links
 
-| Portal | Login URL | Username | Password |
+| Portal | Live Access Link | Default Username | Default Password |
 | :--- | :--- | :--- | :--- |
-| **Admin Portal** | `/frontend/pages/auth/index.php` | `admin` | `Test@123` |
-| **Faculty Portal** | `/frontend/pages/auth/index.php` | `faculty@example.com` | `faculty123` |
-| **Student Portal** | `/frontend/pages/student/s_login.php` | `gautam@example.com` | `1102208472` |
+| **Admin Portal** | [Open Admin Portal](https://online-result-system-perfect-one.vercel.app/frontend/pages/auth/index.php) | `admin` | `Test@123` |
+| **Faculty Portal** | [Open Faculty Portal](https://online-result-system-perfect-one.vercel.app/frontend/pages/auth/index.php) | `faculty@example.com` | `faculty123` |
+| **Student Portal** | [Open Student Portal](https://online-result-system-perfect-one.vercel.app/frontend/pages/student/s_login.php) | `gautam@example.com` | `1102208472` |
+| **Direct Result Search** | [Search Result Online](https://online-result-system-perfect-one.vercel.app/frontend/pages/auth/find-result.php) | *Public Access* | *Public Access* |
 
 ---
 
