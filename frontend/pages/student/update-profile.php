@@ -33,18 +33,6 @@ if ($conn && !empty($email)) {
     }
 }
 
-// Check if file exists on disk even if DB field was empty
-$roll_no_val = $student['roll_no'] ?? ($_SESSION['student_roll'] ?? '');
-$upload_dir = __DIR__ . '/../../assets/uploads/students/';
-if (empty($current_photo) && !empty($roll_no_val)) {
-    foreach (['jpg', 'jpeg', 'png', 'webp', 'gif'] as $ext) {
-        if (file_exists($upload_dir . 'student_' . $roll_no_val . '.' . $ext)) {
-            $current_photo = '/frontend/assets/uploads/students/student_' . $roll_no_val . '.' . $ext;
-            break;
-        }
-    }
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $conn && !empty($email)) {
     $name = trim($_POST['name'] ?? '');
     $gender = $_POST['gender'] ?? '';
@@ -53,13 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $conn && !empty($email)) {
     $new_password = $_POST['new_password'] ?? '';
 
     // Fetch stored password
-    $sql = "SELECT password, roll_no FROM student WHERE LOWER(email) = LOWER($1)";
+    $sql = "SELECT password, roll_no, photo FROM student WHERE LOWER(email) = LOWER($1)";
     $result = pg_query_params($conn, $sql, array($email));
 
     if ($result && pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
         $stored_password = $row['password'] ?? '';
-        $student_roll = $row['roll_no'] ?? $roll_no_val;
+        $stored_photo = $row['photo'] ?? $current_photo;
 
         // Verify password (supports plain or bcrypt)
         $pass_valid = false;
@@ -70,32 +58,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $conn && !empty($email)) {
         if ($pass_valid) {
             $pass_to_save = !empty($new_password) ? $new_password : $stored_password;
 
-            // Handle Photo Upload
-            $new_photo_path = $current_photo;
+            // Handle Photo Upload (Vercel & Serverless compatible Base64 Data URI)
+            $new_photo_path = $stored_photo;
             if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
                 $file_tmp = $_FILES['photo']['tmp_name'];
-                $file_name = $_FILES['photo']['name'];
                 $file_size = $_FILES['photo']['size'];
-                $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-                $allowed_extensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+                $file_info = @getimagesize($file_tmp);
 
-                if (!in_array($file_ext, $allowed_extensions)) {
-                    $error_message = "Invalid image format. Allowed formats: JPG, JPEG, PNG, WEBP, GIF.";
+                if ($file_info === false) {
+                    $error_message = "The uploaded file is not a valid image.";
                 } elseif ($file_size > 5 * 1024 * 1024) {
                     $error_message = "Image size exceeds 5MB limit.";
                 } else {
-                    if (!is_dir($upload_dir)) {
-                        mkdir($upload_dir, 0777, true);
-                    }
-                    $target_file_name = 'student_' . preg_replace('/[^A-Za-z0-9_-]/', '', $student_roll) . '.' . $file_ext;
-                    $target_path = $upload_dir . $target_file_name;
+                    $mime = $file_info['mime'] ?? 'image/jpeg';
+                    $allowed_mimes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 
-                    if (move_uploaded_file($file_tmp, $target_path)) {
-                        $new_photo_path = '/frontend/assets/uploads/students/' . $target_file_name . '?v=' . time();
-                        $current_photo = $new_photo_path;
-                        $_SESSION['student_photo'] = $new_photo_path;
+                    if (!in_array($mime, $allowed_mimes)) {
+                        $error_message = "Invalid image format. Allowed formats: JPG, PNG, WEBP, GIF.";
                     } else {
-                        $error_message = "Failed to upload photo to server.";
+                        $raw_data = file_get_contents($file_tmp);
+                        if ($raw_data !== false) {
+                            $base64_data = 'data:' . $mime . ';base64,' . base64_encode($raw_data);
+                            $new_photo_path = $base64_data;
+                            $current_photo = $new_photo_path;
+                            $_SESSION['student_photo'] = $new_photo_path;
+                        } else {
+                            $error_message = "Could not read uploaded image data.";
+                        }
                     }
                 }
             }
@@ -110,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $conn && !empty($email)) {
                     $student['gender'] = $gender;
                     $student['dob'] = $dob;
                     $student['photo'] = $new_photo_path;
-                    $success_message = "Your profile and photograph have been updated successfully!";
+                    $success_message = "Your profile details and photograph have been saved successfully!";
                 } else {
                     $error_message = "Error updating profile in database: " . pg_last_error($conn);
                 }
