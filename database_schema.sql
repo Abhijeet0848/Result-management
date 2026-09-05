@@ -298,3 +298,21 @@ INSERT INTO audit_logs (id, username, user_role, action, details, ip_address, cr
 INSERT INTO audit_logs (id, username, user_role, action, details, ip_address, created_at) VALUES ('18', 'Abhijeet', 'Guest', 'PUBLISH_NOTICE', 'Published public notice: Notice To Delete.', '::1', '2026-09-05 18:29:10.941348');
 INSERT INTO audit_logs (id, username, user_role, action, details, ip_address, created_at) VALUES ('19', 'Abhijeet', 'Guest', 'DELETE_NOTICE', 'Deleted circular notice ID: 17.', '::1', '2026-09-05 18:29:11.202563');
 INSERT INTO audit_logs (id, username, user_role, action, details, ip_address, created_at) VALUES ('20', 'Abhijeet', 'Guest', 'DELETE_NOTICE', 'Deleted circular notice ID: 18.', '::1', '2026-09-05 18:30:38.641087');
+
+-- =========================================================
+-- Reset and Synchronize PostgreSQL Auto-Increment Sequences
+-- (Prevents "duplicate key violates unique constraint" errors in Neon)
+-- =========================================================
+SELECT setval('admin_admin_id_seq', (SELECT COALESCE(MAX(admin_id), 1) FROM admin));
+SELECT setval('branch_branch_id_seq', (SELECT COALESCE(MAX(branch_id), 1) FROM branch));
+SELECT setval('semester_sem_id_seq', (SELECT COALESCE(MAX(sem_id), 1) FROM semester));
+SELECT setval('subjects_subj_id_seq', (SELECT COALESCE(MAX(subj_id), 1) FROM subjects));
+SELECT setval('subject_comb_id_seq', (SELECT COALESCE(MAX(id), 1) FROM subject_comb));
+SELECT setval('student_reg_id_seq', (SELECT COALESCE(MAX(reg_id), 1) FROM student));
+SELECT setval('mother_id_seq', (SELECT COALESCE(MAX(id), 1) FROM mother));
+SELECT setval('results_result_id_seq', (SELECT COALESCE(MAX(result_id), 1) FROM results));
+SELECT setval('photocopy_requests_request_id_seq', (SELECT COALESCE(MAX(request_id), 1) FROM photocopy_requests));
+SELECT setval('revaluation_requests_request_id_seq', (SELECT COALESCE(MAX(request_id), 1) FROM revaluation_requests));
+SELECT setval('notices_notice_id_seq', (SELECT COALESCE(MAX(notice_id), 1) FROM notices));
+SELECT setval('documents_doc_id_seq', (SELECT COALESCE(MAX(doc_id), 1) FROM documents));
+SELECT setval('audit_logs_id_seq', (SELECT COALESCE(MAX(id), 1) FROM audit_logs));
