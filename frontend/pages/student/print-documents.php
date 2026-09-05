@@ -1032,7 +1032,8 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
     <?php endif; ?>
 
     <!-- DOCUMENT REPOSITORY DIRECTORY LIST (Option Cards) -->
-    <div class="card no-print" style="padding: clamp(14px, 2.5vw, 24px); box-sizing: border-box; width: 100%;">
+    <?php if (!$selectedDocument): ?>
+    <div class="card" style="padding: clamp(14px, 2.5vw, 24px); box-sizing: border-box; width: 100%;">
         <h3 style="font-size: 1.15rem; font-weight: 700; margin-top: 0; margin-bottom: 16px; color: #0f172a; display: flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-folder-tree" style="color: #4f46e5;"></i> Official Academic Documents
         </h3>
@@ -1065,7 +1066,6 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             <!-- Repository Documents: Bonafide, Fee Receipt, Admission Form, Hall Ticket, Result Statement -->
             <?php if (!empty($documents)): ?>
                 <?php foreach ($documents as $doc): 
-                    $isActive = ($selectedDocument && $selectedDocument['doc_id'] == $doc['doc_id']);
                     $iconClass = 'fa-file-lines';
                     $iconBg = '#fdf2f8';
                     $iconColor = '#db2777';
@@ -1092,13 +1092,13 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                         $iconColor = '#7c3aed';
                     }
                 ?>
-                    <a href="print-documents.php?doc_id=<?= $doc['doc_id'] ?>" class="doc-item-link <?= $isActive ? 'active' : '' ?>">
+                    <a href="print-documents.php?doc_id=<?= $doc['doc_id'] ?>" class="doc-item-link">
                         <div class="doc-icon-box" style="background: <?= $iconBg ?>; color: <?= $iconColor ?>;">
                             <i class="fa-solid <?= $iconClass ?>"></i>
                         </div>
                         <div class="doc-info-text">
                             <div class="doc-title-text"><?= htmlspecialchars($doc['doc_name']) ?></div>
-                            <div class="doc-type-text"><?= htmlspecialchars($doc['doc_type'] ?? 'Academic Form') ?> <?= $isActive ? ' &bull; <strong style="color: #4f46e5;">Viewing</strong>' : '' ?></div>
+                            <div class="doc-type-text"><?= htmlspecialchars($doc['doc_type'] ?? 'Academic Form') ?></div>
                         </div>
                         <i class="fa-solid fa-arrow-right" style="color: #4f46e5; flex-shrink: 0;"></i>
                     </a>
@@ -1106,6 +1106,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             <?php endif; ?>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 
 <script>
