@@ -128,7 +128,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><?= $selectedDocument ? htmlspecialchars($selectedDocument['doc_name']) . ' - ' : '' ?>Academic Documents Repository</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../assets/css/common.css">
@@ -141,9 +141,10 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             padding: 24px 12px;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #0f172a;
+            box-sizing: border-box;
         }
         .page-container {
-            max-width: 920px;
+            max-width: 900px;
             margin: 0 auto;
             box-sizing: border-box;
             width: 100%;
@@ -160,7 +161,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
+            padding: 14px 16px;
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -169,6 +170,8 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             color: #0f172a;
             font-weight: 600;
             transition: all 0.2s ease;
+            box-sizing: border-box;
+            width: 100%;
         }
         .doc-item-link:hover {
             border-color: #4f46e5;
@@ -178,6 +181,36 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
         .doc-item-link.active {
             border-color: #4f46e5;
             background: #f5f3ff;
+            box-shadow: 0 0 0 1px #4f46e5;
+        }
+        .doc-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        .doc-info-text {
+            flex: 1;
+            min-width: 0;
+            margin: 0 12px;
+        }
+        .doc-title-text {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #0f172a;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.35;
+        }
+        .doc-type-text {
+            font-size: 0.82rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 2px;
         }
 
         /* Printable Document Styling */
@@ -191,22 +224,26 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             width: 100%;
         }
         .printable-content {
-            padding: 36px 32px;
+            padding: 32px 28px;
             box-sizing: border-box;
             position: relative;
+            width: 100%;
         }
 
         /* Bonafide Certificate Box */
         .bonafide-box {
             border: 8px double #1e3a8a;
-            padding: 36px 28px;
+            padding: 32px 24px;
             text-align: center;
             border-radius: 8px;
             background: #ffffff;
             font-family: 'Georgia', serif;
+            box-sizing: border-box;
+            width: 100%;
         }
         .univ-logo-header img {
             height: 70px;
+            max-width: 100%;
             object-fit: contain;
             margin-bottom: 8px;
         }
@@ -216,6 +253,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             color: #1e3a8a;
             text-transform: uppercase;
             margin: 0;
+            line-height: 1.25;
         }
         .univ-sub {
             color: #64748b;
@@ -225,14 +263,15 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
         }
         .doc-heading-pill {
             display: inline-block;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: #0f172a;
             letter-spacing: 1px;
             border-bottom: 2px solid #94a3b8;
             padding-bottom: 4px;
-            margin: 12px 0 20px;
+            margin: 12px 0 18px;
             text-transform: uppercase;
+            line-height: 1.3;
         }
         .bonafide-body {
             font-size: 1.05rem;
@@ -247,19 +286,28 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             font-weight: 800;
             color: #1e3a8a;
             margin: 10px 0;
+            word-break: break-word;
         }
 
-        /* General Document Tables */
+        /* Responsive Table Container */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 16px 0;
+            border-radius: 6px;
+        }
         .doc-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 16px 0;
             font-size: 0.92rem;
+            min-width: 320px;
         }
         .doc-table th, .doc-table td {
             border: 1px solid #cbd5e1;
-            padding: 10px 12px;
+            padding: 9px 10px;
             text-align: left;
+            word-break: break-word;
         }
         .doc-table th {
             background-color: #f1f5f9;
@@ -268,29 +316,33 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
         }
         .doc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
             margin: 16px 0;
             text-align: left;
             font-size: 0.92rem;
+            width: 100%;
+            box-sizing: border-box;
         }
         .doc-grid-item {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 10px 14px;
+            padding: 10px 12px;
             border-radius: 6px;
+            box-sizing: border-box;
         }
         .doc-grid-label {
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #64748b;
             font-weight: 600;
             text-transform: uppercase;
         }
         .doc-grid-value {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
             color: #0f172a;
             margin-top: 2px;
+            word-break: break-word;
         }
 
         /* Signatures block */
@@ -298,9 +350,11 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-top: 40px;
-            padding: 0 10px;
-            gap: 12px;
+            margin-top: 36px;
+            padding: 0 8px;
+            gap: 10px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .doc-sig-block {
             text-align: center;
@@ -309,6 +363,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             color: #475569;
             flex: 1;
             max-width: 180px;
+            min-width: 0;
         }
         .doc-sig-line {
             width: 100%;
@@ -316,42 +371,74 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             margin-bottom: 6px;
         }
 
-        @media (max-width: 640px) {
+        .doc-header-card {
+            border: 2px solid #0f172a;
+            padding: 22px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .doc-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* =========================================================
+           MOBILE AND SMALL SCREEN ENHANCEMENTS
+           ========================================================= */
+        @media (max-width: 768px) {
             body {
-                padding: 12px 6px;
+                padding: 16px 8px;
             }
             .printable-content {
                 padding: 20px 14px;
             }
+            .doc-header-card {
+                padding: 16px 12px;
+            }
             .bonafide-box {
-                padding: 20px 10px;
-                border-width: 5px;
+                padding: 20px 12px;
+                border-width: 6px;
             }
             .univ-title {
-                font-size: 1.15rem;
+                font-size: 1.25rem;
             }
             .doc-heading-pill {
                 font-size: 1.15rem;
                 margin: 10px 0 14px;
             }
             .bonafide-name {
-                font-size: 1.3rem;
+                font-size: 1.35rem;
             }
             .bonafide-body {
-                font-size: 0.92rem;
-                line-height: 1.6;
+                font-size: 0.95rem;
+                line-height: 1.65;
             }
-            .doc-table th, .doc-table td {
-                padding: 6px 8px;
-                font-size: 0.82rem;
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
             }
             .doc-signatures {
                 margin-top: 28px;
                 padding: 0;
-                gap: 6px;
+                gap: 8px;
             }
             .doc-sig-block {
-                font-size: 0.72rem;
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 10px 4px;
             }
             .top-nav-bar {
                 flex-direction: column;
@@ -360,6 +447,74 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             .top-nav-bar .btn {
                 width: 100%;
                 justify-content: center;
+            }
+            .doc-item-link {
+                padding: 12px 12px;
+            }
+            .doc-icon-box {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            .doc-title-text {
+                font-size: 0.92rem;
+            }
+            .doc-type-text {
+                font-size: 0.76rem;
+            }
+            .doc-header-flex {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .doc-header-flex > div {
+                text-align: center !important;
+            }
+            .doc-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .doc-table th, .doc-table td {
+                padding: 6px 6px;
+                font-size: 0.78rem;
+            }
+            .bonafide-box {
+                padding: 14px 8px;
+                border-width: 5px;
+            }
+            .univ-logo-header img {
+                height: 50px;
+            }
+            .univ-title {
+                font-size: 1.05rem;
+            }
+            .univ-sub {
+                font-size: 0.78rem;
+            }
+            .doc-heading-pill {
+                font-size: 1rem;
+                margin: 8px 0 10px;
+            }
+            .bonafide-name {
+                font-size: 1.2rem;
+            }
+            .bonafide-body {
+                font-size: 0.86rem;
+                line-height: 1.55;
+            }
+            .doc-signatures {
+                margin-top: 24px;
+                gap: 4px;
+            }
+            .doc-sig-block {
+                font-size: 0.68rem;
+            }
+            .doc-sig-line {
+                margin-bottom: 4px;
+            }
+            #docQRCode img, #docQRCode canvas {
+                width: 44px !important;
+                height: 44px !important;
             }
         }
 
@@ -395,7 +550,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             <a href="dashboard.php" style="color: #4f46e5; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 4px;">
                 <i class="fa-solid fa-arrow-left"></i> Back to Student Portal
             </a>
-            <h1 style="font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0;">
+            <h1 style="font-size: 1.4rem; font-weight: 700; color: #0f172a; margin: 0;">
                 <?= $selectedDocument ? htmlspecialchars($selectedDocument['doc_name']) : 'Academic Documents Repository' ?>
             </h1>
         </div>
@@ -441,7 +596,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
 
                         <div class="doc-heading-pill">BONAFIDE & CHARACTER CERTIFICATE</div>
 
-                        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 8px;">This is to certify that</p>
+                        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 6px;">This is to certify that</p>
                         <div class="bonafide-name"><?= htmlspecialchars($student_name) ?></div>
 
                         <div class="bonafide-body">
@@ -451,7 +606,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                             <br><br>
                             During the period of academic enrollment in this institution, his/her conduct, attendance, and moral character have been found to be <strong>Exemplary and Satisfactory</strong>.
                             <br><br>
-                            <span style="font-size: 0.92rem; color: #475569;">Issued on: <strong><?= date('d-M-Y') ?></strong> at Pune on student's request for official academic reference.</span>
+                            <span style="font-size: 0.9rem; color: #475569;">Issued on: <strong><?= date('d-M-Y') ?></strong> at Pune on student's request for official academic reference.</span>
                         </div>
 
                         <div class="doc-signatures">
@@ -460,9 +615,9 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                                 <div>Head of Department</div>
                             </div>
 
-                            <div style="text-align: center; margin: 0 6px; flex-shrink: 0;">
-                                <div id="docQRCode" style="display: inline-flex; padding: 3px; background: #ffffff; border: 1.5px solid #1e3a8a; border-radius: 4px; box-shadow: 0 2px 8px rgba(30, 58, 138, 0.15);"></div>
-                                <div style="font-size: 6.5pt; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px;">E-Verify Bonafide</div>
+                            <div style="text-align: center; margin: 0 4px; flex-shrink: 0;">
+                                <div id="docQRCode" style="display: inline-flex; padding: 2px; background: #ffffff; border: 1.5px solid #1e3a8a; border-radius: 4px; box-shadow: 0 2px 8px rgba(30, 58, 138, 0.15);"></div>
+                                <div style="font-size: 6pt; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">E-Verify Bonafide</div>
                             </div>
 
                             <div class="doc-sig-block">
@@ -476,17 +631,17 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 // 2. FEE RECEIPT
                 elseif (stripos($docName, 'Fee') !== false || $doc_id == 2): 
                 ?>
-                    <div style="border: 2px solid #0f172a; padding: 24px; border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 60px;" onerror="this.style.display='none'">
+                    <div class="doc-header-card" style="border-color: #047857;">
+                        <div class="doc-header-flex" style="border-color: #047857;">
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 55px;" onerror="this.style.display='none'">
                                 <div>
-                                    <h2 style="font-size: 1.3rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
-                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.82rem;">Finance & Accounts Division * Ganeshkhind, Pune 411007</p>
+                                    <h2 style="font-size: 1.25rem; margin: 0; color: #047857; text-transform: uppercase;">Savitribai Phule Pune University</h2>
+                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.8rem;">Finance & Accounts Division * Ganeshkhind, Pune 411007</p>
                                     <span style="font-size: 0.85rem; font-weight: 700; color: #047857; text-transform: uppercase;">Official Academic Fee Receipt</span>
                                 </div>
                             </div>
-                            <div style="text-align: right; font-size: 0.85rem;">
+                            <div style="text-align: right; font-size: 0.82rem;">
                                 <div><strong>Receipt No:</strong> SPPU-REC-<?= date('Y') ?>-<?= htmlspecialchars($roll_no) ?></div>
                                 <div><strong>Txn Ref:</strong> PAY_<?= strtoupper(substr(md5($roll_no . 'FEES'), 0, 10)) ?></div>
                                 <div><strong>Date:</strong> <?= date('d-M-Y H:i') ?></div>
@@ -512,51 +667,53 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                             </div>
                         </div>
 
-                        <table class="doc-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 50px;">#</th>
-                                    <th>Fee Description & Head</th>
-                                    <th>Session / Term</th>
-                                    <th style="text-align: right;">Amount (INR)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Academic Tuition & Course Instruction Fee</td>
-                                    <td>Academic Year 2023-2026</td>
-                                    <td style="text-align: right;">₹ 12,500.00</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>University Examination & Assessment Fee</td>
-                                    <td><?= htmlspecialchars($sem_name) ?></td>
-                                    <td style="text-align: right;">₹ 1,850.00</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Computer Laboratory & Digital Library Access</td>
-                                    <td>Annual Term</td>
-                                    <td style="text-align: right;">₹ 1,200.00</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Student Welfare, Gymkhana & Activity Fund</td>
-                                    <td>Annual Term</td>
-                                    <td style="text-align: right;">₹ 450.00</td>
-                                </tr>
-                                <tr style="background-color: #f8fafc; font-weight: 800; font-size: 1rem;">
-                                    <td colspan="3" style="text-align: right;">Grand Total Amount Paid:</td>
-                                    <td style="text-align: right; color: #047857;">₹ 16,000.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="doc-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 35px;">#</th>
+                                        <th>Fee Description</th>
+                                        <th>Session</th>
+                                        <th style="text-align: right;">Amount (INR)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Academic Tuition & Course Instruction Fee</td>
+                                        <td>2023-2026</td>
+                                        <td style="text-align: right;">₹ 12,500.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>University Examination & Assessment Fee</td>
+                                        <td><?= htmlspecialchars($sem_name) ?></td>
+                                        <td style="text-align: right;">₹ 1,850.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Computer Laboratory & Digital Library Access</td>
+                                        <td>Annual</td>
+                                        <td style="text-align: right;">₹ 1,200.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Student Welfare, Gymkhana & Activity Fund</td>
+                                        <td>Annual</td>
+                                        <td style="text-align: right;">₹ 450.00</td>
+                                    </tr>
+                                    <tr style="background-color: #f8fafc; font-weight: 800; font-size: 0.95rem;">
+                                        <td colspan="3" style="text-align: right;">Total Paid:</td>
+                                        <td style="text-align: right; color: #047857;">₹ 16,000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                        <p style="font-size: 0.88rem; color: #475569; margin: 6px 0;">
+                        <p style="font-size: 0.85rem; color: #475569; margin: 6px 0;">
                             <strong>Amount in Words:</strong> Rupees Sixteen Thousand Only.
                             <br>
-                            <strong>Payment Status:</strong> <span class="badge badge-success" style="background: #10b981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.78rem;">SUCCESS / PAID</span> (Payment Gateway - Net Banking/UPI)
+                            <strong>Status:</strong> <span class="badge badge-success" style="background: #10b981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">PAID</span> (Online Gateway - Net Banking/UPI)
                         </p>
 
                         <div class="doc-signatures">
@@ -565,14 +722,14 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                                 <div>Student / Depositor</div>
                             </div>
 
-                            <div style="text-align: center; margin: 0 6px; flex-shrink: 0;">
-                                <div id="docQRCode" style="display: inline-flex; padding: 3px; background: #ffffff; border: 1.5px solid #047857; border-radius: 4px;"></div>
-                                <div style="font-size: 6.5pt; font-weight: 800; color: #047857; text-transform: uppercase; margin-top: 4px;">E-Verify Receipt</div>
+                            <div style="text-align: center; margin: 0 4px; flex-shrink: 0;">
+                                <div id="docQRCode" style="display: inline-flex; padding: 2px; background: #ffffff; border: 1.5px solid #047857; border-radius: 4px;"></div>
+                                <div style="font-size: 6pt; font-weight: 800; color: #047857; text-transform: uppercase; margin-top: 3px;">E-Verify Receipt</div>
                             </div>
 
                             <div class="doc-sig-block">
                                 <div class="doc-sig-line"></div>
-                                <div>Finance & Accounts Officer</div>
+                                <div>Accounts Officer</div>
                             </div>
                         </div>
                     </div>
@@ -581,21 +738,21 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 // 3. ADMISSION FORM
                 elseif (stripos($docName, 'Admission') !== false || $doc_id == 3): 
                 ?>
-                    <div style="border: 2px solid #334155; padding: 24px; border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #334155; padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 60px;" onerror="this.style.display='none'">
+                    <div class="doc-header-card" style="border-color: #334155;">
+                        <div class="doc-header-flex" style="border-color: #334155;">
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 55px;" onerror="this.style.display='none'">
                                 <div>
-                                    <h2 style="font-size: 1.3rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
-                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.82rem;">Central Admissions Directorate * Academic Session 2023-2026</p>
+                                    <h2 style="font-size: 1.25rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
+                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.8rem;">Central Admissions Directorate * Session 2023-2026</p>
                                 </div>
                             </div>
-                            <div style="border: 2px dashed #94a3b8; width: 85px; height: 95px; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; color: #64748b; text-align: center;">
-                                Affix Student Photograph
+                            <div style="border: 1.5px dashed #94a3b8; width: 75px; height: 85px; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: #64748b; text-align: center;">
+                                Candidate Photo
                             </div>
                         </div>
 
-                        <div style="text-align: center; font-weight: 800; font-size: 1.15rem; color: #0f172a; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <div style="text-align: center; font-weight: 800; font-size: 1.08rem; color: #0f172a; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
                             STUDENT ADMISSION & ENROLLMENT RECORD
                         </div>
 
@@ -634,8 +791,8 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                             </div>
                         </div>
 
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 6px; margin: 16px 0; font-size: 0.85rem; color: #475569; line-height: 1.6;">
-                            <strong>Declaration by Student:</strong> I hereby certify that the academic information, certificates, and personal details furnished by me during enrollment are true and complete to the best of my knowledge. I abide by all rules, regulations, and discipline standards mandated by Savitribai Phule Pune University.
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px; margin: 14px 0; font-size: 0.82rem; color: #475569; line-height: 1.55;">
+                            <strong>Declaration by Student:</strong> I hereby certify that the academic information, certificates, and personal details furnished by me during enrollment are true and authentic.
                         </div>
 
                         <div class="doc-signatures">
@@ -644,14 +801,14 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                                 <div>Signature of Candidate</div>
                             </div>
 
-                            <div style="text-align: center; margin: 0 6px; flex-shrink: 0;">
-                                <div id="docQRCode" style="display: inline-flex; padding: 3px; background: #ffffff; border: 1.5px solid #1e3a8a; border-radius: 4px;"></div>
-                                <div style="font-size: 6.5pt; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-top: 4px;">E-Verify Admission</div>
+                            <div style="text-align: center; margin: 0 4px; flex-shrink: 0;">
+                                <div id="docQRCode" style="display: inline-flex; padding: 2px; background: #ffffff; border: 1.5px solid #1e3a8a; border-radius: 4px;"></div>
+                                <div style="font-size: 6pt; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-top: 3px;">E-Verify Admission</div>
                             </div>
 
                             <div class="doc-sig-block">
                                 <div class="doc-sig-line"></div>
-                                <div>Dean / Registrar (Admissions)</div>
+                                <div>Dean (Admissions)</div>
                             </div>
                         </div>
                     </div>
@@ -660,17 +817,17 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 // 4. EXAM HALL TICKET
                 elseif (stripos($docName, 'Hall Ticket') !== false || $doc_id == 4): 
                 ?>
-                    <div style="border: 2px solid #1e3a8a; padding: 24px; border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 60px;" onerror="this.style.display='none'">
+                    <div class="doc-header-card" style="border-color: #1e3a8a;">
+                        <div class="doc-header-flex" style="border-color: #1e3a8a;">
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 55px;" onerror="this.style.display='none'">
                                 <div>
-                                    <h2 style="font-size: 1.3rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
-                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.82rem;">Examination Division * End-Semester Examination Admit Card</p>
+                                    <h2 style="font-size: 1.25rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
+                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.8rem;">Examination Division * End-Semester Examination Admit Card</p>
                                     <span style="font-size: 0.85rem; font-weight: 700; color: #1e40af; text-transform: uppercase;">EXAM HALL TICKET / ADMIT CARD</span>
                                 </div>
                             </div>
-                            <div style="border: 2px dashed #94a3b8; width: 80px; height: 90px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #64748b; text-align: center;">
+                            <div style="border: 1.5px dashed #94a3b8; width: 75px; height: 85px; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: #64748b; text-align: center;">
                                 Candidate Photo
                             </div>
                         </div>
@@ -690,72 +847,74 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                             </div>
                             <div class="doc-grid-item">
                                 <div class="doc-grid-label">Examination Center</div>
-                                <div class="doc-grid-value">Center 01 - Main University Campus, Pune</div>
+                                <div class="doc-grid-value">PU-411007 Main University Campus, Pune</div>
                             </div>
                         </div>
 
-                        <h4 style="font-size: 0.95rem; margin: 16px 0 8px; color: #0f172a; text-transform: uppercase; font-weight: 700;">
+                        <h4 style="font-size: 0.9rem; margin: 14px 0 6px; color: #0f172a; text-transform: uppercase; font-weight: 700;">
                             Scheduled Theory & Practical Papers
                         </h4>
 
-                        <table class="doc-table">
-                            <thead>
-                                <tr>
-                                    <th>Subject Code</th>
-                                    <th>Course Title</th>
-                                    <th>Timing</th>
-                                    <th>Candidate Sign</th>
-                                    <th>Invigilator Sign</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!empty($student_subjects)): ?>
-                                    <?php foreach ($student_subjects as $sub): ?>
+                        <div class="table-responsive">
+                            <table class="doc-table">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Course Title</th>
+                                        <th>Timing</th>
+                                        <th>Candidate</th>
+                                        <th>Invigilator</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($student_subjects)): ?>
+                                        <?php foreach ($student_subjects as $sub): ?>
+                                            <tr>
+                                                <td><strong><?= htmlspecialchars($sub['subj_code']) ?></strong></td>
+                                                <td><?= htmlspecialchars($sub['subj_name']) ?></td>
+                                                <td>10 AM - 1 PM</td>
+                                                <td style="width: 70px;"></td>
+                                                <td style="width: 70px;"></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
                                         <tr>
-                                            <td><strong><?= htmlspecialchars($sub['subj_code']) ?></strong></td>
-                                            <td><?= htmlspecialchars($sub['subj_name']) ?></td>
-                                            <td>10:00 AM - 01:00 PM</td>
-                                            <td style="width: 120px;"></td>
-                                            <td style="width: 120px;"></td>
+                                            <td><strong>CS-101</strong></td>
+                                            <td>Computer Science Fundamentals</td>
+                                            <td>10 AM - 1 PM</td>
+                                            <td style="width: 70px;"></td>
+                                            <td style="width: 70px;"></td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td><strong>CS-101</strong></td>
-                                        <td>Computer Science Fundamentals & Problem Solving</td>
-                                        <td>10:00 AM - 01:00 PM</td>
-                                        <td style="width: 120px;"></td>
-                                        <td style="width: 120px;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>MTC-101</strong></td>
-                                        <td>Discrete Mathematics & Graph Theory</td>
-                                        <td>10:00 AM - 01:00 PM</td>
-                                        <td style="width: 120px;"></td>
-                                        <td style="width: 120px;"></td>
-                                    </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
+                                        <tr>
+                                            <td><strong>MTC-101</strong></td>
+                                            <td>Discrete Mathematics</td>
+                                            <td>10 AM - 1 PM</td>
+                                            <td style="width: 70px;"></td>
+                                            <td style="width: 70px;"></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
 
-                        <div style="font-size: 0.8rem; color: #64748b; line-height: 1.5; margin-top: 10px;">
-                            <strong>Instructions:</strong> 1. Possession of this Admit Card & Student ID is mandatory to enter the Exam Hall. 2. Arrive at least 20 minutes prior to exam time. 3. Electronic gadgets & smart watches are prohibited.
+                        <div style="font-size: 0.78rem; color: #64748b; line-height: 1.45; margin-top: 8px;">
+                            <strong>Instructions:</strong> 1. Possession of Admit Card & Student ID is mandatory. 2. Arrive 20 mins prior. 3. Electronic gadgets strictly prohibited.
                         </div>
 
                         <div class="doc-signatures">
                             <div class="doc-sig-block">
                                 <div class="doc-sig-line"></div>
-                                <div>Signature of Candidate</div>
+                                <div>Candidate Signature</div>
                             </div>
 
-                            <div style="text-align: center; margin: 0 6px; flex-shrink: 0;">
-                                <div id="docQRCode" style="display: inline-flex; padding: 3px; background: #ffffff; border: 1.5px solid #1e3a8a; border-radius: 4px;"></div>
-                                <div style="font-size: 6.5pt; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-top: 4px;">E-Verify Hall Ticket</div>
+                            <div style="text-align: center; margin: 0 4px; flex-shrink: 0;">
+                                <div id="docQRCode" style="display: inline-flex; padding: 2px; background: #ffffff; border: 1.5px solid #1e3a8a; border-radius: 4px;"></div>
+                                <div style="font-size: 6pt; font-weight: 800; color: #1e3a8a; text-transform: uppercase; margin-top: 3px;">E-Verify Hall Ticket</div>
                             </div>
 
                             <div class="doc-sig-block">
                                 <div class="doc-sig-line"></div>
-                                <div>Controller of Examinations</div>
+                                <div>Controller of Exams</div>
                             </div>
                         </div>
                     </div>
@@ -764,17 +923,17 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 // 5. RESULT STATEMENT / TRANSCRIPT
                 else: 
                 ?>
-                    <div style="border: 2px solid #0f2744; padding: 24px; border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f2744; padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 60px;" onerror="this.style.display='none'">
+                    <div class="doc-header-card" style="border-color: #0f2744;">
+                        <div class="doc-header-flex" style="border-color: #0f2744;">
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <img src="../../assets/images/logo.webp" alt="University Seal" style="height: 55px;" onerror="this.style.display='none'">
                                 <div>
-                                    <h2 style="font-size: 1.3rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
-                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.82rem;">Official Academic Examination Transcript & Statement of Marks</p>
+                                    <h2 style="font-size: 1.25rem; margin: 0; color: #1e3a8a; text-transform: uppercase;">Savitribai Phule Pune University</h2>
+                                    <p style="margin: 2px 0; color: #64748b; font-size: 0.8rem;">Examination Transcript & Marks Statement</p>
                                     <span style="font-size: 0.85rem; font-weight: 700; color: #1e3a8a; text-transform: uppercase;">STATEMENT OF MARKS & GRADES</span>
                                 </div>
                             </div>
-                            <div style="text-align: right; font-size: 0.85rem;">
+                            <div style="text-align: right; font-size: 0.82rem;">
                                 <div><strong>Transcript ID:</strong> TR-<?= htmlspecialchars($roll_no) ?>-<?= $sem_id ?></div>
                                 <div><strong>Date Issued:</strong> <?= date('d-M-Y') ?></div>
                             </div>
@@ -799,53 +958,55 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                             </div>
                         </div>
 
-                        <table class="doc-table">
-                            <thead>
-                                <tr>
-                                    <th>Subject Code</th>
-                                    <th>Subject Description</th>
-                                    <th style="text-align: center;">Max Marks</th>
-                                    <th style="text-align: center;">Marks Scored</th>
-                                    <th style="text-align: center;">Credits</th>
-                                    <th style="text-align: center;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!empty($student_subjects)): ?>
-                                    <?php foreach ($student_subjects as $sub): 
-                                        $m = isset($sub['marks']) ? (float)$sub['marks'] : 85;
-                                        $status = ($m >= 40) ? 'PASS' : 'FAIL';
-                                    ?>
-                                        <tr>
-                                            <td><strong><?= htmlspecialchars($sub['subj_code']) ?></strong></td>
-                                            <td><?= htmlspecialchars($sub['subj_name']) ?></td>
-                                            <td style="text-align: center;">100</td>
-                                            <td style="text-align: center; font-weight: 700;"><?= $m ?></td>
-                                            <td style="text-align: center;"><?= htmlspecialchars($sub['credits'] ?? '4.0') ?></td>
-                                            <td style="text-align: center;">
-                                                <span style="font-weight: 700; color: <?= $status === 'PASS' ? '#16a34a' : '#dc2626' ?>;"><?= $status ?></span>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                        <div class="table-responsive">
+                            <table class="doc-table">
+                                <thead>
                                     <tr>
-                                        <td><strong>CS-111</strong></td>
-                                        <td>Computer Science Core Theory</td>
-                                        <td style="text-align: center;">100</td>
-                                        <td style="text-align: center; font-weight: 700;">90</td>
-                                        <td style="text-align: center;">4.0</td>
-                                        <td style="text-align: center; color: #16a34a; font-weight: 700;">PASS</td>
+                                        <th>Code</th>
+                                        <th>Subject Description</th>
+                                        <th style="text-align: center;">Max</th>
+                                        <th style="text-align: center;">Marks</th>
+                                        <th style="text-align: center;">Credits</th>
+                                        <th style="text-align: center;">Status</th>
                                     </tr>
-                                <?php endif; ?>
-                                <tr style="background-color: #f1f5f9; font-weight: 800;">
-                                    <td colspan="2">Consolidated Academic Summary:</td>
-                                    <td style="text-align: center;"><?= $maxTotalMarks > 0 ? $maxTotalMarks : '100' ?></td>
-                                    <td style="text-align: center; color: #1e3a8a;"><?= $totalMarksScored > 0 ? $totalMarksScored : '90' ?></td>
-                                    <td style="text-align: center;">SGPA: <?= $sgpa > 0 ? $sgpa : '9.00' ?></td>
-                                    <td style="text-align: center; color: #16a34a;">PASS</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($student_subjects)): ?>
+                                        <?php foreach ($student_subjects as $sub): 
+                                            $m = isset($sub['marks']) ? (float)$sub['marks'] : 85;
+                                            $status = ($m >= 40) ? 'PASS' : 'FAIL';
+                                        ?>
+                                            <tr>
+                                                <td><strong><?= htmlspecialchars($sub['subj_code']) ?></strong></td>
+                                                <td><?= htmlspecialchars($sub['subj_name']) ?></td>
+                                                <td style="text-align: center;">100</td>
+                                                <td style="text-align: center; font-weight: 700;"><?= $m ?></td>
+                                                <td style="text-align: center;"><?= htmlspecialchars($sub['credits'] ?? '4.0') ?></td>
+                                                <td style="text-align: center;">
+                                                    <span style="font-weight: 700; color: <?= $status === 'PASS' ? '#16a34a' : '#dc2626' ?>;"><?= $status ?></span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td><strong>CS-111</strong></td>
+                                            <td>Computer Science Core Theory</td>
+                                            <td style="text-align: center;">100</td>
+                                            <td style="text-align: center; font-weight: 700;">90</td>
+                                            <td style="text-align: center;">4.0</td>
+                                            <td style="text-align: center; color: #16a34a; font-weight: 700;">PASS</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <tr style="background-color: #f1f5f9; font-weight: 800;">
+                                        <td colspan="2">Summary:</td>
+                                        <td style="text-align: center;"><?= $maxTotalMarks > 0 ? $maxTotalMarks : '100' ?></td>
+                                        <td style="text-align: center; color: #1e3a8a;"><?= $totalMarksScored > 0 ? $totalMarksScored : '90' ?></td>
+                                        <td style="text-align: center;">SGPA: <?= $sgpa > 0 ? $sgpa : '9.00' ?></td>
+                                        <td style="text-align: center; color: #16a34a;">PASS</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div class="doc-signatures">
                             <div class="doc-sig-block">
@@ -853,14 +1014,14 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                                 <div>Academic Registrar</div>
                             </div>
 
-                            <div style="text-align: center; margin: 0 6px; flex-shrink: 0;">
-                                <div id="docQRCode" style="display: inline-flex; padding: 3px; background: #ffffff; border: 1.5px solid #0f2744; border-radius: 4px;"></div>
-                                <div style="font-size: 6.5pt; font-weight: 800; color: #0f2744; text-transform: uppercase; margin-top: 4px;">E-Verify Result</div>
+                            <div style="text-align: center; margin: 0 4px; flex-shrink: 0;">
+                                <div id="docQRCode" style="display: inline-flex; padding: 2px; background: #ffffff; border: 1.5px solid #0f2744; border-radius: 4px;"></div>
+                                <div style="font-size: 6pt; font-weight: 800; color: #0f2744; text-transform: uppercase; margin-top: 3px;">E-Verify Result</div>
                             </div>
 
                             <div class="doc-sig-block">
                                 <div class="doc-sig-line"></div>
-                                <div>Controller of Examinations</div>
+                                <div>Controller of Exams</div>
                             </div>
                         </div>
                     </div>
@@ -870,39 +1031,35 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
         </div>
     <?php endif; ?>
 
-    <!-- DOCUMENT REPOSITORY DIRECTORY LIST -->
-    <div class="card no-print">
+    <!-- DOCUMENT REPOSITORY DIRECTORY LIST (Option Cards) -->
+    <div class="card no-print" style="padding: clamp(14px, 2.5vw, 24px); box-sizing: border-box; width: 100%;">
         <h3 style="font-size: 1.15rem; font-weight: 700; margin-top: 0; margin-bottom: 16px; color: #0f172a; display: flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-folder-tree" style="color: #4f46e5;"></i> Official University Academic Documents
+            <i class="fa-solid fa-folder-tree" style="color: #4f46e5;"></i> Official Academic Documents
         </h3>
 
         <div>
             <!-- Degree Certificate Link -->
             <a href="degree-print.php" class="doc-item-link">
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 42px; height: 42px; border-radius: 10px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <div>
-                        <div style="color: #0f172a; font-weight: 700;">Degree Certificate (B.Sc. Computer Science)</div>
-                        <small style="color: #64748b; font-weight: 500;">Official University Degree Parchment with Distinction</small>
-                    </div>
+                <div class="doc-icon-box" style="background: #eff6ff; color: #3b82f6;">
+                    <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: #4f46e5;"></i>
+                <div class="doc-info-text">
+                    <div class="doc-title-text">Degree Certificate (B.Sc. Computer Science)</div>
+                    <div class="doc-type-text">Degree Parchment</div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color: #4f46e5; flex-shrink: 0;"></i>
             </a>
 
             <!-- Migration Certificate Link -->
             <a href="generate-certificate.php" class="doc-item-link">
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 42px; height: 42px; border-radius: 10px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
-                        <i class="fa-solid fa-file-shield"></i>
-                    </div>
-                    <div>
-                        <div style="color: #0f172a; font-weight: 700;">Migration Certificate</div>
-                        <small style="color: #64748b; font-weight: 500;">Transfer and migration clearance for higher education</small>
-                    </div>
+                <div class="doc-icon-box" style="background: #ecfdf5; color: #10b981;">
+                    <i class="fa-solid fa-certificate"></i>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: #4f46e5;"></i>
+                <div class="doc-info-text">
+                    <div class="doc-title-text">Migration Certificate</div>
+                    <div class="doc-type-text">Transfer & Clearance Certificate</div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color: #4f46e5; flex-shrink: 0;"></i>
             </a>
 
             <!-- Repository Documents: Bonafide, Fee Receipt, Admission Form, Hall Ticket, Result Statement -->
@@ -936,16 +1093,14 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                     }
                 ?>
                     <a href="print-documents.php?doc_id=<?= $doc['doc_id'] ?>" class="doc-item-link <?= $isActive ? 'active' : '' ?>">
-                        <div style="display: flex; align-items: center; gap: 14px;">
-                            <div style="width: 42px; height: 42px; border-radius: 10px; background: <?= $iconBg ?>; color: <?= $iconColor ?>; display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
-                                <i class="fa-solid <?= $iconClass ?>"></i>
-                            </div>
-                            <div>
-                                <div style="color: #0f172a; font-weight: 700;"><?= htmlspecialchars($doc['doc_name']) ?></div>
-                                <small style="color: #64748b; font-weight: 500;"><?= htmlspecialchars($doc['doc_type'] ?? 'Academic Form') ?> <?= $isActive ? ' &bull; <strong>Viewing</strong>' : '' ?></small>
-                            </div>
+                        <div class="doc-icon-box" style="background: <?= $iconBg ?>; color: <?= $iconColor ?>;">
+                            <i class="fa-solid <?= $iconClass ?>"></i>
                         </div>
-                        <i class="fa-solid fa-arrow-right" style="color: #4f46e5;"></i>
+                        <div class="doc-info-text">
+                            <div class="doc-title-text"><?= htmlspecialchars($doc['doc_name']) ?></div>
+                            <div class="doc-type-text"><?= htmlspecialchars($doc['doc_type'] ?? 'Academic Form') ?> <?= $isActive ? ' &bull; <strong style="color: #4f46e5;">Viewing</strong>' : '' ?></div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right" style="color: #4f46e5; flex-shrink: 0;"></i>
                     </a>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -960,8 +1115,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const verifyData = <?= json_encode($verifyUrl) ?>;
         new QRCode(qrContainer, {
             text: verifyData,
-            width: 58,
-            height: 58,
+            width: 52,
+            height: 52,
             colorDark: "#1e3a8a",
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.M
