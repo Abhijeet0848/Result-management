@@ -4,20 +4,20 @@
 
 **A Modern, Secure, Full-Stack Academic Portal built with PHP 8.2 & PostgreSQL**
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-online--result--system--perfect--one.vercel.app-2ea44f?style=for-the-badge&logo=vercel&logoColor=white)](https://online-result-system-perfect-one.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-online--results.vercel.app-2ea44f?style=for-the-badge&logo=vercel&logoColor=white)](https://online-results.vercel.app/)
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white&style=flat-square)](https://www.php.net/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&style=flat-square)](https://www.postgresql.org/)
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live-000000?logo=vercel&logoColor=white&style=flat-square)](https://online-result-system-perfect-one.vercel.app/)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live-000000?logo=vercel&logoColor=white&style=flat-square)](https://online-results.vercel.app/)
 [![Cloudflare CDN](https://img.shields.io/badge/Cloudflare-Protected-F38020?logo=cloudflare&logoColor=white&style=flat-square)](https://www.cloudflare.com/)
 [![Razorpay](https://img.shields.io/badge/Payment-Razorpay_Gateway-0C2340?logo=razorpay&logoColor=528FF0&style=flat-square)](https://razorpay.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
-### 🔗 Live Production URL: [https://online-result-system-perfect-one.vercel.app/](https://online-result-system-perfect-one.vercel.app/)
+### 🔗 Live Production URL: [https://online-results.vercel.app/](https://online-results.vercel.app/)
 
 *Affiliated to Savitribai Phule Pune University (SPPU) • Examination Division & Student Services*
 
-[🌐 Open Live Demo](https://online-result-system-perfect-one.vercel.app/) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
+[🌐 Open Live Demo](https://online-results.vercel.app/) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
 
 </div>
 
