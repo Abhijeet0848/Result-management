@@ -122,6 +122,8 @@ function amountToWords($number) {
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .receipt-wrapper {
@@ -131,7 +133,7 @@ function amountToWords($number) {
             border: 1px solid #D1D5DB;
             border-radius: 8px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            padding: 28px 36px;
+            padding: 28px 32px;
             box-sizing: border-box;
             position: relative;
         }
@@ -225,6 +227,7 @@ function amountToWords($number) {
             justify-content: space-between;
             font-size: 0.84rem;
             margin-bottom: 4px;
+            gap: 8px;
         }
         .meta-row:last-child {
             margin-bottom: 0;
@@ -232,11 +235,13 @@ function amountToWords($number) {
         .meta-label {
             color: #475569;
             font-weight: 500;
+            flex-shrink: 0;
         }
         .meta-val {
             color: #0F172A;
             font-weight: 700;
             text-align: right;
+            word-break: break-word;
         }
 
         /* Fee Statement Table */
@@ -248,10 +253,17 @@ function amountToWords($number) {
             letter-spacing: 0.5px;
             margin-bottom: 6px;
         }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 14px;
+        }
         .fee-table {
             width: 100%;
+            min-width: 480px;
             border-collapse: collapse;
-            margin-bottom: 14px;
+            margin-bottom: 0;
         }
         .fee-table th {
             background: #1E3A5F;
@@ -259,7 +271,7 @@ function amountToWords($number) {
             font-size: 0.78rem;
             font-weight: 700;
             text-align: left;
-            padding: 6px 10px;
+            padding: 7px 10px;
             letter-spacing: 0.3px;
         }
         .fee-table th:last-child {
@@ -291,31 +303,36 @@ function amountToWords($number) {
         .words-box {
             background: #F8FAFC;
             border-left: 3px solid #059669;
-            padding: 6px 12px;
-            font-size: 0.78rem;
+            padding: 8px 12px;
+            font-size: 0.82rem;
             color: #334155;
             margin-bottom: 16px;
             border-radius: 0 4px 4px 0;
+            line-height: 1.4;
         }
 
         /* Footer / Authenticity */
         .receipt-footer-grid {
             display: grid;
-            grid-template-columns: 70px 1fr 170px;
-            gap: 14px;
+            grid-template-columns: 75px 1fr 180px;
+            grid-template-areas: "qr notes sign";
+            gap: 16px;
             align-items: center;
             border-top: 1px solid #E2E8F0;
-            padding-top: 12px;
+            padding-top: 14px;
         }
         .qr-section {
+            grid-area: qr;
             text-align: center;
         }
         .inst-notes {
+            grid-area: notes;
             font-size: 0.72rem;
             color: #64748B;
-            line-height: 1.4;
+            line-height: 1.45;
         }
         .sign-section {
+            grid-area: sign;
             text-align: center;
             font-size: 0.75rem;
             color: #334155;
@@ -324,11 +341,75 @@ function amountToWords($number) {
             border: 1px dashed #94A3B8;
             padding: 6px;
             border-radius: 4px;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
             font-size: 0.68rem;
             color: #1E3A5F;
             font-weight: 700;
             background: #F8FAFC;
+            line-height: 1.3;
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 680px) {
+            .receipt-wrapper {
+                padding: 18px 14px;
+                margin: 12px 10px 30px 10px;
+                border-radius: 6px;
+            }
+            .inst-name {
+                font-size: 1.12rem;
+                line-height: 1.3;
+            }
+            .inst-affil {
+                font-size: 0.76rem;
+            }
+            .doc-title-bar {
+                flex-direction: column;
+                gap: 6px;
+                align-items: flex-start;
+                padding: 8px 10px;
+            }
+            .doc-title {
+                font-size: 0.85rem;
+            }
+            .meta-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .meta-box {
+                padding: 10px 12px;
+            }
+            .meta-row {
+                font-size: 0.8rem;
+            }
+            .receipt-footer-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: 
+                    "notes notes"
+                    "qr sign";
+                gap: 14px;
+                align-items: center;
+                padding-top: 14px;
+            }
+            .inst-notes {
+                font-size: 0.75rem;
+                line-height: 1.45;
+                border-bottom: 1px dashed #E2E8F0;
+                padding-bottom: 12px;
+            }
+            .qr-section {
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .sign-section {
+                text-align: right;
+            }
+            .sign-seal {
+                display: inline-block;
+                text-align: center;
+            }
         }
 
         /* Strict Single-Page Print Setup */
@@ -346,7 +427,7 @@ function amountToWords($number) {
             html, body {
                 background: #FFFFFF !important;
                 color: #000000 !important;
-                padding: 10mm 14mm !important;
+                padding: 8mm 12mm !important;
                 margin: 0 !important;
                 width: 100% !important;
                 height: 100% !important;
@@ -369,30 +450,39 @@ function amountToWords($number) {
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
             }
+            .table-responsive {
+                overflow: visible !important;
+                margin-bottom: 10px !important;
+            }
+            .table-responsive .fee-table {
+                min-width: 100% !important;
+            }
             .inst-header {
                 border-bottom: 2px solid #000000 !important;
                 padding-bottom: 8px !important;
-                margin-bottom: 12px !important;
+                margin-bottom: 10px !important;
             }
             .inst-name {
                 color: #000000 !important;
-                font-size: 1.25rem !important;
+                font-size: 1.2rem !important;
             }
             .doc-title-bar {
                 background: #F1F5F9 !important;
                 border: 1px solid #000000 !important;
                 border-left: 5px solid #000000 !important;
-                padding: 6px 10px !important;
-                margin-bottom: 12px !important;
+                padding: 5px 8px !important;
+                margin-bottom: 10px !important;
             }
             .meta-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
                 gap: 10px !important;
-                margin-bottom: 12px !important;
+                margin-bottom: 10px !important;
             }
             .meta-box {
                 border: 1px solid #CBD5E1 !important;
                 background: #F8FAFC !important;
-                padding: 8px 10px !important;
+                padding: 6px 10px !important;
             }
             .fee-table {
                 margin-bottom: 10px !important;
@@ -409,16 +499,32 @@ function amountToWords($number) {
                 border-top: 2px solid #000000 !important;
                 border-bottom: 2px solid #000000 !important;
                 color: #000000 !important;
-                padding: 6px 8px !important;
+                padding: 5px 8px !important;
             }
             .words-box {
-                padding: 5px 10px !important;
-                margin-bottom: 12px !important;
+                padding: 4px 8px !important;
+                margin-bottom: 10px !important;
             }
             .receipt-footer-grid {
+                display: grid !important;
+                grid-template-columns: 70px 1fr 170px !important;
+                grid-template-areas: "qr notes sign" !important;
+                gap: 14px !important;
                 padding-top: 8px !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+            }
+            .inst-notes {
+                border-bottom: none !important;
+                padding-bottom: 0 !important;
+                font-size: 0.7rem !important;
+            }
+            .qr-section {
+                text-align: center !important;
+                align-items: center !important;
+            }
+            .sign-section {
+                text-align: center !important;
             }
         }
     </style>
@@ -507,33 +613,35 @@ function amountToWords($number) {
 
         <!-- Itemized Subject Fee Table -->
         <div class="table-title">Itemized Fee Statement</div>
-        <table class="fee-table">
-            <thead>
-                <tr>
-                    <th style="width: 10%;">Sr. No.</th>
-                    <th style="width: 50%;">Subject Description</th>
-                    <th style="width: 25%;">Service Category</th>
-                    <th style="width: 15%;">Amount (INR)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                $sr = 1;
-                foreach ($subjsArr as $sName): 
-                ?>
+        <div class="table-responsive">
+            <table class="fee-table">
+                <thead>
                     <tr>
-                        <td><?= $sr++ ?></td>
-                        <td style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($sName) ?></td>
-                        <td><?= htmlspecialchars($serviceTitle) ?></td>
-                        <td>Rs. <?= number_format($rate, 2) ?></td>
+                        <th style="width: 10%;">Sr. No.</th>
+                        <th style="width: 48%;">Subject Description</th>
+                        <th style="width: 24%;">Service Category</th>
+                        <th style="width: 18%;">Amount (INR)</th>
                     </tr>
-                <?php endforeach; ?>
-                <tr class="total-row">
-                    <td colspan="3" style="text-align: right;">Total Amount Paid:</td>
-                    <td>Rs. <?= number_format($totalCalc, 2) ?></td>
-                </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php 
+                    $sr = 1;
+                    foreach ($subjsArr as $sName): 
+                    ?>
+                        <tr>
+                            <td><?= $sr++ ?></td>
+                            <td style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($sName) ?></td>
+                            <td><?= htmlspecialchars($serviceTitle) ?></td>
+                            <td>Rs. <?= number_format($rate, 2) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <tr class="total-row">
+                        <td colspan="3" style="text-align: right;">Total Amount Paid:</td>
+                        <td>Rs. <?= number_format($totalCalc, 2) ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- Amount In Words -->
         <div class="words-box">
