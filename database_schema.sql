@@ -41,7 +41,7 @@ CREATE TABLE semester (
 CREATE TABLE subjects (
     subj_id SERIAL PRIMARY KEY,
     subj_name VARCHAR(150) NOT NULL,
-    subj_code VARCHAR(50) UNIQUE NOT NULL,
+    subj_code VARCHAR(50) NOT NULL,
     status INT DEFAULT 1,
     credits NUMERIC(4,1) DEFAULT 4.0
 );
