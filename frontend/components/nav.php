@@ -171,8 +171,9 @@ color: #2563EB;
 .nav-actions {
 display: flex;
 align-items: center;
-gap: 10px;
+gap: 8px;
 flex-shrink: 0;
+position: relative;
 }
 
 .user-profile-menu {
@@ -180,18 +181,19 @@ position: relative;
 }
 
 .user-btn {
-display: flex;
+display: inline-flex;
 align-items: center;
-gap: 8px;
+gap: 6px;
 background: rgba(255, 255, 255, 0.12);
 border: 1px solid rgba(255, 255, 255, 0.2);
-padding: 6px 14px;
+padding: 6px 12px;
 border-radius: 20px;
 color: #FFFFFF;
 font-size: 0.88rem;
 font-weight: 700;
 cursor: pointer;
 transition: all 0.2s ease;
+white-space: nowrap;
 }
 
 .user-btn:hover, .user-profile-menu.open .user-btn {
@@ -201,22 +203,38 @@ color: #FFFFFF;
 }
 
 .user-btn i.avatar-icon {
-color: #16A34A;
-font-size: 0.95rem;
+color: #10B981;
+font-size: 1rem;
 }
 
-.user-dropdown {
-right: 0;
-left: auto;
-min-width: 200px;
-background: #FFFFFF;
-border: 1px solid #E5E7EB;
+.user-profile-menu .user-dropdown {
+position: absolute !important;
+top: calc(100% + 8px) !important;
+right: 0 !important;
+left: auto !important;
+min-width: 210px !important;
+max-width: min(280px, calc(100vw - 24px)) !important;
+background: #FFFFFF !important;
+border: 1px solid #E5E7EB !important;
+border-radius: 12px !important;
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18) !important;
+padding: 6px !important;
+margin: 0 !important;
+opacity: 0;
+visibility: hidden;
+transform: translateY(8px);
+transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+z-index: 1005 !important;
+display: block !important;
+pointer-events: none;
+border-left: 1px solid #E5E7EB !important;
 }
 
 .user-profile-menu.open .user-dropdown {
-opacity: 1;
-visibility: visible;
-transform: translateY(0);
+opacity: 1 !important;
+visibility: visible !important;
+transform: translateY(0) !important;
+pointer-events: auto !important;
 }
 
 .dropdown-divider {
@@ -249,6 +267,8 @@ cursor: pointer;
 padding: 8px;
 border-radius: 8px;
 transition: background 0.2s;
+align-items: center;
+justify-content: center;
 }
 
 .mobile-toggle:hover {
@@ -276,7 +296,7 @@ display: block;
  ========================================================================== */
 @media (max-width: 1150px) {
 .mobile-toggle {
-display: block;
+display: inline-flex;
 }
 
 .nav-menu {
@@ -302,7 +322,7 @@ display: flex;
 animation: slideDown 0.25s ease-out;
 }
 
-.nav-link {
+.nav-menu .nav-link {
 width: 100%;
 justify-content: space-between;
 padding: 12px 16px;
@@ -311,12 +331,13 @@ border-radius: 8px;
 color: #1F2937;
 }
 
-.nav-link:hover {
+.nav-menu .nav-link:hover {
 background: #EFF6FF;
 color: #2563EB;
 }
 
-.nav-dropdown {
+/* Scoped specifically to nav-menu dropdowns, preserving floating user-dropdown */
+.nav-menu .nav-dropdown {
 position: static;
 opacity: 1;
 visibility: visible;
@@ -328,7 +349,7 @@ display: none;
 border-left: 3px solid #4f46e5;
 }
 
-.nav-item.open .nav-dropdown {
+.nav-menu .nav-item.open .nav-dropdown {
 display: block;
 animation: fadeIn 0.2s ease-out;
 }
@@ -336,13 +357,13 @@ animation: fadeIn 0.2s ease-out;
 
 @media (max-width: 480px) {
 .nav-brand span {
-display: inline-block;
+font-size: 1.05rem;
+}
+.user-btn {
+padding: 6px 10px;
 }
 .user-btn span {
 display: none;
-}
-.user-btn {
-padding: 6px 8px;
 }
 }
 </style>
@@ -356,11 +377,6 @@ padding: 6px 8px;
 </div>
 <span>ResultPortal</span>
 </a>
-
-<!-- Mobile Hamburger Toggle -->
-<button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
-<i class="fa-solid fa-bars" id="menuIcon"></i>
-</button>
 
 <!-- Navigation Links Menu -->
 <ul class="nav-menu" id="navMenu">
@@ -490,13 +506,13 @@ padding: 6px 8px;
 
 <!-- Right User Actions & Dropdown -->
 <div class="nav-actions">
-<div class="nav-item user-profile-menu" id="userProfileMenu">
-<button class="user-btn" onclick="toggleUserDropdown(event)">
+<div class="user-profile-menu" id="userProfileMenu">
+<button class="user-btn" onclick="toggleUserDropdown(event)" type="button" aria-label="User profile">
 <i class="fa-solid fa-circle-user avatar-icon"></i>
 <span><?= htmlspecialchars($admin_user) ?></span>
 <i class="fa-solid fa-chevron-down chevron"></i>
 </button>
-<div class="nav-dropdown user-dropdown">
+<div class="user-dropdown">
 <a href="/frontend/pages/admin/audit-logs.php" class="dropdown-item">
 <i class="fa-solid fa-shield-halved"></i> Audit Trails
 </a>
@@ -512,6 +528,11 @@ padding: 6px 8px;
 </a>
 </div>
 </div>
+
+<!-- Mobile Hamburger Toggle Button -->
+<button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation" type="button">
+<i class="fa-solid fa-bars" id="menuIcon"></i>
+</button>
 </div>
 </div>
 </header>
