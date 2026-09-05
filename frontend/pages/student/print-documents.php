@@ -540,11 +540,15 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 size: A4 portrait;
                 margin: 0mm !important;
             }
-            body {
+            html, body {
                 background: white !important;
-                padding: 10mm 14mm !important;
+                padding: 6mm 8mm !important;
+                margin: 0 !important;
+                font-size: 8pt !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
             .no-print {
                 display: none !important;
@@ -560,13 +564,90 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 border: none !important;
                 margin: 0 !important;
                 width: 100% !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
             .printable-content {
                 padding: 0 !important;
             }
+            .doc-header-card {
+                padding: 10px 12px !important;
+                border-width: 1.5px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            .doc-header-flex {
+                padding-bottom: 6px !important;
+                margin-bottom: 6px !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                text-align: left !important;
+            }
+            .doc-header-flex img {
+                height: 42px !important;
+            }
+            .doc-header-flex h2 {
+                font-size: 1.05rem !important;
+            }
+            .doc-header-flex p {
+                font-size: 6.8pt !important;
+            }
+            .doc-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 5px !important;
+                margin: 6px 0 !important;
+            }
+            .doc-grid-item {
+                padding: 3px 5px !important;
+            }
+            .doc-grid-label {
+                font-size: 5.8pt !important;
+            }
+            .doc-grid-value {
+                font-size: 7.2pt !important;
+            }
+            .table-responsive {
+                margin: 4px 0 !important;
+                overflow: visible !important;
+            }
+            .doc-table {
+                margin: 0 !important;
+                font-size: 7.2pt !important;
+                line-height: 1.15 !important;
+            }
+            .doc-table th, .doc-table td {
+                padding: 2.5px 4px !important;
+                font-size: 7.2pt !important;
+                line-height: 1.15 !important;
+            }
+            .doc-signatures {
+                margin-top: 10px !important;
+                padding: 0 8px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            .doc-sig-block {
+                font-size: 6.8pt !important;
+            }
+            .doc-sig-line {
+                margin-bottom: 3px !important;
+            }
+            #docQRCode img, #docQRCode canvas {
+                width: 38px !important;
+                height: 38px !important;
+            }
             .bonafide-box {
-                border: 8px double #1e3a8a !important;
-                padding: 30px !important;
+                border: 6px double #1e3a8a !important;
+                padding: 16px !important;
+            }
+            .bonafide-name {
+                font-size: 1.25rem !important;
+                margin: 6px 0 !important;
+            }
+            .bonafide-body {
+                font-size: 8.5pt !important;
+                line-height: 1.55 !important;
             }
         }
     </style>
