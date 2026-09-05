@@ -159,37 +159,37 @@ $overallPassRate = ($classTotalAppeared > 0) ? round(($classTotalPassed / $class
 <link rel="stylesheet" href="../../assets/css/common.css">
 <style>
 .stat-card-row {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 16px;
-margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
 }
 .stat-box {
-background: #FFFFFF;
-border: 1px solid #E5E7EB;
-border-radius: 12px;
-padding: 18px 22px;
-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .stat-box-num {
-font-size: 1.85rem;
-font-weight: 800;
-margin-top: 4px;
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin-top: 4px;
 }
 
 @media print {
-.navbar, .filter-bar, .no-print, .btn, footer {
-display: none !important;
-}
-body {
-background: #FFFFFF !important;
-padding: 0 !important;
-}
-.container {
-max-width: 100% !important;
-box-shadow: none !important;
-border: none !important;
-}
+    .navbar, .filter-bar, .no-print, .btn, footer {
+        display: none !important;
+    }
+    body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+    }
+    .container {
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
 }
 </style>
 </head>
@@ -200,49 +200,51 @@ border: none !important;
 
 <div class="container" style="max-width: 1100px;">
 <div class="page-header">
-<div>
-<h1 class="page-title">Consolidated Result Ledger & Analytics</h1>
-<p>Semester-wide academic ledgers, grade point distribution, and subject pass percentages.</p>
-</div>
-<div class="no-print" style="display: flex; gap: 8px;">
-<button type="button" class="btn btn-secondary" onclick="window.print()">
-<i class="fa-solid fa-print"></i> Print Report
-</button>
-<a href="export-reports.php?branch_id=<?= $branch_id ?>&sem_id=<?= $sem_id ?>&action=export_ledger_csv" class="btn btn-primary">
-<i class="fa-solid fa-file-csv"></i> Export to CSV / Excel
-</a>
-</div>
+    <div>
+        <h1 class="page-title">Consolidated Result Ledger & Analytics</h1>
+        <p>Semester-wide academic ledgers, grade point distribution, and subject pass percentages.</p>
+    </div>
+    <div class="no-print header-actions">
+        <button type="button" class="btn btn-secondary" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Print Report
+        </button>
+        <a href="export-reports.php?branch_id=<?= $branch_id ?>&sem_id=<?= $sem_id ?>&action=export_ledger_csv" class="btn btn-primary">
+            <i class="fa-solid fa-file-csv"></i> Export to CSV / Excel
+        </a>
+    </div>
 </div>
 
 <!-- Filter Bar -->
 <div class="filter-bar no-print" style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 18px; border-radius: 12px; margin-bottom: 24px;">
-<form action="" method="GET" style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end;">
-<div class="form-group" style="margin: 0; min-width: min(100%, 200px); flex: 1;">
-<label style="font-weight: 600; font-size: 0.88rem;">Academic Branch</label>
-<select name="branch_id" class="form-control">
-<?php foreach ($branches as $b): ?>
-<option value="<?= $b['branch_id'] ?>" <?= ($b['branch_id'] == $branch_id) ? 'selected' : '' ?>>
-<?= htmlspecialchars($b['branch_name']) ?>
-</option>
-<?php endforeach; ?>
-</select>
-</div>
+    <form action="" method="GET" class="form-grid" style="align-items: flex-end;">
+        <div class="form-group" style="margin: 0;">
+            <label style="font-weight: 600; font-size: 0.88rem;">Academic Branch</label>
+            <select name="branch_id" class="form-control">
+                <?php foreach ($branches as $b): ?>
+                <option value="<?= $b['branch_id'] ?>" <?= ($b['branch_id'] == $branch_id) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($b['branch_name']) ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-<div class="form-group" style="margin: 0; min-width: min(100%, 160px); flex: 1;">
-<label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
-<select name="sem_id" class="form-control">
-<?php foreach ($semesters as $s): ?>
-<option value="<?= $s['sem_id'] ?>" <?= ($s['sem_id'] == $sem_id) ? 'selected' : '' ?>>
-Semester <?= htmlspecialchars($s['semester'] ?? $s['sem_id']) ?>
-</option>
-<?php endforeach; ?>
-</select>
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
+            <select name="sem_id" class="form-control">
+                <?php foreach ($semesters as $s): ?>
+                <option value="<?= $s['sem_id'] ?>" <?= ($s['sem_id'] == $sem_id) ? 'selected' : '' ?>>
+                    Semester <?= htmlspecialchars($s['semester'] ?? $s['sem_id']) ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-<button type="submit" class="btn btn-primary" style="height: 46px; flex: 0 0 auto;">
-<i class="fa-solid fa-filter"></i> Apply Filter
-</button>
-</form>
+        <div>
+            <button type="submit" class="btn btn-primary" style="height: 46px; width: 100%; justify-content: center;">
+                <i class="fa-solid fa-filter"></i> Apply Filter
+            </button>
+        </div>
+    </form>
 </div>
 
 <!-- KPI Stats Cards -->

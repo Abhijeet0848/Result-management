@@ -189,18 +189,18 @@ color: #FFFFFF;
 <h1 class="page-title">Student Directory & Approvals</h1>
 <p>Manage enrolled students, review self-registration requests, and approve accounts.</p>
 </div>
-<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-<a href="manage-students.php?action=export_csv" class="btn btn-secondary">
-<i class="fa-solid fa-file-csv"></i> Export CSV
-</a>
-<a href="bulk-students-upload.php" class="btn btn-secondary">
-<i class="fa-solid fa-cloud-arrow-up"></i> Bulk Import
-</a>
-<a href="add-student.php" class="btn btn-primary">
-<i class="fa-solid fa-user-plus"></i> Enroll Student
-</a>
-</div>
-</div>
+        <div class="header-actions">
+            <a href="manage-students.php?action=export_csv" class="btn btn-secondary">
+                <i class="fa-solid fa-file-csv"></i> Export CSV
+            </a>
+            <a href="bulk-students-upload.php" class="btn btn-secondary">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Bulk Import
+            </a>
+            <a href="add-student.php" class="btn btn-primary">
+                <i class="fa-solid fa-user-plus"></i> Enroll Student
+            </a>
+        </div>
+    </div>
 
 <?php if (!empty($flashMessage)): ?>
 <div class="alert alert-<?= htmlspecialchars($flashType) ?>" style="margin-bottom: 20px;">

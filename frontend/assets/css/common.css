@@ -149,22 +149,40 @@ transition: box-shadow var(--transition-normal);
 }
 
 .page-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 14px;
-margin-bottom: 24px;
-padding-bottom: 16px;
-border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    min-width: 0;
+    width: 100%;
+}
+
+.page-header > div:first-child {
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
 .page-title {
-font-size: clamp(1.35rem, 3.5vw, 1.85rem);
-font-weight: 800;
-background: linear-gradient(135deg, var(--primary), var(--secondary));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 6px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 /* Modern Card Grids */
@@ -934,11 +952,25 @@ padding: 6px 8px;
 
     .page-header > * {
         width: 100%;
+        min-width: 0;
     }
 
-    .page-header .btn {
+    .page-header .header-actions,
+    .page-header > div:not(:first-child),
+    .page-header .no-print,
+    .header-actions {
+        display: flex;
+        flex-direction: column;
         width: 100%;
+        gap: 8px;
+    }
+
+    .page-header .btn,
+    .header-actions .btn {
+        width: 100% !important;
         justify-content: center;
+        white-space: normal;
+        text-align: center;
     }
 
     .card-grid {
