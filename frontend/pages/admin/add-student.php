@@ -74,89 +74,89 @@ $showError = "Please fill in all required fields.";
 <?php endif; ?>
 
 <form action="add-student.php" method="POST">
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-<div class="form-group">
-<label for="fullname">Student Full Name *</label>
-<input type="text" id="fullname" name="fullname" required placeholder="Enter Full Name">
-</div>
+    <div class="form-grid-2">
+        <div class="form-group">
+            <label for="fullname">Full Name *</label>
+            <input type="text" id="fullname" name="fullname" required placeholder="Enter Full Name">
+        </div>
 
-<div class="form-group">
-<label for="rollno">Roll Number *</label>
-<input type="text" id="rollno" name="rollno" required placeholder="Enter Roll Number">
-</div>
-</div>
+        <div class="form-group">
+            <label for="rollno">Roll Number *</label>
+            <input type="text" id="rollno" name="rollno" required placeholder="Enter Roll Number">
+        </div>
+    </div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-<div class="form-group">
-<label for="email">Email Address *</label>
-<input type="email" id="email" name="email" required placeholder="Enter Email Address">
-</div>
+    <div class="form-grid-2">
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="Enter Email Address">
+        </div>
 
-<div class="form-group">
-<label for="password">Portal Password *</label>
-<div style="position: relative;">
-<input type="password" id="password" name="password" required placeholder="Enter Initial Password" style="padding-right: 42px;">
-<button type="button" onclick="togglePassword('password', 'passIcon')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;" title="Show/Hide Password">
-<i class="fa-solid fa-eye" id="passIcon"></i>
-</button>
-</div>
-</div>
-</div>
+        <div class="form-group">
+            <label for="password">Portal Password *</label>
+            <div class="password-input-wrapper">
+                <input type="password" id="password" name="password" required placeholder="Enter Initial Password">
+                <button type="button" class="password-toggle-btn" onclick="togglePassword('password', 'passIcon')" title="Show/Hide Password" aria-label="Toggle Password Visibility">
+                    <i class="fa-solid fa-eye" id="passIcon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-<div class="form-group">
-<label for="gender">Gender</label>
-<select id="gender" name="gender" required>
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-<option value="Other">Other</option>
-</select>
-</div>
+    <div class="form-grid-2">
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
 
-<div class="form-group">
-<label for="birthDate">Date of Birth</label>
-<input type="date" id="birthDate" name="birthDate" required>
-</div>
-</div>
+        <div class="form-group">
+            <label for="birthDate">Date of Birth</label>
+            <input type="date" id="birthDate" name="birthDate" required>
+        </div>
+    </div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-<div class="form-group">
-<label for="branch">Academic Branch *</label>
-<select id="branch" name="branch" required>
-<option value="">-- Select Branch --</option>
-<?php
-if ($conn) {
-$res = pg_query($conn, "SELECT branch_id, branch_name FROM branch ORDER BY branch_name");
-while ($b = pg_fetch_assoc($res)) {
-echo '<option value="' . htmlspecialchars($b['branch_id']) . '">' . htmlspecialchars($b['branch_name']) . '</option>';
-}
-}
-?>
-</select>
-</div>
+    <div class="form-grid-2">
+        <div class="form-group">
+            <label for="branch">Academic Branch *</label>
+            <select id="branch" name="branch" required>
+                <option value="">-- Select Branch --</option>
+                <?php
+                if ($conn) {
+                    $res = pg_query($conn, "SELECT branch_id, branch_name FROM branch ORDER BY branch_name");
+                    while ($b = pg_fetch_assoc($res)) {
+                        echo '<option value="' . htmlspecialchars($b['branch_id']) . '">' . htmlspecialchars($b['branch_name']) . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
 
-<div class="form-group">
-<label for="semester">Current Semester *</label>
-<select id="semester" name="semester" required>
-<option value="">-- Select Semester --</option>
-<?php
-if ($conn) {
-$res = pg_query($conn, "SELECT sem_id, semester FROM semester ORDER BY sem_id");
-while ($s = pg_fetch_assoc($res)) {
-echo '<option value="' . htmlspecialchars($s['sem_id']) . '">' . htmlspecialchars($s['semester']) . '</option>';
-}
-}
-?>
-</select>
-</div>
-</div>
+        <div class="form-group">
+            <label for="semester">Current Semester *</label>
+            <select id="semester" name="semester" required>
+                <option value="">-- Select Semester --</option>
+                <?php
+                if ($conn) {
+                    $res = pg_query($conn, "SELECT sem_id, semester FROM semester ORDER BY sem_id");
+                    while ($s = pg_fetch_assoc($res)) {
+                        echo '<option value="' . htmlspecialchars($s['sem_id']) . '">' . htmlspecialchars($s['semester']) . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+    </div>
 
-<div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-<a href="manage-students.php" class="btn btn-secondary">Cancel</a>
-<button type="submit" class="btn btn-primary btn-lg">
-<i class="fa-solid fa-user-plus"></i> Save & Enroll Student
-</button>
-</div>
+    <div class="form-actions">
+        <a href="manage-students.php" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-user-plus"></i> Save &amp; Enroll Student
+        </button>
+    </div>
 </form>
 </div>
 

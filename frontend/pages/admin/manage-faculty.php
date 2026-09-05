@@ -112,66 +112,67 @@ while ($b = pg_fetch_assoc($bRes)) { $branches[] = $b; }
 <?php endif; ?>
 
 <!-- Add Faculty Form -->
-<div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
-<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #E5E7EB; padding-bottom: 14px;">
-<h3 style="margin: 0; color: #1E3A5F; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
-<i class="fa-solid fa-user-tie" style="color: #2563EB;"></i> Add New Faculty Member
-</h3>
-<span style="font-size: 0.82rem; color: #6B7280;">All credentials are encrypted & logged</span>
-</div>
+<div class="card" style="margin-bottom: 28px;">
+    <div class="card-header-flex">
+        <h3 style="margin: 0; color: #1E3A5F; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-user-tie" style="color: #2563EB;"></i> Add New Faculty Member
+        </h3>
+        <span style="font-size: 0.82rem; color: #6B7280; font-weight: 500;">
+            <i class="fa-solid fa-lock" style="font-size: 0.75rem;"></i> All credentials are encrypted &amp; logged
+        </span>
+    </div>
 
-<form action="" method="POST" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem; color: #1F2937; margin-bottom: 6px; display: block;">Full Name *</label>
-<input type="text" name="name" placeholder="Enter Full Name" class="form-control" required autocomplete="off" style="width: 100%; padding: 10px 14px; border: 1.5px solid #E5E7EB; border-radius: 8px;">
-</div>
+    <form action="" method="POST" class="form-grid-3">
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="fac_name">Full Name *</label>
+            <input type="text" id="fac_name" name="name" placeholder="Enter Full Name" class="form-control" required autocomplete="off">
+        </div>
 
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem; color: #1F2937; margin-bottom: 6px; display: block;">Email Address *</label>
-<input type="email" name="email" placeholder="Enter Email Address" class="form-control" required autocomplete="off" style="width: 100%; padding: 10px 14px; border: 1.5px solid #E5E7EB; border-radius: 8px;">
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="fac_email">Email Address *</label>
+            <input type="email" id="fac_email" name="email" placeholder="Enter Email Address" class="form-control" required autocomplete="off">
+        </div>
 
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem; color: #1F2937; margin-bottom: 6px; display: block;">Assigned Branch *</label>
-<select name="branch_id" class="form-control" required style="width: 100%; padding: 10px 14px; border: 1.5px solid #E5E7EB; border-radius: 8px;">
-<option value="">-- Select Branch --</option>
-<?php foreach ($branches as $b): ?>
-<option value="<?= $b['branch_id'] ?>"><?= htmlspecialchars($b['branch_name']) ?></option>
-<?php endforeach; ?>
-</select>
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="fac_branch">Assigned Branch *</label>
+            <select id="fac_branch" name="branch_id" class="form-control" required>
+                <option value="">-- Select Branch --</option>
+                <?php foreach ($branches as $b): ?>
+                <option value="<?= $b['branch_id'] ?>"><?= htmlspecialchars($b['branch_name']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem; color: #1F2937; margin-bottom: 6px; display: block;">Department Name</label>
-<input type="text" name="department" placeholder="Enter Department Name" class="form-control" autocomplete="off" style="width: 100%; padding: 10px 14px; border: 1.5px solid #E5E7EB; border-radius: 8px;">
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="fac_dept">Department Name</label>
+            <input type="text" id="fac_dept" name="department" placeholder="Enter Department Name" class="form-control" autocomplete="off">
+        </div>
 
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem; color: #1F2937; margin-bottom: 6px; display: block;">Contact Phone</label>
-<input type="tel" name="contact_no" placeholder="Enter Phone Number" class="form-control" autocomplete="off" style="width: 100%; padding: 10px 14px; border: 1.5px solid #E5E7EB; border-radius: 8px;">
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="fac_phone">Contact Phone</label>
+            <input type="tel" id="fac_phone" name="contact_no" placeholder="Enter Phone Number" class="form-control" autocomplete="off">
+        </div>
 
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem; color: #1F2937; margin-bottom: 6px; display: block;">Initial Password *</label>
-<div style="position: relative;">
-<input type="password" id="facultyPassword" name="password" placeholder="Enter Initial Password" class="form-control" required autocomplete="new-password" style="width: 100%; padding: 10px 42px 10px 14px; border: 1.5px solid #E5E7EB; border-radius: 8px;">
-<button type="button" onclick="togglePasswordVisibility('facultyPassword', 'facultyPassIcon')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;" title="Show/Hide Password">
-<i class="fa-solid fa-eye" id="facultyPassIcon"></i>
-</button>
-</div>
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="facultyPassword">Initial Password *</label>
+            <div class="password-input-wrapper">
+                <input type="password" id="facultyPassword" name="password" placeholder="Enter Initial Password" class="form-control" required autocomplete="new-password">
+                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('facultyPassword', 'facultyPassIcon')" title="Show/Hide Password" aria-label="Toggle Password Visibility">
+                    <i class="fa-solid fa-eye" id="facultyPassIcon"></i>
+                </button>
+            </div>
+        </div>
 
-<div style="grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 12px; margin-top: 8px; padding-top: 14px; border-top: 1px solid #F3F4F6;">
-<button type="reset" class="btn btn-secondary">
-<i class="fa-solid fa-rotate-left"></i> Reset Form
-</button>
-<button type="submit" name="add_faculty" class="btn btn-primary" style="padding: 10px 24px;">
-<i class="fa-solid fa-user-plus"></i> Create Faculty Account
-</button>
+        <div class="form-actions full-width">
+            <button type="reset" class="btn btn-secondary">
+                <i class="fa-solid fa-rotate-left"></i> Reset Form
+            </button>
+            <button type="submit" name="add_faculty" class="btn btn-primary">
+                <i class="fa-solid fa-user-plus"></i> Create Faculty Account
+            </button>
+        </div>
+    </form>
 </div>
-</form>
-</div>
-
 <script>
 function togglePasswordVisibility(inputId, iconId) {
 const input = document.getElementById(inputId);

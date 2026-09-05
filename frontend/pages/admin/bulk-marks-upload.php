@@ -209,87 +209,87 @@ margin-right: 10px;
 Select the target branch and semester to download a pre-filled CSV with all enrolled students and subject codes ready for mark entry.
 </p>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: flex-end;">
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem;">Branch</label>
-<select id="tpl_branch" class="form-control" style="width: 100%;">
-<option value="">-- Choose Branch --</option>
-<?php 
-$bRes = pg_query($conn, "SELECT * FROM branch ORDER BY branch_name");
-while ($b = pg_fetch_assoc($bRes)) {
-echo '<option value="' . htmlspecialchars($b['branch_id']) . '">' . htmlspecialchars($b['branch_name']) . '</option>';
-}
-?>
-</select>
-</div>
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
-<select id="tpl_sem" class="form-control" style="width: 100%;">
-<option value="">-- Choose Semester --</option>
-<?php 
-$sRes = pg_query($conn, "SELECT * FROM semester ORDER BY sem_id");
-while ($s = pg_fetch_assoc($sRes)) {
-echo '<option value="' . htmlspecialchars($s['sem_id']) . '">Semester ' . htmlspecialchars($s['semester'] ?? $s['sem_id']) . '</option>';
-}
-?>
-</select>
-</div>
-<div>
-<button type="button" class="btn btn-secondary" onclick="downloadTemplate()" style="height: 42px;">
-<i class="fa-solid fa-file-csv"></i> Download CSV Template
-</button>
-</div>
-</div>
+    <div class="form-grid" style="align-items: flex-end;">
+        <div class="form-group" style="margin: 0;">
+            <label style="font-weight: 600; font-size: 0.88rem;">Branch</label>
+            <select id="tpl_branch" class="form-control" style="width: 100%;">
+                <option value="">-- Choose Branch --</option>
+                <?php 
+                $bRes = pg_query($conn, "SELECT * FROM branch ORDER BY branch_name");
+                while ($b = pg_fetch_assoc($bRes)) {
+                    echo '<option value="' . htmlspecialchars($b['branch_id']) . '">' . htmlspecialchars($b['branch_name']) . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group" style="margin: 0;">
+            <label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
+            <select id="tpl_sem" class="form-control" style="width: 100%;">
+                <option value="">-- Choose Semester --</option>
+                <?php 
+                $sRes = pg_query($conn, "SELECT * FROM semester ORDER BY sem_id");
+                while ($s = pg_fetch_assoc($sRes)) {
+                    echo '<option value="' . htmlspecialchars($s['sem_id']) . '">Semester ' . htmlspecialchars($s['semester'] ?? $s['sem_id']) . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary" onclick="downloadTemplate()" style="height: 46px; width: 100%; justify-content: center;">
+                <i class="fa-solid fa-file-csv"></i> Download CSV Template
+            </button>
+        </div>
+    </div>
 </div>
 
 <!-- STEP 2: Upload Filled CSV -->
 <div class="workflow-step">
-<h3 style="margin-top: 0; color: #1E3A5F; display: flex; align-items: center; font-size: 1.15rem;">
-<span class="step-badge">2</span> Step 2: Upload Completed Marks Spreadsheet
-</h3>
-<p style="color: #4B5563; font-size: 0.92rem; margin-bottom: 16px;">
-Upload your completed CSV file. The system will validate all student roll numbers and update or create examination records.
-</p>
+    <h3 style="margin-top: 0; color: #1E3A5F; display: flex; align-items: center; font-size: 1.15rem;">
+        <span class="step-badge">2</span> Step 2: Upload Completed Marks Spreadsheet
+    </h3>
+    <p style="color: #4B5563; font-size: 0.92rem; margin-bottom: 16px;">
+        Upload your completed CSV file. The system will validate all student roll numbers and update or create examination records.
+    </p>
 
-<form action="" method="POST" enctype="multipart/form-data" style="display: grid; gap: 16px;">
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem;">Branch</label>
-<select name="branch_id" class="form-control" required>
-<option value="">-- Choose Branch --</option>
-<?php 
-$bRes = pg_query($conn, "SELECT * FROM branch ORDER BY branch_name");
-while ($b = pg_fetch_assoc($bRes)) {
-echo '<option value="' . htmlspecialchars($b['branch_id']) . '">' . htmlspecialchars($b['branch_name']) . '</option>';
-}
-?>
-</select>
-</div>
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
-<select name="sem_id" class="form-control" required>
-<option value="">-- Choose Semester --</option>
-<?php 
-$sRes = pg_query($conn, "SELECT * FROM semester ORDER BY sem_id");
-while ($s = pg_fetch_assoc($sRes)) {
-echo '<option value="' . htmlspecialchars($s['sem_id']) . '">Semester ' . htmlspecialchars($s['semester'] ?? $s['sem_id']) . '</option>';
-}
-?>
-</select>
-</div>
-</div>
+    <form action="" method="POST" enctype="multipart/form-data" style="display: grid; gap: 16px;">
+        <div class="form-grid-2">
+            <div class="form-group" style="margin: 0;">
+                <label style="font-weight: 600; font-size: 0.88rem;">Branch</label>
+                <select name="branch_id" class="form-control" required>
+                    <option value="">-- Choose Branch --</option>
+                    <?php 
+                    $bRes = pg_query($conn, "SELECT * FROM branch ORDER BY branch_name");
+                    while ($b = pg_fetch_assoc($bRes)) {
+                        echo '<option value="' . htmlspecialchars($b['branch_id']) . '">' . htmlspecialchars($b['branch_name']) . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
+                <select name="sem_id" class="form-control" required>
+                    <option value="">-- Choose Semester --</option>
+                    <?php 
+                    $sRes = pg_query($conn, "SELECT * FROM semester ORDER BY sem_id");
+                    while ($s = pg_fetch_assoc($sRes)) {
+                        echo '<option value="' . htmlspecialchars($s['sem_id']) . '">Semester ' . htmlspecialchars($s['semester'] ?? $s['sem_id']) . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
 
-<div class="form-group" style="margin: 0;">
-<label style="font-weight: 600; font-size: 0.88rem;">Select CSV File (.csv)</label>
-<input type="file" name="csv_file" accept=".csv" class="form-control" required style="padding: 9px;">
-</div>
+        <div class="form-group" style="margin: 0;">
+            <label style="font-weight: 600; font-size: 0.88rem;">Select CSV File (.csv)</label>
+            <input type="file" name="csv_file" accept=".csv" class="form-control" required style="padding: 9px;">
+        </div>
 
-<div style="display: flex; justify-content: flex-end; margin-top: 10px;">
-<button type="submit" name="process_upload" class="btn btn-primary btn-lg">
-<i class="fa-solid fa-cloud-arrow-up"></i> Process & Import Marks
-</button>
-</div>
-</form>
+        <div class="form-actions">
+            <button type="submit" name="process_upload" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Process &amp; Import Marks
+            </button>
+        </div>
+    </form>
 </div>
 </div>
 

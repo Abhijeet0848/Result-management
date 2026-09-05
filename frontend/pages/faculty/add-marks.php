@@ -137,12 +137,12 @@ echo '<option value="' . htmlspecialchars($row['sem_id']) . '">Semester ' . html
 </div>
 </div>
 
-<div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-<a href="manage-marks.php" class="btn btn-secondary">Cancel</a>
-<button type="submit" class="btn btn-primary btn-lg">
-<i class="fa-solid fa-floppy-disk"></i> Submit Marks
-</button>
-</div>
+    <div class="form-actions">
+        <a href="manage-marks.php" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-floppy-disk"></i> Submit Marks
+        </button>
+    </div>
 </form>
 </div>
 

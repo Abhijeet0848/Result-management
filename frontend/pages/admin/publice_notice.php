@@ -59,12 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['title'])) {
 <style>
 .notice-layout-grid {
 display: grid;
-grid-template-columns: 1fr 1.5fr;
-gap: 28px;
+grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+gap: 24px;
+align-items: start;
+}
+.notice-layout-grid > div {
+min-width: 0;
+max-width: 100%;
 }
 @media (max-width: 860px) {
 .notice-layout-grid {
-grid-template-columns: 1fr;
+grid-template-columns: minmax(0, 1fr);
 gap: 20px;
 }
 }
@@ -73,7 +78,7 @@ gap: 20px;
 <body>
 <?php include_once __DIR__ . '/../../components/nav.php'; ?>
 
-<div class="container" style="max-width: 1200px;">
+<div class="container" style="max-width: 1200px; min-width: 0;">
 <div class="page-header">
 <div>
 <h1 class="page-title">Notice Board Management</h1>
@@ -97,7 +102,7 @@ gap: 20px;
 
 <div class="notice-layout-grid">
 <!-- Notice Post Form -->
-<div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px;">
+<div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: clamp(16px, 3vw, 24px); min-width: 0;">
 <h3 style="margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
 <i class="fa-solid fa-bullhorn" style="color: var(--primary);"></i> Publish New Notice
 </h3>
