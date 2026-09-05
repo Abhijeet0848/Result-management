@@ -32,6 +32,15 @@ WHERE s.email = $1";
 $result = pg_query_params($conn, $sql, array($email));
 if ($result && pg_num_rows($result) > 0) {
 $student = pg_fetch_assoc($result);
+
+// Ensure student is approved before accessing dashboard
+if (isset($student['status']) && intval($student['status']) !== 1) {
+    session_unset();
+    session_destroy();
+    header("location: ../auth/index.php?status_err=" . urlencode("Account Pending Approval: Your account is currently awaiting administrator review."));
+    exit;
+}
+
 $branch_name = $student['branch_name'] ?? 'N/A';
 $sem_name = isset($student['semester']) ? ('Semester ' . $student['semester']) : 'N/A';
 $roll_no = $student['roll_no'] ?? '';

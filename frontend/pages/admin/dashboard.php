@@ -10,6 +10,7 @@ include_once __DIR__ . '/../../../backend/config/connection.php';
 
 // Fetch summary metrics
 $numStudents = 0;
+$numPendingStudents = 0;
 $numSemesters = 0;
 $numBranches = 0;
 $numSubjects = 0;
@@ -18,26 +19,29 @@ $numPhotocopyReq = 0;
 $numRevalReq = 0;
 
 if ($conn) {
-$r1 = @pg_query($conn, "SELECT COUNT(*) FROM student");
-if ($r1) $numStudents = (int)pg_fetch_result($r1, 0, 0);
+    $r1 = @pg_query($conn, "SELECT COUNT(*) FROM student");
+    if ($r1) $numStudents = (int)pg_fetch_result($r1, 0, 0);
 
-$r2 = @pg_query($conn, "SELECT COUNT(*) FROM semester");
-if ($r2) $numSemesters = (int)pg_fetch_result($r2, 0, 0);
+    $rPending = @pg_query($conn, "SELECT COUNT(*) FROM student WHERE status = 0");
+    if ($rPending) $numPendingStudents = (int)pg_fetch_result($rPending, 0, 0);
 
-$r3 = @pg_query($conn, "SELECT COUNT(*) FROM branch");
-if ($r3) $numBranches = (int)pg_fetch_result($r3, 0, 0);
+    $r2 = @pg_query($conn, "SELECT COUNT(*) FROM semester");
+    if ($r2) $numSemesters = (int)pg_fetch_result($r2, 0, 0);
 
-$r4 = @pg_query($conn, "SELECT COUNT(*) FROM subjects");
-if ($r4) $numSubjects = (int)pg_fetch_result($r4, 0, 0);
+    $r3 = @pg_query($conn, "SELECT COUNT(*) FROM branch");
+    if ($r3) $numBranches = (int)pg_fetch_result($r3, 0, 0);
 
-$r5 = @pg_query($conn, "SELECT COUNT(DISTINCT roll_no) FROM results");
-if ($r5) $numResults = (int)pg_fetch_result($r5, 0, 0);
+    $r4 = @pg_query($conn, "SELECT COUNT(*) FROM subjects");
+    if ($r4) $numSubjects = (int)pg_fetch_result($r4, 0, 0);
 
-$r6 = @pg_query($conn, "SELECT COUNT(*) FROM photocopy_requests");
-if ($r6) $numPhotocopyReq = (int)pg_fetch_result($r6, 0, 0);
+    $r5 = @pg_query($conn, "SELECT COUNT(DISTINCT roll_no) FROM results");
+    if ($r5) $numResults = (int)pg_fetch_result($r5, 0, 0);
 
-$r7 = @pg_query($conn, "SELECT COUNT(*) FROM revaluation_requests");
-if ($r7) $numRevalReq = (int)pg_fetch_result($r7, 0, 0);
+    $r6 = @pg_query($conn, "SELECT COUNT(*) FROM photocopy_requests");
+    if ($r6) $numPhotocopyReq = (int)pg_fetch_result($r6, 0, 0);
+
+    $r7 = @pg_query($conn, "SELECT COUNT(*) FROM revaluation_requests");
+    if ($r7) $numRevalReq = (int)pg_fetch_result($r7, 0, 0);
 }
 ?>
 <!DOCTYPE html>
@@ -265,6 +269,27 @@ grid-template-columns: 1fr;
 </a>
 </div>
 </div>
+
+<?php if ($numPendingStudents > 0): ?>
+    <div class="alert alert-warning" style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; background: #FFFBEB; border: 1.5px solid #FCD34D; border-radius: 12px; padding: 16px 20px; box-shadow: 0 2px 10px rgba(245, 158, 11, 0.1);">
+        <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="width: 44px; height: 44px; background: #FEF3C7; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #D97706; font-size: 1.35rem; flex-shrink: 0;">
+                <i class="fa-solid fa-user-clock"></i>
+            </div>
+            <div>
+                <h4 style="margin: 0; color: #92400E; font-size: 1.02rem; font-weight: 800;">
+                    <?= $numPendingStudents ?> Student Registration Request<?= $numPendingStudents > 1 ? 's' : '' ?> Pending Approval
+                </h4>
+                <p style="margin: 2px 0 0; color: #B45309; font-size: 0.88rem; font-weight: 500;">
+                    Self-registered students are awaiting your verification to activate their accounts and access their dashboards.
+                </p>
+            </div>
+        </div>
+        <a href="manage-students.php?filter=pending" class="btn btn-sm" style="background: #D97706; color: #FFFFFF; font-weight: 700; padding: 9px 18px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);">
+            <i class="fa-solid fa-user-check"></i> Review & Approve (<?= $numPendingStudents ?>) →
+        </a>
+    </div>
+<?php endif; ?>
 
 <!-- Metrics Grid -->
 <div class="metrics-grid">

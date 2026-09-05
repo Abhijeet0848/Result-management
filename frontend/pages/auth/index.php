@@ -1,12 +1,22 @@
 <?php
 $login = false;
 $showError = false;
+$statusAlert = null;
 $posted_username = '';
 
 include_once __DIR__ . '/../../../backend/config/session.php';
 include_once __DIR__ . '/../../../backend/config/connection.php';
 
 ob_start();
+
+if (isset($_GET['status_err']) && !empty($_GET['status_err'])) {
+    $statusAlert = [
+        'type' => 'warning',
+        'icon' => 'fa-solid fa-triangle-exclamation',
+        'title' => 'Portal Access Notice',
+        'msg' => htmlspecialchars($_GET['status_err'])
+    ];
+}
 
 // Check if currently locked out due to excessive failed attempts
 if (isset($_SESSION['login_lock_until']) && time() < $_SESSION['login_lock_until']) {
@@ -86,15 +96,28 @@ $studentResult = pg_query_params($conn, $studentSql, array($posted_username));
 
 if ($studentResult && pg_num_rows($studentResult) > 0) {
 $studentRow = pg_fetch_assoc($studentResult);
-
-// Check if student account is pending approval or deactivated
-if (isset($studentRow['status']) && (int)$studentRow['status'] === 0) {
-$showError = "Account Pending Approval: The student account for '" . htmlspecialchars($studentRow['name']) . "' is currently awaiting Administrator approval. Please wait for an administrator to review and activate your registration.";
-$authenticated = true;
-} else {
 $isPasswordCorrect = ($password === $studentRow['password']) || password_verify($password, $studentRow['password']);
+
 if ($isPasswordCorrect) {
 $authenticated = true;
+$studentStatus = intval($studentRow['status'] ?? 0);
+
+if ($studentStatus === 0) {
+$statusAlert = [
+'type' => 'warning',
+'icon' => 'fa-solid fa-clock-rotate-left',
+'title' => 'Account Status: Pending Administrator Approval',
+'msg' => 'Hello <strong>' . htmlspecialchars($studentRow['name']) . '</strong> (Roll No: <strong>' . htmlspecialchars($studentRow['roll_no']) . '</strong>), your registration request was received and is currently <strong>awaiting Administrator verification and approval</strong>.<br><br><span style="font-size: 0.88rem; color: #4B5563;"><i class="fa-solid fa-circle-info"></i> You will be able to sign in to your dashboard as soon as an administrator approves your account.</span>'
+];
+} elseif ($studentStatus === 2) {
+$statusAlert = [
+'type' => 'danger',
+'icon' => 'fa-solid fa-ban',
+'title' => 'Account Status: Deactivated / Suspended',
+'msg' => 'Hello <strong>' . htmlspecialchars($studentRow['name']) . '</strong>, your student account has been deactivated or rejected by the administrator. Please contact the Examination Office.'
+];
+} else {
+// Status is 1 (Approved & Active)
 unset($_SESSION['login_fail_count'], $_SESSION['login_lock_until']);
 session_regenerate_id(true);
 $_SESSION['loggedin'] = true;
@@ -109,7 +132,7 @@ exit;
 }
 }
 
-if (!$authenticated && empty($showError)) {
+if (!$authenticated && empty($statusAlert)) {
 $_SESSION['login_fail_count'] = ($_SESSION['login_fail_count'] ?? 0) + 1;
 if ($_SESSION['login_fail_count'] >= 5) {
 $_SESSION['login_lock_until'] = time() + 300; // 5 minute lockout
@@ -317,10 +340,22 @@ text-align: center;
 <p>Sign in to access your dashboard</p>
 </div>
 
-<!-- Flash Error Alert -->
-<?php if ($showError): ?>
-<div class="alert alert-danger" style="line-height: 1.5; margin-bottom: 20px;">
-<i class="fa-solid fa-circle-exclamation" style="font-size: 1.15rem; flex-shrink: 0;"></i>
+<!-- Flash Status / Error Alert -->
+<?php if ($statusAlert): ?>
+<div class="alert alert-<?= htmlspecialchars($statusAlert['type'] ?? 'warning') ?>" style="line-height: 1.5; margin-bottom: 20px; border-radius: 10px;">
+<i class="<?= htmlspecialchars($statusAlert['icon'] ?? 'fa-solid fa-circle-info') ?>" style="font-size: 1.25rem; flex-shrink: 0; margin-top: 2px;"></i>
+<div>
+<?php if (!empty($statusAlert['title'])): ?>
+<div style="font-weight: 800; font-size: 0.96rem; margin-bottom: 4px; color: inherit;">
+<?= htmlspecialchars($statusAlert['title']) ?>
+</div>
+<?php endif; ?>
+<div style="font-size: 0.92rem;"><?= $statusAlert['msg'] ?></div>
+</div>
+</div>
+<?php elseif ($showError): ?>
+<div class="alert alert-danger" style="line-height: 1.5; margin-bottom: 20px; border-radius: 10px;">
+<i class="fa-solid fa-circle-exclamation" style="font-size: 1.15rem; flex-shrink: 0; margin-top: 2px;"></i>
 <div><?= $showError ?></div>
 </div>
 <?php endif; ?>

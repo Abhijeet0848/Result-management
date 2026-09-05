@@ -118,6 +118,9 @@ if ($st === 1) $activeCount += $num;
 else $pendingCount += $num;
 }
 }
+$initialFilter = isset($_GET['filter']) ? strtolower(trim($_GET['filter'])) : 'all';
+if (!in_array($initialFilter, ['all', 'pending', 'active'])) {
+    $initialFilter = 'all';
 }
 ?>
 <!DOCTYPE html>
@@ -207,13 +210,13 @@ color: #FFFFFF;
 
 <!-- Filter Tabs -->
 <div class="filter-tab-bar">
-<button type="button" class="filter-tab active" onclick="setFilter('all', this)">
+<button type="button" class="filter-tab <?= ($initialFilter === 'all') ? 'active' : '' ?>" id="tabAll" onclick="setFilter('all', this)">
 <i class="fa-solid fa-users"></i> All Students <span class="filter-count"><?= $totalCount ?></span>
 </button>
-<button type="button" class="filter-tab" onclick="setFilter('pending', this)" style="<?= ($pendingCount > 0) ? 'border-color: #F59E0B; color: #D97706;' : '' ?>">
+<button type="button" class="filter-tab <?= ($initialFilter === 'pending') ? 'active' : '' ?>" id="tabPending" onclick="setFilter('pending', this)" style="<?= ($pendingCount > 0) ? 'border-color: #F59E0B; color: #D97706;' : '' ?>">
 <i class="fa-solid fa-clock"></i> Pending Approval <span class="filter-count" style="<?= ($pendingCount > 0) ? 'background: #FEF3C7; color: #B45309; font-weight: 800;' : '' ?>"><?= $pendingCount ?></span>
 </button>
-<button type="button" class="filter-tab" onclick="setFilter('active', this)">
+<button type="button" class="filter-tab <?= ($initialFilter === 'active') ? 'active' : '' ?>" id="tabActive" onclick="setFilter('active', this)">
 <i class="fa-solid fa-circle-check"></i> Active Accounts <span class="filter-count"><?= $activeCount ?></span>
 </button>
 </div>
@@ -304,35 +307,43 @@ echo '<tr><td colspan="7" style="text-align: center; color: #4B5563; font-weight
 </div>
 
 <script>
-let currentStatusFilter = 'all';
+let currentStatusFilter = '<?= $initialFilter ?>';
 
 function setFilter(status, btn) {
-currentStatusFilter = status;
-document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-btn.classList.add('active');
-filterStudents();
+    currentStatusFilter = status;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    if (btn) {
+        btn.classList.add('active');
+    }
+    filterStudents();
 }
 
 function filterStudents() {
-const input = document.getElementById("studentSearch");
-const searchFilter = input.value.toLowerCase();
-const table = document.getElementById("studentsTable");
-const trs = table.getElementsByTagName("tr");
+    const input = document.getElementById("studentSearch");
+    const searchFilter = input.value.toLowerCase();
+    const table = document.getElementById("studentsTable");
+    const trs = table.getElementsByTagName("tr");
 
-for (let i = 1; i < trs.length; i++) {
-const row = trs[i];
-const rowStatus = row.getAttribute('data-status');
-const text = row.textContent || row.innerText;
-const matchesSearch = text.toLowerCase().indexOf(searchFilter) > -1;
-const matchesStatus = (currentStatusFilter === 'all' || rowStatus === currentStatusFilter);
+    for (let i = 1; i < trs.length; i++) {
+        const row = trs[i];
+        const rowStatus = row.getAttribute('data-status');
+        const text = row.textContent || row.innerText;
+        const matchesSearch = text.toLowerCase().indexOf(searchFilter) > -1;
+        const matchesStatus = (currentStatusFilter === 'all' || rowStatus === currentStatusFilter);
 
-if (matchesSearch && matchesStatus) {
-row.style.display = "";
-} else {
-row.style.display = "none";
+        if (matchesSearch && matchesStatus) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
 }
-}
-}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (currentStatusFilter !== 'all') {
+        filterStudents();
+    }
+});
 </script>
 </body>
 </html>
