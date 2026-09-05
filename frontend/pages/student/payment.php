@@ -197,10 +197,10 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
             text-align: center;
         }
 
-        /* Floating Bypass Bar visible even when Razorpay popup is open */
+        /* Floating Bypass Bar visible only when Razorpay popup is open */
         .floating-paid-bar {
             position: fixed;
-            bottom: 16px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2147483647;
@@ -209,11 +209,15 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
             padding: 10px 20px;
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            display: flex;
+            display: none;
             align-items: center;
             gap: 12px;
             border: 1px solid #334155;
+            white-space: nowrap;
             animation: pulseGlow 2.5s infinite;
+        }
+        .floating-paid-bar.active {
+            display: flex;
         }
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
@@ -241,7 +245,7 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
 </head>
 <body>
 
-    <!-- Floating Always-Accessible Bypass Controller -->
+    <!-- Floating Always-Accessible Bypass Controller (Shown during Razorpay overlay) -->
     <div class="floating-paid-bar" id="floatingPaidWidget">
         <span style="font-size: 0.84rem; font-weight: 600; color: #E2E8F0;">
             <i class="fa-solid fa-qrcode" style="color: #34D399;"></i> Scanned QR or Paid?
@@ -372,6 +376,10 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
             "modal": {
                 "ondismiss": function() {
                     console.log('Razorpay modal closed');
+                    var widget = document.getElementById('floatingPaidWidget');
+                    if (widget) {
+                        widget.classList.remove('active');
+                    }
                 }
             }
         };
@@ -382,6 +390,10 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
                 console.warn("Razorpay payment dismiss/failure:", response);
             });
             rzpInstance.open();
+            var widget = document.getElementById('floatingPaidWidget');
+            if (widget) {
+                widget.classList.add('active');
+            }
         } catch (err) {
             console.error('Error opening Razorpay:', err);
             confirmPaidAndProceed();
@@ -402,7 +414,14 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
         
         var widget = document.getElementById('floatingPaidWidget');
         if (widget) {
+            widget.classList.add('active');
             widget.innerHTML = '<span style="color: #34D399; font-weight: 700;"><i class="fa-solid fa-spinner fa-spin"></i> Confirming Payment & Generating Bill...</span>';
+        }
+
+        var inCardBtn = document.querySelector('.btn-paid-confirm');
+        if (inCardBtn) {
+            inCardBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating Official Bill...';
+            inCardBtn.disabled = true;
         }
 
         setTimeout(function() {
