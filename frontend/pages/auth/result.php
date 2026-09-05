@@ -222,7 +222,7 @@ line-height: 1.18;
 
 /* Subtle Security Watermark */
 .marksheet-document::before {
-content: "SSR COLLEGE OF ARTS, COMMERCE & SCIENCE * OFFICIAL TRANSCRIPT * SSR COLLEGE OF ARTS, COMMERCE & SCIENCE";
+content: "ONLINE EXAMINATION & RESULT SYSTEM * OFFICIAL ACADEMIC TRANSCRIPT * CONTROLLER OF EXAMINATIONS";
 position: absolute;
 top: 50%;
 left: 50%;
@@ -813,9 +813,9 @@ Semester <?= $sNum ?>
 <span style="font-size: 5.5pt; font-weight: 800; color: #0f2744; letter-spacing: 0.5px; text-transform: uppercase;">Est. 2006</span>
 </div>
 <div style="flex: 1; text-align: center;">
-<h1 class="doc-inst-title">SSR COLLEGE OF ARTS, COMMERCE & SCIENCE</h1>
-<p class="doc-inst-sub">Affiliated to Savitribai Phule Pune University (SPPU) * NAAC Accredited 'A' Grade</p>
-<p class="doc-inst-sub" style="font-size: 0.68rem; color: #475569;">Sayli Road, Silvassa, Dadra & Nagar Haveli (UT) - 396230 | College Code: 0832</p>
+<h1 class="doc-inst-title">ONLINE EXAMINATION & RESULT MANAGEMENT SYSTEM</h1>
+<p class="doc-inst-sub">Affiliated to Savitribai Phule Pune University (SPPU) * Autonomous Examination Authority</p>
+<p class="doc-inst-sub" style="font-size: 0.68rem; color: #475569;">Central Examination Cell | Official Academic Statement</p>
 </div>
 <div style="width: 70px; text-align: center;">
 <div id="marksheetQRCode" style="display: inline-flex; align-items: center; justify-content: center; padding: 2px; background: #ffffff; border: 1px solid #0f2744; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);"></div>
@@ -918,7 +918,7 @@ $gradeClass = ($m >= 40) ? "g-pass" : "g-fail";
 <strong>Scale:</strong> O: 90-100 (10) | A+: 75-89 (9) | A: 60-74 (8) | B+: 55-59 (7) | B: 50-54 (6) | C: 40-49 (5) | F: &lt;40 (0)
 </div>
 <div class="security-barcode">
-<i class="fa-solid fa-barcode"></i> DOC-VERIFY: SSR-<?= htmlspecialchars($roll_no) ?>-S<?= htmlspecialchars($sem_id) ?>-<?= date('Y') ?>
+<i class="fa-solid fa-barcode"></i> DOC-VERIFY: RMS-<?= htmlspecialchars($roll_no) ?>-S<?= htmlspecialchars($sem_id) ?>-<?= date('Y') ?>
 </div>
 </div>
 
@@ -931,13 +931,13 @@ $gradeClass = ($m >= 40) ? "g-pass" : "g-fail";
 </div>
 
 <div class="official-seal-box">
-<span>SSR<br>SEAL<br>SPPU</span>
+<span>EXAM<br>SEAL<br>CELL</span>
 </div>
 
 <div class="sign-block">
 <div class="sign-line"></div>
 <strong>Controller of Examinations</strong><br>
-<span style="color: #64748b;">SSR Examination Cell</span>
+<span style="color: #64748b;">Central Examination Cell</span>
 </div>
 
 <div class="sign-block">

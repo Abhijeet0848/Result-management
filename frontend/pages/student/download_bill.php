@@ -84,7 +84,7 @@ function amountToWords($number) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Fee Receipt | SSR College Examination Division</title>
+    <title>Official Fee Receipt | Examination Division</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
@@ -443,8 +443,8 @@ function amountToWords($number) {
 <div class="receipt-wrapper" id="receiptPrintArea">
     <!-- Institutional Letterhead -->
     <div class="inst-header">
-        <h1 class="inst-name">SSR College of Arts, Commerce and Science</h1>
-        <p class="inst-affil">Affiliated to Savitribai Phule Pune University • Approved by Govt. of Maharashtra</p>
+        <h1 class="inst-name">Online Examination & Result Management</h1>
+        <p class="inst-affil">Affiliated to Savitribai Phule Pune University • Autonomous Examination Cell</p>
         <p class="inst-dept">Examination Division & Student Services</p>
     </div>
 
@@ -555,7 +555,7 @@ function amountToWords($number) {
             <div class="sign-section">
                 <div class="sign-seal">DIGITALLY VERIFIED<br>EXAM DIVISION</div>
                 <strong>Controller of Examinations</strong>
-                <div style="font-size: 0.68rem; color: #64748B;">SSR College, SPPU</div>
+                <div style="font-size: 0.68rem; color: #64748B;">Central Examination Cell</div>
             </div>
         </div>
 

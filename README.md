@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎓 SSR College Online Examination & Result Management System
+# 🎓 Online Examination & Result Management System
 
 **A Modern, Secure, Full-Stack Academic Portal built with PHP 8.2 & PostgreSQL**
 
@@ -15,7 +15,7 @@
 
 ### 🔗 Live Production URL: [https://online-results.vercel.app/](https://online-results.vercel.app/)
 
-*Affiliated to Savitribai Phule Pune University (SPPU) • Examination Division & Student Services*
+*Central Examination Division & Academic Student Services Portal*
 
 [🌐 Open Live Demo](https://online-results.vercel.app/) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
 
@@ -50,6 +50,31 @@ The **Online Result Management System** is an enterprise-grade academic web appl
 - **Bulk Uploaders**: CSV/Excel bulk upload for student registrations and marks sheets.
 - **Public Circulars & Notices**: Publish announcements and circulars directly to the student portal.
 - **Audit Logging**: Comprehensive security audit trail recording IP addresses, user roles, timestamps, and administrative actions.
+
+---
+
+## 📸 Screenshots
+
+### 🌐 Public Landing & Examination Portal
+![Homepage](docs/screenshots/homepage.png)
+
+### 📊 Administrative Command Center & Analytics Dashboard
+![Admin Dashboard](docs/screenshots/admin_dashboard.png)
+
+### 📜 Official Student Marksheet & Academic Transcript
+![Student Marksheet](docs/screenshots/student_result.png)
+
+### 🔍 Online Result Verification & Instant Search
+![Result Search](docs/screenshots/result_search.png)
+
+### 🔐 Secure Multi-Role Portal Authentication
+![Login Portal](docs/screenshots/login_portal.png)
+
+### 📝 Result Declaration & Subject Grading System
+![Result Declaration](docs/screenshots/result_declaration.png)
+
+### 👥 Student Directory & Records Management
+![Student Management](docs/screenshots/student_management.png)
 
 ---
 
@@ -112,8 +137,8 @@ Deploy this system completely free in **3 simple steps**:
 ### Steps:
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Abhijeet0848/Online-result-system-perfect.git
-cd Online-result-system-perfect
+git clone https://github.com/Abhijeet0848/Result-management.git
+cd Result-management
 
 # 2. Configure Environment Variables
 cp .env.example .env
@@ -133,10 +158,10 @@ Visit `http://localhost:8000` in your browser.
 
 | Portal | Live Access Link | Default Username | Default Password |
 | :--- | :--- | :--- | :--- |
-| **Admin Portal** | [Open Admin Portal](https://online-result-system-perfect-one.vercel.app/frontend/pages/auth/index.php) | `admin` | `Test@123` |
-| **Faculty Portal** | [Open Faculty Portal](https://online-result-system-perfect-one.vercel.app/frontend/pages/auth/index.php) | `faculty@example.com` | `faculty123` |
-| **Student Portal** | [Open Student Portal](https://online-result-system-perfect-one.vercel.app/frontend/pages/student/s_login.php) | `gautam@example.com` | `1102208472` |
-| **Direct Result Search** | [Search Result Online](https://online-result-system-perfect-one.vercel.app/frontend/pages/auth/find-result.php) | *Public Access* | *Public Access* |
+| **Admin Portal** | [Open Admin Portal](https://online-results.vercel.app/frontend/pages/auth/index.php) | `admin` | `Test@123` |
+| **Faculty Portal** | [Open Faculty Portal](https://online-results.vercel.app/frontend/pages/auth/index.php) | `faculty@example.com` | `faculty123` |
+| **Student Portal** | [Open Student Portal](https://online-results.vercel.app/frontend/pages/student/s_login.php) | `gautam@example.com` | `1102208472` |
+| **Direct Result Search** | [Search Result Online](https://online-results.vercel.app/frontend/pages/auth/find-result.php) | *Public Access* | *Public Access* |
 
 ---
 
@@ -154,6 +179,8 @@ Online-result-system/
 ├── database/
 │   └── final2.sql            # Legacy schema backup
 ├── database_schema.sql       # Production-ready PostgreSQL schema & seed data
+├── docs/
+│   └── screenshots/          # High-resolution application UI screenshots
 ├── frontend/
 │   ├── assets/               # Stylesheets (common.css), vector icons, QR scripts
 │   ├── components/           # Shared UI navigation & footer headers
@@ -169,16 +196,6 @@ Online-result-system/
 ├── LICENSE                   # MIT License
 └── README.md
 ```
-
----
-
-## 📸 Screenshots
-
-<img width="1914" height="870" alt="Homepage" src="https://github.com/user-attachments/assets/9b1ab53b-dfa2-43ed-999e-496b0c55e4f1" />
-<img width="1902" height="811" alt="Admin Dashboard" src="https://github.com/user-attachments/assets/75ead08e-cb15-4a08-b75d-4b66e7ecd8b9" />
-<img width="1919" height="859" alt="Student Result" src="https://github.com/user-attachments/assets/3280255a-74fe-4a1e-a14c-ec476aa78b2c" />
-<img width="1919" height="869" alt="Photocopy Request" src="https://github.com/user-attachments/assets/4c72c294-cc4b-4144-b55a-8e75b8e670d6" />
-<img width="1919" height="869" alt="Public Circulars" src="https://github.com/user-attachments/assets/c3328958-7964-40b7-9ce7-940f0276d794" />
 
 ---
 
@@ -198,5 +215,5 @@ This project is open-source and licensed under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-Made with ❤️ by <strong>Abhijeet</strong> for SSR College Examination Division
+Made with ❤️ by <strong>Abhijeet</strong> • Online Examination & Result Management System
 </div>

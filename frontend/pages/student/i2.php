@@ -122,11 +122,11 @@ window.location.href = url; // Navigate to the specified URL
 
 <nav>
 
-<h1>SSR College of Arts, Commerce and Science</h1>
+<h1>Online Examination & Result Portal</h1>
 
 <div>
 
-<button class="button" onclick="window.location.href="../../../backend/auth/logout.php"">Logout</button>
+<button class="button" onclick="window.location.href='../../../backend/auth/logout.php'">Logout</button>
 
 </div>
 
@@ -166,7 +166,7 @@ window.location.href = url; // Navigate to the specified URL
 
 <div class="footer">
 
-<p>&copy; <?php echo date("Y"); ?> TYBSC Computer Science, SSR College. All rights reserved.</p>
+<p>&copy; <?php echo date("Y"); ?> Online Result Management System. All rights reserved.</p>
 
 </div>
 

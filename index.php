@@ -55,8 +55,8 @@ $latestNotices[] = $row;
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Result Management System | SSR College of Arts, Commerce & Science</title>
-<meta name="description" content="Official Online Examination & Result Management Portal for SSR College. Verify mark sheets, request photocopies, revaluation and official academic certificates online.">
+<title>Online Examination & Result Management System</title>
+<meta name="description" content="Official Online Examination & Result Management Portal. Verify mark sheets, request photocopies, revaluation and official academic certificates online.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="frontend/assets/css/common.css">
 <style>
@@ -939,7 +939,7 @@ display: block;
 </div>
 <div class="home-brand-text">
 <h2>ResultPortal</h2>
-<span>SSR College of Arts, Commerce & Science</span>
+<span>Examination & Result Management System</span>
 </div>
 </a>
 
@@ -1242,7 +1242,7 @@ No circulars published at the moment. Please check back later.
 <h3 style="color: #FFFFFF; margin: 0; font-size: 1.35rem; font-weight: 800; font-family: 'Outfit', sans-serif;">ResultPortal</h3>
 </div>
 <p style="color: #E2E8F0; font-size: 0.95rem; line-height: 1.65; font-weight: 500;">
-SSR College of Arts, Commerce and Science (Affiliated to Savitribai Phule Pune University). Delivering digital examination services with academic excellence and absolute transparency.
+Online Examination & Result Management System. Delivering digital examination services with academic excellence, high security, and absolute transparency.
 </p>
 </div>
 
@@ -1269,17 +1269,17 @@ SSR College of Arts, Commerce and Science (Affiliated to Savitribai Phule Pune U
 <div class="footer-col">
 <h4>Contact & Location</h4>
 <p style="font-size: 0.95rem; color: #E2E8F0; line-height: 1.65; margin-bottom: 12px; font-weight: 500;">
-<i class="fa-solid fa-location-dot" style="color: #60A5FA; margin-right: 8px; font-size: 1rem;"></i> SSR Campus, Sayli-Silvassa Road, UT of DNH & DD, India
+<i class="fa-solid fa-location-dot" style="color: #60A5FA; margin-right: 8px; font-size: 1rem;"></i> Central Examination Cell, University Campus
 </p>
 <p style="font-size: 0.95rem; color: #E2E8F0; line-height: 1.65; font-weight: 500;">
-<i class="fa-solid fa-envelope" style="color: #60A5FA; margin-right: 8px; font-size: 1rem;"></i> support@ssrcollege.edu.in
+<i class="fa-solid fa-envelope" style="color: #60A5FA; margin-right: 8px; font-size: 1rem;"></i> support@examination-portal.edu
 </p>
 </div>
 </div>
 
 <div class="footer-bottom">
 <div style="color: #E2E8F0;">
-&copy; <?= date("Y") ?> SSR College of Arts, Commerce and Science. All Rights Reserved.
+&copy; <?= date("Y") ?> Online Examination & Result Management System. All Rights Reserved.
 </div>
 <div style="display: flex; gap: 20px;">
 <a href="#" style="color: #DBEAFE; font-weight: 600; text-decoration: none; transition: color 0.15s;">Examination Ordinances</a>

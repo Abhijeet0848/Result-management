@@ -30,7 +30,7 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment & QR Checkout | SSR College Portal</title>
+    <title>Payment & QR Checkout | Examination Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
@@ -257,7 +257,7 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
                 <div class="rzp-badge">
                     <i class="fa-solid fa-shield-halved"></i> 256-BIT ENCRYPTED PAYMENT
                 </div>
-                <h1 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; margin: 0 0 4px 0; color: #FFFFFF; font-weight: 800;">SSR College Examination Division</h1>
+                <h1 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; margin: 0 0 4px 0; color: #FFFFFF; font-weight: 800;">Examination Division Portal</h1>
                 <p style="margin: 0; font-size: 0.85rem; color: #DBEAFE;"><?= htmlspecialchars($serviceTitle) ?> Portal</p>
             </div>
 
@@ -349,7 +349,7 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
             "key": <?= json_encode($razorpay_key) ?>,
             "amount": <?= $amount_paise ?>,
             "currency": "INR",
-            "name": "SSR College of Arts, Commerce & Science",
+            "name": "Examination Division Portal",
             "description": "<?= htmlspecialchars($serviceTitle) ?> Fee (<?= $subject_count ?> Subjects)",
             "image": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
             "handler": function (response) {
