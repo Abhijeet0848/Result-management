@@ -48,6 +48,17 @@ $_SESSION['student_roll'] = $roll_no;
 $_SESSION['student_name'] = $student['name'];
 $_SESSION['branch_id'] = $student['branch_id'];
 $_SESSION['sem_id'] = $student['sem_id'];
+
+$student_photo = $student['photo'] ?? ($_SESSION['student_photo'] ?? '');
+if (empty($student_photo) && !empty($roll_no)) {
+    $upload_dir = __DIR__ . '/../../assets/uploads/students/';
+    foreach (['jpg', 'jpeg', 'png', 'webp', 'gif'] as $ext) {
+        if (file_exists($upload_dir . 'student_' . $roll_no . '.' . $ext)) {
+            $student_photo = '/frontend/assets/uploads/students/student_' . $roll_no . '.' . $ext;
+            break;
+        }
+    }
+}
 }
 
 // 1. Fetch Semester Results to calculate SGPA Progression
@@ -312,8 +323,12 @@ font-size: 1rem;
 <!-- Student Profile Hero -->
 <div class="student-hero">
 <div class="student-profile-info">
-<div class="student-avatar">
-<i class="fa-solid fa-user-graduate"></i>
+<div class="student-avatar" style="overflow: hidden; padding: 0; display: flex; align-items: center; justify-content: center;">
+    <?php if (!empty($student_photo)): ?>
+        <img src="<?= htmlspecialchars($student_photo) ?>" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+    <?php else: ?>
+        <i class="fa-solid fa-user-graduate"></i>
+    <?php endif; ?>
 </div>
 <div class="student-details">
 <h1><?= htmlspecialchars($student['name'] ?? $_SESSION['student_name'] ?? 'Student') ?></h1>

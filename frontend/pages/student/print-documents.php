@@ -54,6 +54,18 @@ if (!empty($email) && $conn) {
     }
 }
 
+// Fetch student profile photo if available
+$student_photo = $student['photo'] ?? ($_SESSION['student_photo'] ?? '');
+if (empty($student_photo) && !empty($roll_no)) {
+    $upload_dir = __DIR__ . '/../../assets/uploads/students/';
+    foreach (['jpg', 'jpeg', 'png', 'webp', 'gif'] as $ext) {
+        if (file_exists($upload_dir . 'student_' . $roll_no . '.' . $ext)) {
+            $student_photo = '/frontend/assets/uploads/students/student_' . $roll_no . '.' . $ext;
+            break;
+        }
+    }
+}
+
 // Fetch subject results or enrolled subjects for Hall Ticket & Result Statement
 $student_subjects = [];
 $totalMarksScored = 0;
@@ -747,8 +759,14 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                                     <p style="margin: 2px 0; color: #64748b; font-size: 0.8rem;">Central Admissions Directorate * Session 2023-2026</p>
                                 </div>
                             </div>
-                            <div style="border: 1.5px dashed #94a3b8; width: 75px; height: 85px; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: #64748b; text-align: center;">
-                                Candidate Photo
+                            <div style="width: 75px; height: 85px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                                <?php if (!empty($student_photo)): ?>
+                                    <img src="<?= htmlspecialchars($student_photo) ?>" alt="Candidate Photo" style="width: 100%; height: 100%; object-fit: cover; border: 1.5px solid #334155; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);">
+                                <?php else: ?>
+                                    <div style="border: 1.5px dashed #94a3b8; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: #64748b; text-align: center; border-radius: 4px; background: #f8fafc;">
+                                        Candidate Photo
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -827,8 +845,14 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                                     <span style="font-size: 0.85rem; font-weight: 700; color: #1e40af; text-transform: uppercase;">EXAM HALL TICKET / ADMIT CARD</span>
                                 </div>
                             </div>
-                            <div style="border: 1.5px dashed #94a3b8; width: 75px; height: 85px; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: #64748b; text-align: center;">
-                                Candidate Photo
+                            <div style="width: 75px; height: 85px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                                <?php if (!empty($student_photo)): ?>
+                                    <img src="<?= htmlspecialchars($student_photo) ?>" alt="Candidate Photo" style="width: 100%; height: 100%; object-fit: cover; border: 1.5px solid #1e3a8a; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);">
+                                <?php else: ?>
+                                    <div style="border: 1.5px dashed #94a3b8; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: #64748b; text-align: center; border-radius: 4px; background: #f8fafc;">
+                                        Candidate Photo
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
