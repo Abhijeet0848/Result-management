@@ -235,9 +235,24 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/degree-print.php";
             }
         }
 
+        @page {
+            size: A4 portrait;
+            margin: 0mm !important;
+        }
+
         @media print {
-            body { background: white !important; padding: 0 !important; }
+            @page {
+                size: A4 portrait;
+                margin: 0mm !important;
+            }
+            body { 
+                background: white !important; 
+                padding: 12mm 16mm !important; 
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
             .no-print { display: none !important; }
+            .cert-wrapper { max-width: 100% !important; margin: 0 !important; width: 100% !important; }
             .certificate { box-shadow: none !important; border: 10px double #1e3a8a !important; padding: 40px !important; }
             .univ-name { font-size: 1.6rem !important; }
             .cert-title { font-size: 2rem !important; }

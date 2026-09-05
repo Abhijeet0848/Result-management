@@ -643,21 +643,24 @@ justify-content: center;
  STRICT SINGLE-PAGE PRINT RULES (A4 Guaranteed)
  ========================================================================== */
 @page {
-size: A4 portrait;
-margin: 5mm 6mm;
+    size: A4 portrait;
+    margin: 0mm !important;
 }
 
 @media print {
-html, body {
-background: #ffffff !important;
-padding: 0 !important;
-margin: 0 !important;
-color: #000000 !important;
-width: 100% !important;
-height: 100% !important;
--webkit-print-color-adjust: exact !important;
-print-color-adjust: exact !important;
-}
+    @page {
+        size: A4 portrait;
+        margin: 0mm !important;
+    }
+    html, body {
+        background: #ffffff !important;
+        padding: 6mm 8mm !important;
+        margin: 0 !important;
+        color: #000000 !important;
+        width: 100% !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 
 .screen-top-bar,
 .sem-selector-bar,

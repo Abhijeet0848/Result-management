@@ -530,13 +530,30 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
             }
         }
 
+        @page {
+            size: A4 portrait;
+            margin: 0mm !important;
+        }
+
         @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0mm !important;
+            }
             body {
                 background: white !important;
-                padding: 0 !important;
+                padding: 10mm 14mm !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .no-print {
                 display: none !important;
+            }
+            .page-container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
             }
             .printable-sheet {
                 box-shadow: none !important;
@@ -545,10 +562,11 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                 width: 100% !important;
             }
             .printable-content {
-                padding: 20px !important;
+                padding: 0 !important;
             }
             .bonafide-box {
                 border: 8px double #1e3a8a !important;
+                padding: 30px !important;
             }
         }
     </style>
@@ -656,7 +674,7 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/print-documents.php" .
                             <div style="text-align: right; font-size: 0.82rem;">
                                 <div><strong>Receipt No:</strong> SPPU-REC-<?= date('Y') ?>-<?= htmlspecialchars($roll_no) ?></div>
                                 <div><strong>Txn Ref:</strong> PAY_<?= strtoupper(substr(md5($roll_no . 'FEES'), 0, 10)) ?></div>
-                                <div><strong>Date:</strong> <?= date('d-M-Y H:i') ?></div>
+                                <div><strong>Date:</strong> <?= date('d-M-Y') ?></div>
                             </div>
                         </div>
 

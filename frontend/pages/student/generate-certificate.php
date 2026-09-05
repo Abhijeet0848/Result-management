@@ -246,9 +246,24 @@ $verifyUrl = $protocol . $host . "/frontend/pages/student/generate-certificate.p
             }
         }
 
+        @page {
+            size: A4 portrait;
+            margin: 0mm !important;
+        }
+
         @media print {
-            body { background: white !important; padding: 0 !important; }
+            @page {
+                size: A4 portrait;
+                margin: 0mm !important;
+            }
+            body { 
+                background: white !important; 
+                padding: 12mm 16mm !important; 
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
             .no-print { display: none !important; }
+            .cert-wrapper { max-width: 100% !important; margin: 0 !important; width: 100% !important; }
             .certificate-container { box-shadow: none !important; border: 8px double #047857 !important; padding: 40px !important; }
             .certificate-header h2 { font-size: 1.6rem !important; }
             .certificate-title { font-size: 1.8rem !important; }

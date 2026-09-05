@@ -177,13 +177,24 @@ $overallPassRate = ($classTotalAppeared > 0) ? round(($classTotalPassed / $class
     margin-top: 4px;
 }
 
+@page {
+    size: auto;
+    margin: 0mm !important;
+}
+
 @media print {
+    @page {
+        size: auto;
+        margin: 0mm !important;
+    }
     .navbar, .filter-bar, .no-print, .btn, footer {
         display: none !important;
     }
     body {
         background: #FFFFFF !important;
-        padding: 0 !important;
+        padding: 10mm 12mm !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
     .container {
         max-width: 100% !important;
