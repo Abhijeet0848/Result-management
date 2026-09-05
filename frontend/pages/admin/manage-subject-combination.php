@@ -66,7 +66,7 @@ $showError = "Failed to delete combination: " . pg_last_error($conn);
 <h1 class="page-title">Subject Combinations</h1>
 <p>Map subjects to specific branches and academic semesters.</p>
 </div>
-<a href="add-subjcombo.php" class="btn btn-primary">
+<a href="add-subject-combination.php" class="btn btn-primary">
 <i class="fa-solid fa-layer-group"></i> Add New Combination
 </a>
 </div>
@@ -119,15 +119,15 @@ $statusBadge = ($row['status'] == 1)
 <td style="text-align: center; white-space: nowrap;">
 <div style="display: inline-flex; align-items: center; gap: 6px;">
  <?php if ($row['status'] == 1): ?>
- <a href="manage-subjcomb.php?did=<?= $row['id'] ?>" class="btn btn-sm btn-secondary" style="color: #D97706; border-color: #FDE68A; background: #FFFBEB;" title="Deactivate Combination" onclick="return confirm('Deactivate this combination?');">
+ <a href="manage-subject-combination.php?did=<?= $row['id'] ?>" class="btn btn-sm btn-secondary" style="color: #D97706; border-color: #FDE68A; background: #FFFBEB;" title="Deactivate Combination" onclick="return confirm('Deactivate this combination?');">
  <i class="fa-solid fa-ban"></i> Deactivate
  </a>
  <?php else: ?>
- <a href="manage-subjcomb.php?acid=<?= $row['id'] ?>" class="btn btn-sm btn-success" title="Activate Combination" onclick="return confirm('Activate this combination?');">
+ <a href="manage-subject-combination.php?acid=<?= $row['id'] ?>" class="btn btn-sm btn-success" title="Activate Combination" onclick="return confirm('Activate this combination?');">
  <i class="fa-solid fa-check"></i> Activate
  </a>
  <?php endif; ?>
- <a href="manage-subjcomb.php?action=delete&id=<?= $row['id'] ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Combination" onclick="return confirm('Delete this subject combination?');">
+ <a href="manage-subject-combination.php?action=delete&id=<?= $row['id'] ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Combination" onclick="return confirm('Delete this subject combination?');">
  <i class="fa-solid fa-trash"></i>
  </a>
  </div>

@@ -126,7 +126,7 @@ $_SESSION['student_name'] = $studentRow['name'];
 $_SESSION['student_roll'] = $studentRow['roll_no'];
 $_SESSION['role'] = 'student';
 $_SESSION['created_at'] = time();
-header("location: ../student/s_login.php");
+header("location: ../student/dashboard.php");
 exit;
 }
 }
@@ -390,8 +390,8 @@ Password
 </button>
 
 <div class="auth-links">
-<a href="student-forget-password.php">Forgot Password?</a>
-<a href="student_registration.php">New Student? Register</a>
+<a href="student-forgot-password.php">Forgot Password?</a>
+<a href="student-registration.php">New Student? Register</a>
 </div>
 </form>
 

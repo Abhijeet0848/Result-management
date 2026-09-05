@@ -96,7 +96,7 @@ while ($row = pg_fetch_assoc($result)) {
 <a href="edit-semester.php?semid=<?= urlencode($row['sem_id']) ?>" class="btn-action" title="Edit Semester">
 <i class="fa-solid fa-pen-to-square"></i>
 </a>
-<a href="manage-sem.php?action=delete&semid=<?= urlencode($row['sem_id']) ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Semester" onclick="return confirm('Delete this semester? Note: Semesters with assigned students cannot be deleted.');">
+<a href="manage-semester.php?action=delete&semid=<?= urlencode($row['sem_id']) ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Semester" onclick="return confirm('Delete this semester? Note: Semesters with assigned students cannot be deleted.');">
 <i class="fa-solid fa-trash"></i>
 </a>
 </div>

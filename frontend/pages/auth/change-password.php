@@ -89,10 +89,10 @@ $showError = "Student account not found.";
 <?php include_once __DIR__ . '/../../components/nav.php'; ?>
 <?php else: ?>
 <header style="background: #0f172a; padding: 16px 24px; color: #fff; display: flex; justify-content: space-between; align-items: center;">
-<a href="../student/s_login.php" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+<a href="../student/dashboard.php" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
 <i class="fa-solid fa-graduation-cap" style="color: #10b981;"></i> Student Portal
 </a>
-<a href="../student/s_login.php" class="btn btn-secondary btn-sm" style="background: rgba(255,255,255,0.1); color: #fff;">
+<a href="../student/dashboard.php" class="btn btn-secondary btn-sm" style="background: rgba(255,255,255,0.1); color: #fff;">
 <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
 </a>
 </header>
@@ -152,7 +152,7 @@ $showError = "Student account not found.";
 </div>
 
 <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-<a href="<?= $isAdmin ? '../admin/dashboard.php' : '../student/s_login.php' ?>" class="btn btn-secondary">Cancel</a>
+<a href="<?= $isAdmin ? '../admin/dashboard.php' : '../student/dashboard.php' ?>" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-primary btn-lg">
 <i class="fa-solid fa-lock"></i> Update Password
 </button>

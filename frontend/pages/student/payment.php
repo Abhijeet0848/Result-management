@@ -14,7 +14,7 @@ $subject = $_SESSION['subject'] ?? '';
 $subjects_list = $_SESSION['subjects_list'] ?? (!empty($subject) ? explode(", ", $subject) : []);
 
 if (empty($subject) || empty($subjects_list)) {
-    header("location: " . ($type === 'revaluation' ? "request-revalution.php" : "request-photocopy.php"));
+    header("location: " . ($type === 'revaluation' ? "request-revaluation.php" : "request-photocopy.php"));
     exit;
 }
 
@@ -325,7 +325,7 @@ $razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
                 </div>
 
                 <div style="text-align: center; margin-top: 18px;">
-                    <a href="<?= ($type === 'revaluation') ? 'request-revalution.php' : 'request-photocopy.php' ?>" style="color: #64748B; font-size: 0.85rem; text-decoration: none; font-weight: 500;">
+                    <a href="<?= ($type === 'revaluation') ? 'request-revaluation.php' : 'request-photocopy.php' ?>" style="color: #64748B; font-size: 0.85rem; text-decoration: none; font-weight: 500;">
                         <i class="fa-solid fa-arrow-left"></i> Cancel and change subjects
                     </a>
                 </div>

@@ -294,7 +294,7 @@ font-size: 1rem;
 
 <!-- Student Top Navbar -->
 <header class="student-header">
-<a href="s_login.php" class="student-brand">
+<a href="dashboard.php" class="student-brand">
 <div class="student-brand-icon">
 <i class="fa-solid fa-graduation-cap"></i>
 </div>
@@ -328,7 +328,7 @@ font-size: 1rem;
 </div>
 
 <div>
-<a href="updateprofile.php" class="btn btn-secondary btn-sm" style="background: rgba(255,255,255,0.9); color: #1E3A5F; font-weight: 700;">
+<a href="update-profile.php" class="btn btn-secondary btn-sm" style="background: rgba(255,255,255,0.9); color: #1E3A5F; font-weight: 700;">
 <i class="fa-solid fa-user-pen"></i> Edit Profile
 </a>
 </div>
@@ -346,7 +346,7 @@ font-size: 1rem;
 <div style="color: #6B7280; font-size: 0.82rem;">Published on <?= date('d M Y', strtotime($recentNotices[0]['created_at'])) ?></div>
 </div>
 </div>
-<a href="view_notices.php" class="btn btn-secondary btn-sm">
+<a href="view-notices.php" class="btn btn-secondary btn-sm">
 View All Circulars <i class="fa-solid fa-arrow-right"></i>
 </a>
 </div>
@@ -470,7 +470,7 @@ Check Marksheet <i class="fa-solid fa-arrow-right"></i>
 </a>
 
 <!-- Revaluation Card -->
-<a href="request-revalution.php" class="service-card sc-indigo">
+<a href="request-revaluation.php" class="service-card sc-indigo">
 <div>
 <div class="service-icon"><i class="fa-solid fa-rotate-right"></i></div>
 <h3>Revaluation Request</h3>
@@ -494,7 +494,7 @@ Request Copy <i class="fa-solid fa-arrow-right"></i>
 </a>
 
 <!-- Notice Board Card -->
-<a href="view_notices.php" class="service-card sc-amber">
+<a href="view-notices.php" class="service-card sc-amber">
 <div>
 <div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div>
 <h3>College Notices</h3>
@@ -506,7 +506,7 @@ Read Notices <i class="fa-solid fa-arrow-right"></i>
 </a>
 
 <!-- Print Documents Card -->
-<a href="print_documents.php" class="service-card sc-purple">
+<a href="print-documents.php" class="service-card sc-purple">
 <div>
 <div class="service-icon"><i class="fa-solid fa-print"></i></div>
 <h3>Print Certificates</h3>

@@ -106,7 +106,7 @@ gap: 20px;
 <h3 style="margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
 <i class="fa-solid fa-bullhorn" style="color: var(--primary);"></i> Publish New Notice
 </h3>
-                <form action="publice_notice.php" method="POST">
+                <form action="publish-notice.php" method="POST">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(get_csrf_token()) ?>">
 
                     <div class="form-group">
@@ -151,7 +151,7 @@ gap: 20px;
                                         <td><strong><?= htmlspecialchars($n['title']) ?></strong></td>
                                         <td><div style="max-height: 80px; overflow-y: auto; font-size: 0.88rem; color: var(--text-muted);"><?= nl2br(htmlspecialchars($n['description'])) ?></div></td>
                                         <td style="text-align: center;">
-                                            <a href="publice_notice.php?del=<?= $n['notice_id'] ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Notice" onclick="return confirm('Permanently delete this circular notice?');">
+                                            <a href="publish-notice.php?del=<?= $n['notice_id'] ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Notice" onclick="return confirm('Permanently delete this circular notice?');">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         </td>

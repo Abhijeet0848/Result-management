@@ -44,7 +44,7 @@ $showError = "Semester name cannot be empty.";
 <h1 class="page-title">Add Academic Semester</h1>
 <p>Configure a new semester term or academic year module.</p>
 </div>
-<a href="manage-sem.php" class="btn btn-secondary btn-sm">
+<a href="manage-semester.php" class="btn btn-secondary btn-sm">
 <i class="fa-solid fa-calendar-check"></i> View Semesters
 </a>
 </div>
@@ -70,7 +70,7 @@ $showError = "Semester name cannot be empty.";
 </div>
 
 <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-<a href="manage-sem.php" class="btn btn-secondary">Cancel</a>
+<a href="manage-semester.php" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-primary btn-lg">
 <i class="fa-solid fa-calendar-plus"></i> Save Semester
 </button>

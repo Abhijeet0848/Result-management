@@ -414,7 +414,7 @@ display: none;
 
 <!-- Academic Structure (Branches & Semesters) -->
 <li class="nav-item" onclick="toggleDropdown(this, event)">
-<button class="nav-link <?= in_array($current_page, ['add-branch.php', 'manage-branch.php', 'edit-branch.php', 'add-semester.php', 'manage-sem.php', 'edit-semester.php']) ? 'active' : '' ?>">
+<button class="nav-link <?= in_array($current_page, ['add-branch.php', 'manage-branch.php', 'edit-branch.php', 'add-semester.php', 'manage-semester.php', 'edit-semester.php']) ? 'active' : '' ?>">
 <span><i class="fa-solid fa-sitemap"></i> Academic</span>
 <i class="fa-solid fa-chevron-down chevron"></i>
 </button>
@@ -422,7 +422,7 @@ display: none;
 <a href="/frontend/pages/admin/manage-branch.php" class="dropdown-item">
 <i class="fa-solid fa-code-branch"></i> Branches
 </a>
-<a href="/frontend/pages/admin/manage-sem.php" class="dropdown-item">
+<a href="/frontend/pages/admin/manage-semester.php" class="dropdown-item">
 <i class="fa-solid fa-calendar-days"></i> Semesters
 </a>
 <div class="dropdown-divider"></div>
@@ -437,7 +437,7 @@ display: none;
 
 <!-- Subjects & Combinations -->
 <li class="nav-item" onclick="toggleDropdown(this, event)">
-<button class="nav-link <?= in_array($current_page, ['add-subjects.php', 'manage-subjects.php', 'edit-subjects.php', 'add-subjcombo.php', 'manage-subjcomb.php']) ? 'active' : '' ?>">
+<button class="nav-link <?= in_array($current_page, ['add-subjects.php', 'manage-subjects.php', 'edit-subjects.php', 'add-subject-combination.php', 'manage-subject-combination.php']) ? 'active' : '' ?>">
 <span><i class="fa-solid fa-book-open"></i> Subjects</span>
 <i class="fa-solid fa-chevron-down chevron"></i>
 </button>
@@ -445,14 +445,14 @@ display: none;
 <a href="/frontend/pages/admin/manage-subjects.php" class="dropdown-item">
 <i class="fa-solid fa-book-bookmark"></i> Subjects Directory
 </a>
-<a href="/frontend/pages/admin/manage-subjcomb.php" class="dropdown-item">
+<a href="/frontend/pages/admin/manage-subject-combination.php" class="dropdown-item">
 <i class="fa-solid fa-sliders"></i> Subject Combos
 </a>
 <div class="dropdown-divider"></div>
 <a href="/frontend/pages/admin/add-subjects.php" class="dropdown-item">
 <i class="fa-solid fa-book-medical"></i> Add Subject
 </a>
-<a href="/frontend/pages/admin/add-subjcombo.php" class="dropdown-item">
+<a href="/frontend/pages/admin/add-subject-combination.php" class="dropdown-item">
 <i class="fa-solid fa-layer-group"></i> Add Combination
 </a>
 </div>
@@ -482,7 +482,7 @@ display: none;
 
 <!-- Applications (Photocopy & Reval) -->
 <li class="nav-item" onclick="toggleDropdown(this, event)">
-<button class="nav-link <?= in_array($current_page, ['manage-photocopy.php', 'manage-revalution.php']) ? 'active' : '' ?>">
+<button class="nav-link <?= in_array($current_page, ['manage-photocopy.php', 'manage-revaluation.php']) ? 'active' : '' ?>">
 <span><i class="fa-solid fa-envelope-open-text"></i> Requests</span>
 <i class="fa-solid fa-chevron-down chevron"></i>
 </button>
@@ -490,7 +490,7 @@ display: none;
 <a href="/frontend/pages/admin/manage-photocopy.php" class="dropdown-item">
 <i class="fa-solid fa-copy"></i> Photocopy Queue
 </a>
-<a href="/frontend/pages/admin/manage-revalution.php" class="dropdown-item">
+<a href="/frontend/pages/admin/manage-revaluation.php" class="dropdown-item">
 <i class="fa-solid fa-rotate-right"></i> Revaluation Queue
 </a>
 </div>
@@ -498,7 +498,7 @@ display: none;
 
 <!-- Notice Board -->
 <li class="nav-item">
-<a href="/frontend/pages/admin/publice_notice.php" class="nav-link <?= ($current_page == 'publice_notice.php') ? 'active' : '' ?>">
+<a href="/frontend/pages/admin/publish-notice.php" class="nav-link <?= ($current_page == 'publish-notice.php') ? 'active' : '' ?>">
 <span><i class="fa-solid fa-bullhorn"></i> Notice</span>
 </a>
 </li>
@@ -519,7 +519,7 @@ display: none;
 <a href="/frontend/pages/auth/change-password.php" class="dropdown-item">
 <i class="fa-solid fa-key"></i> Security Settings
 </a>
-<a href="/frontend/pages/admin/register_admin.php" class="dropdown-item">
+<a href="/frontend/pages/admin/register-admin.php" class="dropdown-item">
 <i class="fa-solid fa-user-shield"></i> Add Administrator
 </a>
 <div class="dropdown-divider"></div>

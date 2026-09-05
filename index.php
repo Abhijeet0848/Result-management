@@ -1197,8 +1197,8 @@ Centralized administrative management for declaring results, managing branches a
 <h2 class="section-title" style="margin-bottom: 4px;">Latest Notices & Announcements</h2>
 <p style="color: #64748b; margin: 0;">Stay up to date with official examination notifications and academic schedules.</p>
 </div>
-<a href="frontend/pages/student/view_notices.php" class="btn btn-secondary">
-<i class="fa-solid fa-bullhorn"></i> View All Notices
+<a href="frontend/pages/student/view-notices.php" class="btn btn-secondary">
+<i class="fa-solid fa-list-check"></i> View Notice Archives
 </a>
 </div>
 
@@ -1261,7 +1261,7 @@ Online Examination & Result Management System. Delivering digital examination se
 <ul class="footer-links">
 <li><a href="frontend/pages/auth/index.php"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px; color: #60A5FA;"></i> Student Login</a></li>
 <li><a href="frontend/pages/auth/index.php"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px; color: #60A5FA;"></i> Admin Sign In</a></li>
-<li><a href="frontend/pages/auth/student_registration.php"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px; color: #60A5FA;"></i> Student Signup</a></li>
+<li><a href="frontend/pages/auth/student-registration.php"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px; color: #60A5FA;"></i> Student Signup</a></li>
 <li><a href="frontend/pages/auth/find-result.php"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px; color: #60A5FA;"></i> Search Verification</a></li>
 </ul>
 </div>

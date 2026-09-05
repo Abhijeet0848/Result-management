@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
             <span style="font-size: 0.88rem; color: #64748b;"><?= htmlspecialchars($email) ?></span>
-            <a href="s_login.php" class="btn btn-secondary btn-sm">
+            <a href="dashboard.php" class="btn btn-secondary btn-sm">
                 <i class="fa-solid fa-house"></i> Dashboard
             </a>
             <a href="/backend/auth/logout.php" class="btn btn-danger btn-sm">
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="page-container">
         <div style="margin-bottom: 24px;">
-            <a href="s_login.php" style="color: #2563eb; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+            <a href="dashboard.php" style="color: #2563eb; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px;">
                 <i class="fa-solid fa-arrow-left"></i> Back to Student Portal
             </a>
             <h1 style="font-size: 1.6rem; font-weight: 700; color: #0f172a; margin: 0;">Request Answer Sheet Photocopy</h1>

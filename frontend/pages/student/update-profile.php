@@ -72,10 +72,10 @@ $student = pg_fetch_assoc($result);
 <body>
 
 <header style="background: #1E3A5F; padding: 12px clamp(12px, 3vw, 24px); color: #FFFFFF; border-bottom: 1px solid #E5E7EB; box-shadow: 0 2px 10px rgba(30,58,95,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-<a href="s_login.php" style="color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+<a href="dashboard.php" style="color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
 <i class="fa-solid fa-graduation-cap" style="color: #2563EB;"></i> Student Portal
 </a>
-<a href="s_login.php" class="btn btn-secondary btn-sm" style="background: #FFFFFF; color: #1E3A5F; border: 1px solid #E5E7EB;">
+<a href="dashboard.php" class="btn btn-secondary btn-sm" style="background: #FFFFFF; color: #1E3A5F; border: 1px solid #E5E7EB;">
 <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
 </a>
 </header>
@@ -102,7 +102,7 @@ $student = pg_fetch_assoc($result);
 </div>
 <?php endif; ?>
 
-<form action="updateprofile.php" method="POST">
+<form action="update-profile.php" method="POST">
 <div class="form-group">
 <label for="roll_no">Roll Number (Permanent)</label>
 <input type="text" id="roll_no" value="<?= htmlspecialchars($student['roll_no'] ?? '') ?>" readonly style="background: var(--bg-subtle); cursor: not-allowed;">
@@ -149,7 +149,7 @@ $student = pg_fetch_assoc($result);
 </div>
 
 <div style="display: flex; justify-content: flex-end; gap: 12px;">
-<a href="s_login.php" class="btn btn-secondary">Cancel</a>
+<a href="dashboard.php" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-primary btn-lg">
 <i class="fa-solid fa-floppy-disk"></i> Save Profile Changes
 </button>

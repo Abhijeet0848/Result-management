@@ -53,7 +53,7 @@ $showError = "Please select Branch, Semester, and Subject.";
 <h1 class="page-title">Map Subject Combination</h1>
 <p>Assign subjects to specific academic streams and semesters.</p>
 </div>
-<a href="manage-subjcomb.php" class="btn btn-secondary btn-sm">
+<a href="manage-subject-combination.php" class="btn btn-secondary btn-sm">
 <i class="fa-solid fa-layer-group"></i> View Combinations
 </a>
 </div>
@@ -72,7 +72,7 @@ $showError = "Please select Branch, Semester, and Subject.";
 </div>
 <?php endif; ?>
 
-<form action="add-subjcombo.php" method="POST">
+<form action="add-subject-combination.php" method="POST">
 <div class="form-group">
 <label for="branch">Academic Branch *</label>
 <select id="branch" name="branch" required>
@@ -119,7 +119,7 @@ echo '<option value="' . htmlspecialchars($sub['subj_id']) . '">' . htmlspecialc
 </div>
 
 <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-<a href="manage-subjcomb.php" class="btn btn-secondary">Cancel</a>
+<a href="manage-subject-combination.php" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-primary btn-lg">
 <i class="fa-solid fa-link"></i> Map Subject Combination
 </button>

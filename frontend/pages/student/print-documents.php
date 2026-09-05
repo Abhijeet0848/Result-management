@@ -73,12 +73,12 @@ transform: translateY(-2px);
 <div class="page-container">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
 <div>
-<a href="s_login.php" style="color: #6366f1; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+<a href="dashboard.php" style="color: #6366f1; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px;">
 <i class="fa-solid fa-arrow-left"></i> Back to Student Portal
 </a>
 <h1 style="font-size: 1.6rem; font-weight: 700; color: #0f172a; margin: 0;">Academic Documents & Forms</h1>
 </div>
-<a href="s_login.php" class="btn btn-secondary">
+<a href="dashboard.php" class="btn btn-secondary">
 <i class="fa-solid fa-house"></i> Home
 </a>
 </div>
@@ -113,7 +113,7 @@ transform: translateY(-2px);
 </h3>
 
 <div>
-<a href="degree_print.php" class="doc-item-link">
+<a href="degree-print.php" class="doc-item-link">
 <div style="display: flex; align-items: center; gap: 14px;">
 <div style="width: 40px; height: 40px; border-radius: 10px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
 <i class="fa-solid fa-graduation-cap"></i>
@@ -126,7 +126,7 @@ transform: translateY(-2px);
 <i class="fa-solid fa-arrow-up-right-from-square" style="color: #4338ca;"></i>
 </a>
 
-<a href="generate_certificate.php" class="doc-item-link">
+<a href="generate-certificate.php" class="doc-item-link">
 <div style="display: flex; align-items: center; gap: 14px;">
 <div style="width: 40px; height: 40px; border-radius: 10px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
 <i class="fa-solid fa-file-certificate"></i>
@@ -141,7 +141,7 @@ transform: translateY(-2px);
 
 <?php if (!empty($documents)): ?>
 <?php foreach ($documents as $doc): ?>
-<a href="print_documents.php?doc_id=<?= $doc['doc_id'] ?>" class="doc-item-link">
+<a href="print-documents.php?doc_id=<?= $doc['doc_id'] ?>" class="doc-item-link">
 <div style="display: flex; align-items: center; gap: 14px;">
 <div style="width: 40px; height: 40px; border-radius: 10px; background: #fdf2f8; color: #db2777; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
 <i class="fa-solid fa-file-lines"></i>

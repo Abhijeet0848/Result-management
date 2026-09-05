@@ -55,7 +55,7 @@ $currentSem = pg_fetch_result($r, 0, 'semester');
 <h1 class="page-title">Edit Academic Semester</h1>
 <p>Update semester label and term information.</p>
 </div>
-<a href="manage-sem.php" class="btn btn-secondary btn-sm">
+<a href="manage-semester.php" class="btn btn-secondary btn-sm">
 <i class="fa-solid fa-calendar-check"></i> View Semesters
 </a>
 </div>
@@ -81,7 +81,7 @@ $currentSem = pg_fetch_result($r, 0, 'semester');
 </div>
 
 <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-<a href="manage-sem.php" class="btn btn-secondary">Cancel</a>
+<a href="manage-semester.php" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-primary btn-lg">
 <i class="fa-solid fa-floppy-disk"></i> Update Semester
 </button>

@@ -84,7 +84,7 @@ while ($row = pg_fetch_assoc($result)) {
 <td><span class="badge badge-info"><?= htmlspecialchars($row['payment_id'] ?? 'N/A') ?></span></td>
 <td><i class="fa-regular fa-clock" style="color: var(--text-light); margin-right: 4px;"></i> <?= htmlspecialchars($row['request_date'] ?? 'N/A') ?></td>
 <td style="text-align: center;">
-<a href="manage-revalution.php?action=delete&id=<?= urlencode($row['request_id']) ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Record" onclick="return confirm('Delete this revaluation application record?');">
+<a href="manage-revaluation.php?action=delete&id=<?= urlencode($row['request_id']) ?>" class="btn-action" style="color: #DC2626; border-color: #FEE2E2; background: #FEF2F2;" title="Delete Record" onclick="return confirm('Delete this revaluation application record?');">
 <i class="fa-solid fa-trash"></i>
 </a>
 </td>

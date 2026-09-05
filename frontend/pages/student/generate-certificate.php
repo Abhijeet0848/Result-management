@@ -30,7 +30,7 @@ if (!empty($row['dob'])) $dob = $row['dob'];
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? 80) == 443) ? "https://" : "http://";
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
-$verifyUrl = $protocol . $host . "/frontend/pages/student/generate_certificate.php";
+$verifyUrl = $protocol . $host . "/frontend/pages/student/generate-certificate.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +110,7 @@ body { background: white !important; padding: 0 !important; }
 
 <div style="max-width: 820px; margin: 0 auto;">
 <div class="no-print" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-<a href="s_login.php" class="btn btn-secondary" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<a href="dashboard.php" class="btn btn-secondary" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 <i class="fa-solid fa-arrow-left"></i> Return to Portal
 </a>
 <button class="btn btn-primary" onclick="window.print();" style="font-family: 'Plus Jakarta Sans', sans-serif;">

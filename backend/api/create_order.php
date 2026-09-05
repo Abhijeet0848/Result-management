@@ -15,11 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($type === 'revaluation') {
         $addsql = "INSERT INTO revaluation_requests (email, subjects, payment_id) VALUES ($1, $2, $3)";
         $result = pg_query_params($conn, $addsql, array($email, $subject, $razorpay_payment_id));
-        $redirectUrl = "../../frontend/pages/student/download_bill.php?type=revaluation&pid=" . urlencode($razorpay_payment_id);
+        $redirectUrl = "../../frontend/pages/student/download-receipt.php?type=revaluation&pid=" . urlencode($razorpay_payment_id);
     } else {
         $addsql = "INSERT INTO photocopy_requests (email, subjects, paymentid) VALUES ($1, $2, $3)";
         $result = pg_query_params($conn, $addsql, array($email, $subject, $razorpay_payment_id));
-        $redirectUrl = "../../frontend/pages/student/download_bill.php?type=photocopy&pid=" . urlencode($razorpay_payment_id);
+        $redirectUrl = "../../frontend/pages/student/download-receipt.php?type=photocopy&pid=" . urlencode($razorpay_payment_id);
     }
 
     if ($result) {

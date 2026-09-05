@@ -953,16 +953,16 @@ $gradeClass = ($m >= 40) ? "g-pass" : "g-fail";
 <div class="doc-services-box no-print">
 <h4>Need Official Academic Certificates or Services?</h4>
 <div class="doc-services-grid">
-<a href="../student/request-revalution.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/request-revalution.php')">
+<a href="../student/request-revaluation.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/request-revaluation.php')">
 <i class="fa-solid fa-rotate-right"></i> Apply Revaluation
 </a>
 <a href="../student/request-photocopy.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/request-photocopy.php')">
 <i class="fa-solid fa-copy"></i> Request Photocopy
 </a>
-<a href="../student/degree_print.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/degree_print.php')">
+<a href="../student/degree-print.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/degree-print.php')">
 <i class="fa-solid fa-graduation-cap"></i> Degree Slip
 </a>
-<a href="../student/generate_certificate.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/generate_certificate.php')">
+<a href="../student/generate-certificate.php" class="btn btn-secondary btn-sm" onclick="return handleServiceClick(event, '../student/generate-certificate.php')">
 <i class="fa-solid fa-file-certificate"></i> Migration Cert
 </a>
 </div>

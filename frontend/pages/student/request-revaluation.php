@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
             <span style="font-size: 0.88rem; color: #64748B;"><?= htmlspecialchars($email) ?></span>
-            <a href="s_login.php" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.82rem; background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;">
+            <a href="dashboard.php" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.82rem; background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;">
                 <i class="fa-solid fa-house"></i> Dashboard
             </a>
             <a href="/backend/auth/logout.php" class="btn btn-danger" style="padding: 6px 14px; font-size: 0.82rem;">
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="page-container">
         <div style="margin-bottom: 20px;">
-            <a href="s_login.php" style="color: #2563EB; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+            <a href="dashboard.php" style="color: #2563EB; font-weight: 600; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px;">
                 <i class="fa-solid fa-arrow-left"></i> Back to Student Dashboard
             </a>
             <h1 style="font-size: 1.6rem; font-weight: 800; color: #0F172A; margin: 0; font-family: 'Outfit', sans-serif;">Apply for Subject Revaluation</h1>

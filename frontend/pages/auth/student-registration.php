@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         <?php endif; ?>
 
-        <form action="student_registration.php" method="post" style="display: flex; flex-direction: column; gap: 14px;">
+        <form action="student-registration.php" method="post" style="display: flex; flex-direction: column; gap: 14px;">
             <div class="form-group">
                 <label class="form-label" for="name"><i class="fa-solid fa-user"></i> Full Name <span style="color:#DC2626;">*</span></label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="Enter Full Name" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">

@@ -264,7 +264,7 @@ grid-template-columns: 1fr;
 <a href="add-student.php" class="quick-action-btn">
 <i class="fa-solid fa-user-plus"></i> Add Student
 </a>
-<a href="publice_notice.php" class="quick-action-btn">
+<a href="publish-notice.php" class="quick-action-btn">
 <i class="fa-solid fa-bullhorn"></i> Post Notice
 </a>
 </div>
@@ -325,7 +325,7 @@ grid-template-columns: 1fr;
 </div>
 </a>
 
-<a href="manage-sem.php" class="metric-card m-amber">
+<a href="manage-semester.php" class="metric-card m-amber">
 <div class="metric-icon-wrap"><i class="fa-solid fa-calendar-days"></i></div>
 <div class="metric-info">
 <h3 id="cSemesters">0</h3>
@@ -333,7 +333,7 @@ grid-template-columns: 1fr;
 </div>
 </a>
 
-<a href="manage-revalution.php" class="metric-card m-rose">
+<a href="manage-revaluation.php" class="metric-card m-rose">
 <div class="metric-icon-wrap"><i class="fa-solid fa-envelope-open-text"></i></div>
 <div class="metric-info">
 <h3 id="cReval"><?= $numRevalReq + $numPhotocopyReq ?></h3>
@@ -358,7 +358,7 @@ grid-template-columns: 1fr;
 <span><i class="fa-solid fa-chart-pie" style="margin-right: 8px;"></i> Results Ledger</span>
 <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
 </a>
-<a href="manage-subjcomb.php" class="action-item">
+<a href="manage-subject-combination.php" class="action-item">
 <span><i class="fa-solid fa-layer-group" style="margin-right: 8px;"></i> Subject Combos</span>
 <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
 </a>
@@ -366,11 +366,11 @@ grid-template-columns: 1fr;
 <span><i class="fa-solid fa-copy" style="margin-right: 8px;"></i> Photocopy Queue</span>
 <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
 </a>
-<a href="manage-revalution.php" class="action-item">
+<a href="manage-revaluation.php" class="action-item">
 <span><i class="fa-solid fa-rotate-right" style="margin-right: 8px;"></i> Revaluation Queue</span>
 <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
 </a>
-<a href="register_admin.php" class="action-item">
+<a href="register-admin.php" class="action-item">
 <span><i class="fa-solid fa-user-shield" style="margin-right: 8px;"></i> Add Administrator</span>
 <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
 </a>

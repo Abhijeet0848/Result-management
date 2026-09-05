@@ -86,7 +86,7 @@ echo '<div class="alert alert-danger" style="margin: 0;">
 
 <i class="fa-solid fa-circle-exclamation"></i>
 
-<div>No subjects are mapped to this branch & semester combination yet. Please configure subjects in <a href="add-subjcombo.php" style="text-decoration: underline; color: inherit; font-weight: bold;">Subject Combination</a> first.</div>
+<div>No subjects are mapped to this branch & semester combination yet. Please configure subjects in <a href="add-subject-combination.php" style="text-decoration: underline; color: inherit; font-weight: bold;">Subject Combination</a> first.</div>
 
 </div>';
 

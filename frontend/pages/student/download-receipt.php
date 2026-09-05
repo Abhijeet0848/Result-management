@@ -41,7 +41,7 @@ if (!$bill && !empty($email)) {
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? 80) == 443) ? "https://" : "http://";
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
-$verifyUrl = $protocol . $host . "/frontend/pages/student/download_bill.php?type=" . urlencode($type) . (!empty($pid) ? "&pid=" . urlencode($pid) : "");
+$verifyUrl = $protocol . $host . "/frontend/pages/student/download-receipt.php?type=" . urlencode($type) . (!empty($pid) ? "&pid=" . urlencode($pid) : "");
 
 function amountToWords($number) {
     $words = array(
@@ -431,7 +431,7 @@ function amountToWords($number) {
         <span>Student Examination Portal</span>
     </div>
     <div style="display: flex; gap: 10px;">
-        <a href="s_login.php" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem; background: #FFFFFF; color: #1E3A5F; border-color: #E2E8F0; font-weight: 600;">
+        <a href="dashboard.php" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem; background: #FFFFFF; color: #1E3A5F; border-color: #E2E8F0; font-weight: 600;">
             <i class="fa-solid fa-house"></i> Student Home
         </a>
         <button onclick="window.print()" class="btn btn-primary" style="padding: 6px 16px; font-size: 0.85rem; font-weight: 700; background: #2563EB; border: none; box-shadow: 0 2px 6px rgba(37,99,235,0.3);">
@@ -564,7 +564,7 @@ function amountToWords($number) {
             <i class="fa-solid fa-triangle-exclamation" style="font-size: 2.5rem; color: #F59E0B; margin-bottom: 12px; display: block;"></i>
             <h3 style="font-size: 1.15rem; color: #0F172A; margin: 0 0 6px 0;">No Active Payment Record Found</h3>
             <p style="margin: 0 0 16px 0;">There are no completed photocopy or revaluation submissions found for this session.</p>
-            <a href="s_login.php" class="btn btn-primary">Return to Student Portal</a>
+            <a href="dashboard.php" class="btn btn-primary">Return to Student Portal</a>
         </div>
     <?php endif; ?>
 </div>
