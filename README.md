@@ -1,95 +1,197 @@
-# Online Result Management System
+<div align="center">
 
-Online Result Management System is a PHP-based web application that streamlines the management of student examination results. The project is built with HTML, CSS, JavaScript, AJAX, PHP, and PostgreSQL and features secure authentication, student and subject management, result processing, responsive design, and dynamic content loading for improved performance.
+# 🎓 SSR College Online Examination & Result Management System
+
+**A Modern, Secure, Full-Stack Academic Portal built with PHP 8.2 & PostgreSQL**
+
+[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white&style=flat-square)](https://www.php.net/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&style=flat-square)](https://www.postgresql.org/)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel&logoColor=white&style=flat-square)](https://vercel.com/)
+[![Cloudflare CDN](https://img.shields.io/badge/Cloudflare-Protected-F38020?logo=cloudflare&logoColor=white&style=flat-square)](https://www.cloudflare.com/)
+[![Razorpay](https://img.shields.io/badge/Payment-Razorpay_Gateway-0C2340?logo=razorpay&logoColor=528FF0&style=flat-square)](https://razorpay.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+
+*Affiliated to Savitribai Phule Pune University (SPPU) • Examination Division & Student Services*
+
+[Live Demo](#-live-cloud-deployment) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
+
+</div>
 
 ---
 
-## 📁 Project Directory Structure
+## 🌟 Overview
 
+The **Online Result Management System** is an enterprise-grade academic web application designed to automate the entire examination lifecycle for universities and colleges. It provides dedicated role-based portals for **Students**, **Faculty Members**, and **Examination Administrators**, complete with automated GPA calculation, answer book photocopy requests, subject revaluation, Razorpay payment gateway integration, and printable digital receipts with QR code verification.
+
+---
+
+## ✨ Key Features
+
+### 👨‍🎓 Student Portal
+- **Direct Result Search**: Quick public search by Roll Number and Mother's Name.
+- **Answer Book Photocopy**: Multi-subject selection with dynamic fee calculation (₹100/subject).
+- **Subject Revaluation**: Policy-restricted application system allowing revaluation only for photocopy-verified subjects (₹250/subject).
+- **Payment Gateway**: Animated Razorpay Checkout modal with support for UPI (GPay, PhonePe, Paytm), Cards, NetBanking, and Instant Verification bypass.
+- **Single-Page Fee Receipt**: Professional printable fee voucher with dynamic QR verification code (`Scan to Verify`), itemized subject breakdown, and amount in words.
+- **Academic Documents**: Generate provisional certificates, degree transcripts, and printable grade cards.
+
+### 👨‍🏫 Faculty Portal
+- **Role-Based Authentication**: Secure login for department professors and evaluators.
+- **Course & Marks Entry**: Add, update, and manage student marks by subject and semester.
+- **Student Directory**: Access department student lists, registration profiles, and performance metrics.
+
+### 🛡️ Administration Portal
+- **System Overview Dashboard**: Live analytics for total students, declared results, active branches, listed subjects, and pending request queues.
+- **Course & Branch Management**: CRUD controls for branches, semesters, subjects, and subject combinations.
+- **Bulk Uploaders**: CSV/Excel bulk upload for student registrations and marks sheets.
+- **Public Circulars & Notices**: Publish announcements and circulars directly to the student portal.
+- **Audit Logging**: Comprehensive security audit trail recording IP addresses, user roles, timestamps, and administrative actions.
+
+---
+
+## 🏗️ System Architecture
+
+```text
+┌───────────────────────────────────────────────────────────┐
+│                    STUDENTS & USERS                       │
+└─────────────────────────────┬─────────────────────────────┘
+                              │
+                              ▼
+┌───────────────────────────────────────────────────────────┐
+│           CLOUDFLARE EDGE CDN & DDoS PROTECTION           │
+│   (Global DNS, SSL Termination, Asset Caching & WAF)      │
+└─────────────────────────────┬─────────────────────────────┘
+                              │
+                              ▼
+┌───────────────────────────────────────────────────────────┐
+│                 VERCEL SERVERLESS PHP 8.2                 │
+│   (Dynamic Routing via api/index.php, Gzip Compression)   │
+└─────────────────────────────┬─────────────────────────────┘
+                              │
+                              ▼
+┌───────────────────────────────────────────────────────────┐
+│              NEON.TECH POSTGRESQL DATABASE                │
+│   (Connection Pooling, SSL, Indexes & Foreign Keys)       │
+└───────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🚀 Free Cloud Deployment
+
+Deploy this system completely free in **3 simple steps**:
+
+### 1. Database Setup on [Neon.tech](https://neon.tech/)
+1. Create a free PostgreSQL project on Neon.
+2. In the **SQL Editor**, paste and run the [`database_schema.sql`](database_schema.sql) file.
+3. Copy your `DATABASE_URL` connection string.
+
+### 2. Backend Deployment on [Vercel](https://vercel.com/)
+1. Import this repository into Vercel.
+2. Add the environment variable:
+   - `DATABASE_URL` = *(Paste your Neon connection string)*
+3. Click **Deploy**. Vercel will automatically build the serverless PHP runtime using [`vercel.json`](vercel.json).
+
+### 3. Optional: Cloudflare Custom Domain
+1. In Cloudflare DNS, add a `CNAME` pointing your domain to `cname.vercel-dns.com` (Proxied 🟠).
+2. In Vercel Project Settings $\rightarrow$ Domains, add your domain.
+
+---
+
+## 💻 Local Installation
+
+### Requirements:
+- PHP 8.1 or higher (with `pdo_pgsql` and `pgsql` extensions enabled)
+- PostgreSQL 14 or higher
+- Web Server (Apache / Nginx / PHP built-in server)
+
+### Steps:
+```bash
+# 1. Clone the repository
+git clone https://github.com/Abhijeet0848/Online-result-system-perfect.git
+cd Online-result-system-perfect
+
+# 2. Configure Environment Variables
+cp .env.example .env
+# Edit .env with your local PostgreSQL credentials
+
+# 3. Import Database
+psql -U postgres -d result -f database_schema.sql
+
+# 4. Start Local PHP Development Server
+php -S localhost:8000
+```
+Visit `http://localhost:8000` in your browser.
+
+---
+
+## 🔑 Default Credentials
+
+| Portal | Login URL | Username | Password |
+| :--- | :--- | :--- | :--- |
+| **Admin Portal** | `/frontend/pages/auth/index.php` | `admin` | `Test@123` |
+| **Faculty Portal** | `/frontend/pages/auth/index.php` | `faculty@example.com` | `faculty123` |
+| **Student Portal** | `/frontend/pages/student/s_login.php` | `gautam@example.com` | `1102208472` |
+
+---
+
+## 📁 Repository Structure
+
+```text
 Online-result-system/
-├── backend/ # Backend server logic, APIs, and configurations
-│ ├── api/ # Dynamic AJAX data endpoints
-│ │ ├── create_order.php # Payment & order creation endpoint
-│ │ ├── fetch_students.php # Dynamic student list fetcher
-│ │ ├── get_marks.php# Subject marks fetcher
-│ │ ├── get_std.php# Student dropdown populator
-│ │ └── get_student.php# Student & subject details handler
-│ ├── auth/# Authentication action handlers
-│ │ └── logout.php # Session logout handler
-│ └── config/# Database configuration
-│ └── connection.php # PostgreSQL database connection parameters
-│
-├── frontend/# User interface, views, and static assets
-│ ├── assets/# Static asset files
-│ │ ├── css/ # Stylesheets (common.css)
-│ │ ├── js/# JavaScript libraries (jQuery, Modernizr)
-│ │ └── images/# Images and branding assets
-│ ├── components/# Shared UI components
-│ │ └── nav.php# Navigation bar header
-│ └── pages/ # User-facing view pages
-│ ├── admin/ # Admin management portal & CRUD views
-│ │ ├── dashboard.php
-│ │ ├── add-branch.php / edit-branch.php / manage-branch.php
-│ │ ├── add-semester.php / edit-semester.php / manage-sem.php
-│ │ ├── add-student.php / edit-student.php / manage-students.php
-│ │ ├── add-subjects.php / edit-subjects.php / manage-subjects.php
-│ │ ├── add-subjcombo.php / manage-subjcomb.php
-│ │ ├── add-results.php / edit-result.php / manage-results.php
-│ │ ├── manage-photocopy.php / manage-revalution.php
-│ │ ├── publice_notice.php
-│ │ └── register_admin.php
-│ ├── student/ # Student portal & services
-│ │ ├── s_login.php (Student Dashboard)
-│ │ ├── updateprofile.php
-│ │ ├── view_notices.php
-│ │ ├── request-photocopy.php
-│ │ ├── request-revalution.php
-│ │ ├── payment.php / payment1.php / payement_success.php
-│ │ ├── download_bill.php
-│ │ ├── generate_certificate.php
-│ │ ├── degree_print.php
-│ │ └── print_documents.php
-│ └── auth/# Login, registration, & password recovery
-│ ├── index.php (Main Login Portal)
-│ ├── student_registration.php
-│ ├── change-password.php
-│ ├── student-forget-password.php
-│ ├── admin_forgot_password.php
-│ ├── find-result.php
-│ └── result.php
-│
-├── database/# Database schemas and seed data
-│ └── final2.sql # PostgreSQL database schema & tables
-│
-├── index.php# Root entry point router
+├── api/
+│   └── index.php             # Vercel serverless router with Gzip & asset caching
+├── backend/
+│   ├── api/                  # AJAX endpoints (create_order, fetch_students, get_marks)
+│   ├── auth/                 # Authentication & logout handlers
+│   ├── config/               # Database connection pooler (connection.php, session.php)
+│   └── helpers/              # Academic calculations & security audit logger
+├── database/
+│   └── final2.sql            # Legacy schema backup
+├── database_schema.sql       # Production-ready PostgreSQL schema & seed data
+├── frontend/
+│   ├── assets/               # Stylesheets (common.css), vector icons, QR scripts
+│   ├── components/           # Shared UI navigation & footer headers
+│   └── pages/
+│       ├── admin/            # CRUD management (students, faculty, results, circulars)
+│       ├── auth/             # Multi-role authentication & password recovery
+│       ├── faculty/          # Marks ledger & grading dashboard
+│       └── student/          # Result viewing, photocopy, revaluation & receipt download
+├── Dockerfile                # Production container configuration
+├── vercel.json               # Serverless PHP runtime & security header config
+├── .env.example              # Environment variables template
+├── .gitignore                # Protected secret files & logs
+├── LICENSE                   # MIT License
 └── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
+## 📸 Screenshots
 
-1. **Database Setup**: Import `database/final2.sql` into your PostgreSQL database.
-2. **Configuration**: Configure credentials in `backend/config/connection.php`.
-3. **Run Application**: Serve via Apache / PHP built-in server and navigate to `http://localhost/Online-result-system/`.
+<img width="1914" height="870" alt="Homepage" src="https://github.com/user-attachments/assets/9b1ab53b-dfa2-43ed-999e-496b0c55e4f1" />
+<img width="1902" height="811" alt="Admin Dashboard" src="https://github.com/user-attachments/assets/75ead08e-cb15-4a08-b75d-4b66e7ecd8b9" />
+<img width="1919" height="859" alt="Student Result" src="https://github.com/user-attachments/assets/3280255a-74fe-4a1e-a14c-ec476aa78b2c" />
+<img width="1919" height="869" alt="Photocopy Request" src="https://github.com/user-attachments/assets/4c72c294-cc4b-4144-b55a-8e75b8e670d6" />
+<img width="1919" height="869" alt="Public Circulars" src="https://github.com/user-attachments/assets/c3328958-7964-40b7-9ce7-940f0276d794" />
 
 ---
 
-## 📸 Screenshots
+## 🛡️ Security
 
-<img width="1914" height="870" alt="image" src="https://github.com/user-attachments/assets/9b1ab53b-dfa2-43ed-999e-496b0c55e4f1" />
-<img width="1902" height="811" alt="image" src="https://github.com/user-attachments/assets/75ead08e-cb15-4a08-b75d-4b66e7ecd8b9" />
-<img width="1919" height="859" alt="image" src="https://github.com/user-attachments/assets/3280255a-74fe-4a1e-a14c-ec476aa78b2c" />
-<img width="1919" height="869" alt="image" src="https://github.com/user-attachments/assets/4c72c294-cc4b-4144-b55a-8e75b8e670d6" />
-<img width="1919" height="869" alt="image" src="https://github.com/user-attachments/assets/c3328958-7964-40b7-9ce7-940f0276d794" />
-<img width="1919" height="861" alt="image" src="https://github.com/user-attachments/assets/31e2e9c8-79ff-4fe6-9051-96949c6cd474" />
-<img width="1910" height="865" alt="image" src="https://github.com/user-attachments/assets/5102a3b8-704d-4290-abd2-dfdb725246b9" />
-<img width="1911" height="871" alt="image" src="https://github.com/user-attachments/assets/7671300d-4187-4464-a8fb-63aa6a68244d" />
-<img width="1912" height="862" alt="image" src="https://github.com/user-attachments/assets/c36f9546-6209-4668-b1d0-59741b42889a" />
-<img width="1918" height="867" alt="image" src="https://github.com/user-attachments/assets/6d2db96f-11ed-4ecc-b6a7-cecc2ac23d5e" />
-<img width="1919" height="865" alt="image" src="https://github.com/user-attachments/assets/2800d930-ddf4-4c23-a661-49cd931b0c43" />
-<img width="1878" height="909" alt="image" src="https://github.com/user-attachments/assets/26b90a9e-823a-4e21-892c-6e4e2c27c592" />
-<img width="1919" height="864" alt="image" src="https://github.com/user-attachments/assets/4b8a166d-c1cb-430b-a0a8-071828f026be" />
-<img width="1914" height="857" alt="image" src="https://github.com/user-attachments/assets/c166af84-e464-4b06-b0d3-eaad337e81dc" />
-<img width="1916" height="875" alt="image" src="https://github.com/user-attachments/assets/282994ba-904f-4991-859d-b3ca05c1c862" />
+- **Zero Hardcoded Secrets**: All passwords and API keys are isolated in `.env` and environment variables.
+- **SQL Injection Prevention**: All database interactions use parameterized queries (`pg_query_params`).
+- **XSS & CSRF Protection**: Session token validation and HTML entity sanitization on all inputs.
+- **HTTP Security Headers**: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `X-XSS-Protection`.
+
+---
+
+## 📄 License
+
+This project is open-source and licensed under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+Made with ❤️ by <strong>Abhijeet</strong> for SSR College Examination Division
+</div>

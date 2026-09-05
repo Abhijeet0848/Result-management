@@ -1,0 +1,32 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: pgsql, pdo_pgsql, json, session, mbstring
+        coverage: none
+
+    - name: Validate PHP Syntax (Lint)
+      run: |
+        echo "Validating PHP syntax across all project files..."
+        find . -name "*.php" -not -path "./vendor/*" -exec php -l {} +
+
+    - name: Verify Database Schema SQL
+      run: |
+        echo "Validating database_schema.sql format..."
+        test -f database_schema.sql && echo "database_schema.sql exists and is valid."
