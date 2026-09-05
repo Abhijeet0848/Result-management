@@ -15,9 +15,7 @@
 
 ### 🔗 Live Production URL: [https://online-results.vercel.app/](https://online-results.vercel.app/)
 
-*Central Examination Division & Academic Student Services Portal*
-
-[🌐 Open Live Demo](https://online-results.vercel.app/) • [Key Features](#-key-features) • [Deployment Guide](#-free-cloud-deployment) • [Credentials](#-default-credentials)
+[🌐 Open Live Demo](https://online-results.vercel.app/) • [Key Features](#-key-features) • [Screenshots](#-screenshots) • [Deployment Guide](#-free-cloud-deployment)
 
 </div>
 
@@ -153,17 +151,6 @@ psql -U postgres -d result -f database_schema.sql
 php -S localhost:8000
 ```
 Visit `http://localhost:8000` in your browser.
-
----
-
-## 🔑 Default Credentials & Live Portal Links
-
-| Portal | Live Access Link | Default Username | Default Password |
-| :--- | :--- | :--- | :--- |
-| **Admin Portal** | [Open Admin Portal](https://online-results.vercel.app/frontend/pages/auth/index.php) | `admin` | `Test@123` |
-| **Faculty Portal** | [Open Faculty Portal](https://online-results.vercel.app/frontend/pages/auth/index.php) | `faculty@example.com` | `faculty123` |
-| **Student Portal** | [Open Student Portal](https://online-results.vercel.app/frontend/pages/student/s_login.php) | `gautam@example.com` | `1102208472` |
-| **Direct Result Search** | [Search Result Online](https://online-results.vercel.app/frontend/pages/auth/find-result.php) | *Public Access* | *Public Access* |
 
 ---
 
