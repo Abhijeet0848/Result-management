@@ -104,6 +104,26 @@ border-color: #2563EB;
 transform: translateY(-3px);
 box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
 }
+@media (max-width: 640px) {
+.faculty-header-card {
+padding: 20px 16px;
+flex-direction: column;
+align-items: stretch;
+gap: 14px;
+}
+.faculty-header-card .btn {
+width: 100%;
+justify-content: center;
+}
+.faculty-stat-grid {
+grid-template-columns: 1fr;
+gap: 12px;
+}
+.action-cards-grid {
+grid-template-columns: 1fr;
+gap: 14px;
+}
+}
 </style>
 </head>
 <body>

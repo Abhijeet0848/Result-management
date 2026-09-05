@@ -544,6 +544,101 @@ gap: 8px;
 flex-wrap: wrap;
 }
 
+.mobile-scroll-hint {
+display: none;
+text-align: center;
+font-size: 0.8rem;
+color: #64748b;
+background: #f1f5f9;
+padding: 6px 12px;
+border-radius: 6px;
+margin-bottom: 8px;
+max-width: 840px;
+margin: 0 auto 10px;
+}
+
+/* Screen Mobile Breakpoints */
+@media screen and (max-width: 768px) {
+.screen-top-bar {
+flex-direction: column;
+align-items: stretch;
+gap: 10px;
+padding: 10px 14px;
+}
+
+.action-group {
+width: 100%;
+justify-content: space-between;
+}
+
+.action-group .btn {
+flex: 1 1 auto;
+justify-content: center;
+font-size: 0.8rem;
+padding: 7px 10px;
+}
+
+.result-search-form {
+width: 100%;
+}
+
+.result-search-form input {
+flex: 1;
+width: auto;
+}
+
+.sem-selector-bar {
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+white-space: nowrap;
+padding: 8px 12px;
+justify-content: flex-start;
+}
+
+.sem-pill {
+flex-shrink: 0;
+}
+
+.mobile-scroll-hint {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 6px;
+}
+
+.pdf-page-container {
+width: 100%;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+border-radius: 6px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.marksheet-document {
+min-width: 620px;
+}
+}
+
+@media screen and (max-width: 480px) {
+body {
+padding: 8px;
+}
+
+.action-group {
+flex-wrap: wrap;
+gap: 6px;
+}
+
+.doc-services-box {
+padding: 12px;
+}
+
+.doc-services-grid .btn {
+width: 100%;
+justify-content: center;
+}
+}
+
 /* ==========================================================================
  STRICT SINGLE-PAGE PRINT RULES (A4 Guaranteed)
  ========================================================================== */
@@ -567,6 +662,7 @@ print-color-adjust: exact !important;
 .screen-top-bar,
 .sem-selector-bar,
 .doc-services-box,
+.mobile-scroll-hint,
 .no-print,
 #loginPromptModal {
 display: none !important;
@@ -580,6 +676,7 @@ padding: 0 !important;
 box-shadow: none !important;
 border: none !important;
 border-radius: 0 !important;
+overflow-x: visible !important;
 }
 
 .marksheet-document {
@@ -590,6 +687,7 @@ box-shadow: none !important;
 border-radius: 0 !important;
 width: 100% !important;
 max-width: 100% !important;
+min-width: auto !important;
 margin: 0 !important;
 padding: 10px 14px 8px !important;
 page-break-inside: avoid !important;
@@ -700,6 +798,9 @@ Semester <?= $sNum ?>
 
 <!-- Official Printable Marksheet Document Container -->
 <?php if (!empty($rows)): ?>
+<div class="mobile-scroll-hint no-print">
+    <i class="fa-solid fa-arrows-left-right"></i> Scroll / swipe horizontally to inspect full document
+</div>
 <div class="pdf-page-container">
 <div class="marksheet-document" id="printableMarksheet">
 <!-- Institutional Header with Dynamic QR Verification -->

@@ -71,7 +71,7 @@ $student = pg_fetch_assoc($result);
 </head>
 <body>
 
-<header style="background: #1E3A5F; padding: 16px 24px; color: #FFFFFF; border-bottom: 1px solid #E5E7EB; box-shadow: 0 2px 10px rgba(30,58,95,0.15); display: flex; justify-content: space-between; align-items: center;">
+<header style="background: #1E3A5F; padding: 12px clamp(12px, 3vw, 24px); color: #FFFFFF; border-bottom: 1px solid #E5E7EB; box-shadow: 0 2px 10px rgba(30,58,95,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
 <a href="s_login.php" style="color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
 <i class="fa-solid fa-graduation-cap" style="color: #2563EB;"></i> Student Portal
 </a>

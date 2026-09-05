@@ -404,15 +404,36 @@ border-color: #2563EB;
 transform: scale(1.05);
 }
 
-/* Modern Data Tables */
-.table-responsive {
+/* Modern Data Tables & Responsive Wrappers */
+.table-responsive, .table-container {
 width: 100%;
+max-width: 100%;
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
 margin: 18px 0;
 border-radius: var(--radius-md);
 border: 1px solid var(--border-color);
 box-shadow: var(--shadow-sm);
+background: var(--bg-card);
+}
+
+.table-responsive::-webkit-scrollbar, .table-container::-webkit-scrollbar {
+height: 6px;
+width: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track, .table-container::-webkit-scrollbar-track {
+background: #F1F5F9;
+border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb, .table-container::-webkit-scrollbar-thumb {
+background: #CBD5E1;
+border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover, .table-container::-webkit-scrollbar-thumb:hover {
+background: #94A3B8;
 }
 
 table {
@@ -504,6 +525,72 @@ transform: translateY(-50%);
 color: var(--text-muted);
 }
 
+/* Standalone Lightweight Navbar (Faculty / Student standalone) */
+.navbar {
+background: #1E3A5F;
+color: #FFFFFF;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 2px 8px rgba(30, 58, 95, 0.15);
+border-bottom: 1px solid #152843;
+width: 100%;
+}
+
+.navbar-container {
+max-width: 1440px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 clamp(12px, 2.5vw, 24px);
+min-height: 60px;
+flex-wrap: wrap;
+gap: 10px;
+}
+
+.navbar-brand {
+display: flex;
+align-items: center;
+gap: 8px;
+color: #FFFFFF;
+font-family: 'Outfit', sans-serif;
+font-weight: 700;
+font-size: clamp(1rem, 2.5vw, 1.25rem);
+text-decoration: none;
+white-space: nowrap;
+}
+
+.navbar-nav {
+display: flex;
+align-items: center;
+gap: 6px;
+flex-wrap: wrap;
+}
+
+.navbar-nav .nav-link {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+color: #E5E7EB;
+font-weight: 600;
+font-size: 0.88rem;
+padding: 7px 12px;
+border-radius: 8px;
+text-decoration: none;
+transition: all 0.15s ease;
+}
+
+.navbar-nav .nav-link:hover {
+color: #FFFFFF;
+background: rgba(255, 255, 255, 0.12);
+}
+
+.navbar-nav .nav-link.active {
+color: #FFFFFF;
+background: #2563EB;
+}
+
 /* Alert Boxes & Notifications */
 .alert {
 padding: 12px 16px;
@@ -515,6 +602,7 @@ gap: 12px;
 font-weight: 500;
 font-size: 0.92rem;
 animation: slideDown 0.3s ease-out;
+word-break: break-word;
 }
 
 .alert-danger {
@@ -547,10 +635,11 @@ background: #ffffff;
 color: #1e293b;
 border: 2px solid #334155;
 border-radius: var(--radius-md);
-padding: clamp(16px, 4vw, 36px);
+padding: clamp(14px, 3.5vw, 36px);
 max-width: 900px;
 margin: 20px auto;
 box-shadow: var(--shadow-xl);
+overflow-x: auto;
 }
 
 .marksheet-header {
@@ -561,20 +650,20 @@ margin-bottom: 20px;
 }
 
 .marksheet-header h1 {
-font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+font-size: clamp(1.15rem, 3.5vw, 1.8rem);
 color: #0f172a;
 letter-spacing: 0.5px;
 }
 
 .marksheet-header h3 {
-font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+font-size: clamp(0.85rem, 2.5vw, 1.1rem);
 font-weight: 500;
 color: #475569;
 }
 
 .marksheet-info-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
 gap: 10px 20px;
 background: #f8fafc;
 padding: 14px 18px;
@@ -629,7 +718,7 @@ background: #ffffff !important;
 color: #000000 !important;
 padding: 0 !important;
 }
-.app-navbar, .student-nav, .marksheet-actions, .no-print, button {
+.app-navbar, .student-nav, .student-header, .navbar, .marksheet-actions, .no-print, button {
 display: none !important;
 }
 .marksheet-card {
@@ -655,73 +744,6 @@ to { opacity: 1; transform: translateY(0); }
 @keyframes slideDown {
 from { opacity: 0; transform: translateY(-8px); }
 to { opacity: 1; transform: translateY(0); }
-}
-
-/* Comprehensive Responsive Breakpoints */
-@media (max-width: 768px) {
-.container, .app-container {
-padding: 14px;
-margin: 10px auto;
-border-radius: var(--radius-md);
-}
-
-.page-header {
-flex-direction: column;
-align-items: stretch;
-}
-
-.page-header > * {
-width: 100%;
-}
-
-.page-header .btn {
-width: 100%;
-}
-
-.card-grid {
-grid-template-columns: 1fr;
-}
-
-.table-toolbar {
-flex-direction: column;
-align-items: stretch;
-}
-
-.search-input-wrapper {
-max-width: 100%;
-}
-
-.marksheet-summary {
-flex-direction: column;
-align-items: stretch;
-text-align: center;
-}
-
-form div[style*="display: flex"] {
-flex-direction: column;
-width: 100%;
-}
-
-form div[style*="display: flex"] .btn,
-form div[style*="display: flex"] a.btn {
-width: 100%;
-text-align: center;
-}
-}
-
-@media (max-width: 480px) {
-body {
-font-size: 14px;
-}
-
-.btn {
-padding: 8px 16px;
-font-size: 0.88rem;
-}
-
-.stat-value {
-font-size: 1.65rem;
-}
 }
 
 /* Password Input Visibility Toggle */
@@ -758,4 +780,150 @@ outline: none;
 
 .password-toggle-btn:hover {
 color: var(--primary);
+}
+
+/* ==========================================================================
+ Universal Mobile & Small Screen Breakpoints
+ ========================================================================== */
+@media (max-width: 768px) {
+.container, .app-container {
+padding: clamp(12px, 3.5vw, 18px);
+margin: 10px auto;
+border-radius: var(--radius-md);
+}
+
+.card {
+padding: clamp(14px, 3.5vw, 20px);
+border-radius: var(--radius-md);
+}
+
+.page-header {
+flex-direction: column;
+align-items: stretch;
+gap: 12px;
+}
+
+.page-header > * {
+width: 100%;
+}
+
+.page-header .btn {
+width: 100%;
+justify-content: center;
+}
+
+.card-grid {
+grid-template-columns: 1fr;
+}
+
+.table-toolbar {
+flex-direction: column;
+align-items: stretch;
+}
+
+.search-input-wrapper {
+max-width: 100%;
+width: 100%;
+}
+
+.marksheet-summary {
+flex-direction: column;
+align-items: stretch;
+text-align: center;
+}
+
+.navbar-container {
+flex-direction: column;
+align-items: stretch;
+padding: 10px 14px;
+}
+
+.navbar-nav {
+width: 100%;
+justify-content: space-between;
+gap: 4px;
+}
+
+.navbar-nav .nav-link {
+flex: 1 1 auto;
+justify-content: center;
+font-size: 0.8rem;
+padding: 6px 8px;
+}
+
+/* Automatic Collapse of Multi-Column Form Grids */
+form div[style*="display: grid"],
+div[style*="grid-template-columns: 1fr 1fr"],
+div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+grid-template-columns: 1fr !important;
+gap: 14px !important;
+}
+
+/* Button & Action Bar Mobile Wrappers */
+.btn-group-responsive,
+.form-actions {
+display: flex;
+flex-direction: column;
+width: 100%;
+gap: 10px;
+}
+
+.btn-group-responsive .btn,
+.form-actions .btn {
+width: 100%;
+justify-content: center;
+}
+}
+
+@media (max-width: 540px) {
+body {
+font-size: 14.5px;
+}
+
+/* Prevent auto-zoom on iOS when tapping inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea,
+.form-control {
+font-size: 16px !important;
+}
+
+.btn {
+padding: 10px 18px;
+font-size: 0.92rem;
+}
+
+.btn-sm {
+padding: 6px 12px;
+font-size: 0.82rem;
+min-height: 32px;
+}
+
+.stat-value {
+font-size: 1.65rem;
+}
+
+.stat-card {
+padding: 16px;
+}
+}
+
+@media (max-width: 360px) {
+.container, .app-container {
+padding: 10px;
+margin: 6px auto;
+}
+
+.card {
+padding: 12px;
+}
+
+.btn {
+padding: 9px 14px;
+font-size: 0.86rem;
+}
 }

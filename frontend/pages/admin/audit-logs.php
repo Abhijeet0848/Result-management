@@ -67,12 +67,12 @@ $allActions[] = $ar['action'];
 <!-- Filter / Search Bar -->
 <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 12px; padding: 18px; margin-bottom: 24px;">
 <form action="" method="GET" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
-<div class="form-group" style="margin: 0; flex: 2; min-width: 240px;">
+<div class="form-group" style="margin: 0; flex: 2; min-width: min(100%, 200px);">
 <label style="font-weight: 600; font-size: 0.88rem;">Search Log Description / User</label>
 <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search keyword, roll no, username..." class="form-control">
 </div>
 
-<div class="form-group" style="margin: 0; flex: 1; min-width: 180px;">
+<div class="form-group" style="margin: 0; flex: 1; min-width: min(100%, 160px);">
 <label style="font-weight: 600; font-size: 0.88rem;">Action Type</label>
 <select name="action_type" class="form-control">
 <option value="">-- All Actions --</option>
@@ -84,7 +84,7 @@ $allActions[] = $ar['action'];
 </select>
 </div>
 
-<button type="submit" class="btn btn-primary" style="height: 42px;">
+<button type="submit" class="btn btn-primary" style="height: 46px; flex: 0 0 auto;">
 <i class="fa-solid fa-filter"></i> Filter Logs
 </button>
 <?php if (!empty($search) || !empty($actionFilter)): ?>

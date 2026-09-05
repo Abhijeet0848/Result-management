@@ -144,6 +144,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             margin-top: 18px;
             border: 1px solid #E2E8F0;
         }
+        @media (max-width: 640px) {
+            .student-nav {
+                padding: 10px 14px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .student-nav > div:last-child {
+                justify-content: space-between;
+                width: 100%;
+            }
+            .fee-calc-bar {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                gap: 8px;
+            }
+            .btn-block-sm {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>

@@ -157,7 +157,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 background-color: #F8FAFC;
-padding: 20px;
+padding: clamp(12px, 3.5vw, 24px);
 font-family: 'Plus Jakarta Sans', sans-serif;
 color: #1F2937;
 }
@@ -170,7 +170,7 @@ max-width: 440px;
 .auth-card {
 background: #FFFFFF;
 border-radius: 16px;
-padding: 36px 30px;
+padding: clamp(22px, 5vw, 36px) clamp(16px, 4vw, 30px);
 box-shadow: 0 4px 20px rgba(31, 41, 55, 0.08);
 border: 1px solid #E5E7EB;
 animation: fadeIn 0.35s ease-out;

@@ -17,7 +17,7 @@ min-height: 100vh;
 display: flex;
 align-items: center;
 justify-content: center;
-padding: 20px;
+padding: clamp(12px, 3.5vw, 20px);
 font-family: 'Plus Jakarta Sans', sans-serif;
 color: #1F2937;
 }
@@ -28,7 +28,7 @@ box-shadow: 0 4px 20px rgba(31, 41, 55, 0.08);
 border: 1px solid #E5E7EB;
 width: 100%;
 max-width: 480px;
-padding: 36px;
+padding: clamp(20px, 5vw, 36px);
 }
 .brand-header {
 text-align: center;

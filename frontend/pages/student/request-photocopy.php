@@ -87,6 +87,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             flex-wrap: wrap;
             gap: 16px;
         }
+        @media (max-width: 640px) {
+            .student-nav {
+                padding: 10px 14px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .student-nav > div:last-child {
+                justify-content: space-between;
+                width: 100%;
+            }
+            .fee-summary-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                padding: 16px;
+            }
+            .fee-summary-card .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body style="background: #f8fafc; min-height: 100vh;">

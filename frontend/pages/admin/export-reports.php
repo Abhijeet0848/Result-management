@@ -217,7 +217,7 @@ border: none !important;
 <!-- Filter Bar -->
 <div class="filter-bar no-print" style="background: #FFFFFF; border: 1px solid #E5E7EB; padding: 18px; border-radius: 12px; margin-bottom: 24px;">
 <form action="" method="GET" style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end;">
-<div class="form-group" style="margin: 0; min-width: 220px; flex: 1;">
+<div class="form-group" style="margin: 0; min-width: min(100%, 200px); flex: 1;">
 <label style="font-weight: 600; font-size: 0.88rem;">Academic Branch</label>
 <select name="branch_id" class="form-control">
 <?php foreach ($branches as $b): ?>
@@ -228,7 +228,7 @@ border: none !important;
 </select>
 </div>
 
-<div class="form-group" style="margin: 0; min-width: 180px; flex: 1;">
+<div class="form-group" style="margin: 0; min-width: min(100%, 160px); flex: 1;">
 <label style="font-weight: 600; font-size: 0.88rem;">Semester</label>
 <select name="sem_id" class="form-control">
 <?php foreach ($semesters as $s): ?>
@@ -239,7 +239,7 @@ Semester <?= htmlspecialchars($s['semester'] ?? $s['sem_id']) ?>
 </select>
 </div>
 
-<button type="submit" class="btn btn-primary" style="height: 42px;">
+<button type="submit" class="btn btn-primary" style="height: 46px; flex: 0 0 auto;">
 <i class="fa-solid fa-filter"></i> Apply Filter
 </button>
 </form>

@@ -308,7 +308,7 @@ font-size: 1rem;
 </div>
 </header>
 
-<div class="container" style="border: none; box-shadow: none; background: transparent; padding: 0 20px;">
+<div class="container" style="border: none; box-shadow: none; background: transparent; padding: 0 clamp(10px, 2.5vw, 20px);">
 <!-- Student Profile Hero -->
 <div class="student-hero">
 <div class="student-profile-info">
@@ -358,7 +358,7 @@ View All Circulars <i class="fa-solid fa-arrow-right"></i>
 <h2 style="margin-bottom: 16px; font-size: 1.35rem; color: #1E3A5F; display: flex; align-items: center; gap: 10px;">
 <i class="fa-solid fa-chart-line" style="color: #2563EB;"></i> Academic Performance Analytics
 </h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px;">
 <!-- Line Chart: SGPA Progression -->
 <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
 <h4 style="margin: 0 0 14px; color: #1E3A5F; font-size: 1rem; font-weight: 700;">
