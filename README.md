@@ -71,7 +71,8 @@ The **Online Result Management System** is an enterprise-grade academic web appl
 ![Login Portal](docs/screenshots/login_portal.png)
 
 ### 📝 Result Declaration & Subject Grading System
-![Result Declaration](docs/screenshots/result_declaration.png)
+<img width="1231" height="617" alt="image" src="https://github.com/user-attachments/assets/06e52074-28d1-4945-8f39-8d7075e7ded7" />
+
 
 ### 👥 Student Directory & Records Management
 ![Student Management](docs/screenshots/student_management.png)
