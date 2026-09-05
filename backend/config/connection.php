@@ -21,7 +21,7 @@
     }
 })();
 
-// Database connection parameters (Environment Variables with Zero Hardcoded Passwords)
+// High-Performance Persistent PostgreSQL Connection
 $database_url = getenv('DATABASE_URL');
 
 if (!empty($database_url)) {
@@ -33,7 +33,12 @@ if (!empty($database_url)) {
     $password = $db_parts['pass'] ?? '';
     $dbname = ltrim($db_parts['path'] ?? 'result', '/');
     
-    $conn = @pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password sslmode=require");
+    // Use persistent connection with TCP keepalive and connection timeout
+    $connString = "host=$host port=$port dbname=$dbname user=$user password=$password sslmode=require connect_timeout=5";
+    $conn = @pg_pconnect($connString);
+    if (!$conn) {
+        $conn = @pg_connect($connString);
+    }
 } else {
     $host = getenv('DB_HOST') ?: "localhost";
     $dbname = getenv('DB_NAME') ?: "result";
@@ -41,10 +46,14 @@ if (!empty($database_url)) {
     $password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "";
     $port = getenv('DB_PORT') ?: 5432;
 
-    $conn = @pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+    $connString = "host=$host port=$port dbname=$dbname user=$user password=$password connect_timeout=3";
+    $conn = @pg_pconnect($connString);
+    if (!$conn) {
+        $conn = @pg_connect($connString);
+    }
 }
 
-// Check if the connection was successful
+// Check connection status
 if (!$conn) {
     error_log("PostgreSQL connection failed: " . ($conn ? pg_last_error($conn) : "Unable to reach PostgreSQL server"));
 }

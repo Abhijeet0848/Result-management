@@ -1,8 +1,11 @@
 <?php
-// Vercel Serverless Entry Point Router for PHP
+// High-Speed Vercel Serverless Router with Gzip & Edge Asset Caching
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH));
 
 if ($uri === '/' || $uri === '' || $uri === '/index.php') {
+    if (!ob_get_level() && !headers_sent()) {
+        @ob_start('ob_gzhandler');
+    }
     require __DIR__ . '/../index.php';
     exit;
 }
@@ -13,11 +16,14 @@ if (file_exists($file) && !is_dir($file)) {
     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
     
     if ($ext === 'php') {
+        if (!ob_get_level() && !headers_sent()) {
+            @ob_start('ob_gzhandler');
+        }
         require $file;
         exit;
     }
     
-    // Serve static assets (CSS, JS, Images, Fonts)
+    // Static Asset Content Types
     $mimeTypes = [
         'css'   => 'text/css',
         'js'    => 'application/javascript',
@@ -38,9 +44,17 @@ if (file_exists($file) && !is_dir($file)) {
     if (isset($mimeTypes[$ext])) {
         header('Content-Type: ' . $mimeTypes[$ext]);
     }
+    
+    // Aggressive browser & CDN caching for static assets (1 year immutable cache)
+    header('Cache-Control: public, max-age=31536000, immutable');
+    header('Vary: Accept-Encoding');
+    
     readfile($file);
     exit;
 }
 
 // Fallback to home page
+if (!ob_get_level() && !headers_sent()) {
+    @ob_start('ob_gzhandler');
+}
 require __DIR__ . '/../index.php';
