@@ -18,15 +18,15 @@ $params["secure"], $params["httponly"]
 // Finally, destroy the session.
 session_destroy();
 
-// Redirect to login page
-$loginUrl = "/frontend/pages/auth/index.php";
+// Redirect to homepage
+$homeUrl = "/index.php";
 
 if (!headers_sent()) {
-header("Location: " . $loginUrl);
-exit;
+    header("Location: " . $homeUrl);
+    exit;
 } else {
-echo '<script>window.location.href="' . htmlspecialchars($loginUrl) . '";</script>';
-echo '<noscript><meta http-equiv="refresh" content="0;url=' . htmlspecialchars($loginUrl) . '"></noscript>';
-exit;
+    echo '<script>window.location.href="' . htmlspecialchars($homeUrl) . '";</script>';
+    echo '<noscript><meta http-equiv="refresh" content="0;url=' . htmlspecialchars($homeUrl) . '"></noscript>';
+    exit;
 }
 ?>
