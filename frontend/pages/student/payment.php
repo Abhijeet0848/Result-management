@@ -23,6 +23,7 @@ $rate = ($type === 'revaluation') ? 250 : 100;
 $amount = ($type === 'revaluation') ? ($_SESSION['revaluation_amount'] ?? ($subject_count * $rate)) : ($_SESSION['photocopy_amount'] ?? ($subject_count * $rate));
 $amount_paise = (int)($amount * 100);
 $serviceTitle = ($type === 'revaluation') ? 'Answer Sheet Revaluation' : 'Answer Book Photocopy';
+$razorpay_key = getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_nG6hRXPQ1pJ9wE';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -345,7 +346,7 @@ $serviceTitle = ($type === 'revaluation') ? 'Answer Sheet Revaluation' : 'Answer
         }
 
         var options = {
-            "key": "rzp_test_nG6hRXPQ1pJ9wE",
+            "key": <?= json_encode($razorpay_key) ?>,
             "amount": <?= $amount_paise ?>,
             "currency": "INR",
             "name": "SSR College of Arts, Commerce & Science",

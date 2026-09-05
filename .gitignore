@@ -1,0 +1,18 @@
+# Environment & Credentials
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+credentials.json
+
+# Logs & Temporary files
+*.log
+.tempmediaStorage/
+.user_uploaded/
+.agents/
+.gemini/
+
+# System files
+.DS_Store
+Thumbs.db
